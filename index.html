@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>ECHO • Chat & Song Studio</title><style>
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>ECHO GODS • Offline Creative Command Center</title><style>
 :root{
   color-scheme:dark;
   --accent:#f4bf84;
@@ -190,7 +190,20 @@ footer{
 #chatLog{flex:1 1 auto;height:0;min-height:120px;overflow:auto}
 #herbStudio{overflow:auto;height:auto;min-height:0}
 [hidden]{display:none!important}
-</style><header><b>◈ ECHO</b><small>CHAT & SONG STUDIO</small><span>● NO INTERNET NEEDED</span></header><nav class="tabs"><button id="songTab" class="active">♫ Song studio</button><button id="chatTab">◈ Chat companion</button><button id="herbTab">❧ Herbs & nutrition</button><span id="libraryStats"></span></nav><section id="chatStudio" hidden><div class="chatHead"><select id="chatMood"><option>Everyday chat</option><option>Creative ideas</option><option>Fictional starship</option></select><button id="chatSave">Export chat</button><button id="chatClear">Clear chat</button><button id="chatTeach">Teach a note</button></div><div id="chatLog" role="log" aria-live="polite"></div><div id="answerChoices" class="chatChips" aria-label="Suggested topics"></div><details class="topicBrowser"><summary>Browse topics or find a question</summary><input id="topicQuery" aria-label="Search built-in topics" placeholder="Search song, computer, plant, home…"><div id="topicList"></div></details><div class="chatChips"><button data-chat="Hello">Hello</button><button data-chat="Give me a writing idea">Writing idea</button><button data-chat="Write a love song">Love song</button><button data-chat="How do computers work?">Computers</button><button data-chat="I had a long day">Long day</button></div><form id="chatForm"><textarea id="chatInput" rows="2" maxlength="1500" placeholder="Talk to ECHO, ask a question, or ask for a song…" aria-label="Chat message"></textarea><button>Send ↗</button></form><small id="chatNotice">Offline companion • searchable built-in answers • no language model</small></section><section id="herbStudio" hidden><h1>Herb & nutrition catalog</h1><p>Search a plant, nutrient, or concern. Matches are reference entries, not a diagnosis or prescription. Food, tea, extract, and essential oil are different products.</p><div class="herbSearch"><input id="herbQuery" placeholder="Try ginger, nausea, sleep, iron, or bladder" aria-label="Catalog search"><select id="herbFilter" aria-label="Catalog category"><option>All entries</option><option>Herbs</option><option>Nutrition</option></select></div><div id="herbQuick" class="presets"></div><p id="herbCount"></p><div class="herbLayout"><div id="herbResults"></div><article id="herbDetail"><p>Select an entry to open its full record.</p></article></div><p class="small">Built-in reference snapshot checked September 30, 2026. Evidence and interactions can change. Ask a pharmacist or clinician before using supplements with medicines, during pregnancy, or for children.</p></section><main id="songStudio"><section class="panel"><h1>Make your next song</h1><p class="small" style="margin:2px 0 6px">Love, heartbreak, dark anthems, stories &amp; fresh starts.</p><div class="presets"><button data-preset="love">Love song</button><button data-preset="heartbreak">Heartbreak</button><button data-preset="survival">Survivor</button><button data-preset="dark">Dark / industrial</button><button data-preset="celebration">Feel-good</button><button data-preset="space">Space story</button></div><label for="idea">What is the song about?</label><textarea id="idea" rows="2" maxlength="300" placeholder="A love that feels like coming home">A love that feels like coming home</textarea><div class="row"><div><label for="theme">Theme</label><select id="theme"><option value="auto">Detect from my idea</option><option value="love">Love & devotion</option><option value="heartbreak">Heartbreak & goodbye</option><option value="survival">Survival & starting over</option><option value="dark">Dark mystery</option><option value="celebration">Celebration & joy</option><option value="space">Space & exploration</option></select></div><div><label for="genre">Music style</label><select id="genre"><option>Industrial rock</option><option>Pop</option><option>Country</option><option>Hip-hop</option><option>R&B</option><option>Acoustic ballad</option><option>Cinematic anthem</option><option>Electronic / dance</option></select></div></div><div class="row"><div><label for="mood">Mood</label><select id="mood"><option>Tender</option><option>Dark</option><option>Hopeful</option><option>Defiant</option><option>Joyful</option><option>Bittersweet</option></select></div><div><label for="voice">Vocals</label><select id="voice"><option>Female lead</option><option>Male lead</option><option>Duet</option><option>Group chant</option></select></div></div><label for="hook">Your repeated hook / title (optional)</label><input id="hook" maxlength="100" placeholder="You are my way home"><label for="dedication">Name to include (optional)</label><input id="dedication" maxlength="50" placeholder="A name or nickname"><div class="row"><div><label for="length">Length</label><select id="length"><option>Full song</option><option>Short song</option></select></div><div><label for="form">Structure</label><select id="form"><option>Verse / chorus</option><option>Call & response</option><option>Rhythmic chant</option></select></div></div><details id="sceneBuilder"><summary>Automatic song scenes</summary><p class="small">Give your song a connected setting, turning point, and ending. Your own story details take priority.</p><label for="sceneMode">Scene mode</label><select id="sceneMode"><option>Automatic scene</option><option>My details only</option></select><label for="sceneChoice">Choose a story world</label><select id="sceneChoice"><option value="auto">Surprise me within my theme</option></select><label for="imageryLevel">Imagery intensity</label><select id="imageryLevel"><option>Grounded</option><option>Strange</option><option>Wildly surreal</option></select><label for="scenePalette">World atmosphere</label><select id="scenePalette"><option>Automatic</option><option>Cinematic</option><option>Futuristic</option><option>Gothic</option><option>Dreamlike</option></select><label for="wordcraft">Wordplay</label><select id="wordcraft"><option>Plain imagery</option><option>Paradoxes</option><option>Internal rhyme</option><option>Both</option></select><label for="arrangement">Song arrangement</label><select id="arrangement"><option>Automatic for music style</option><option>Story ballad</option><option>Anthem with breakdown</option><option>Dance hook cycle</option><option>Rap with refrain</option><option>Duet exchange</option></select><label for="finalHook">Final chorus</label><select id="finalHook"><option>Let the meaning develop</option><option>Repeat exactly</option></select><button id="newScene" style="margin-top:10px">Write with another scene</button><p id="sceneSummary" class="small">Your next song can unfold inside an automatic scene.</p></details><details id="personalStory"><summary>Your story — optional details</summary><p class="small">Use short phrases. These details become lyrics when you press Write my song.</p><label for="storyRelationship">Who or what connects the song?</label><input id="storyRelationship" maxlength="100" placeholder="e.g. two people growing old together"><label for="storyPlace">A place or setting</label><input id="storyPlace" maxlength="100" placeholder="e.g. our kitchen after midnight"><label for="storyMemory">A moment you remember</label><input id="storyMemory" maxlength="140" placeholder="e.g. laughing through the tears"><label for="storyStruggle">What made things difficult?</label><input id="storyStruggle" maxlength="140" placeholder="e.g. the years we barely had enough"><label for="storyKeepsake">An object, sound, or image</label><input id="storyKeepsake" maxlength="100" placeholder="e.g. your coat beside the door"><label for="storyPromise">The promise or message</label><input id="storyPromise" maxlength="100" placeholder="e.g. I still choose you"><label for="storyEnding">Where should the story end?</label><input id="storyEnding" maxlength="140" placeholder="e.g. finding our way back to each other"><div class="presets"><button data-story="love">Love through the years</button><button data-story="survival">Starting over</button><button data-story="goodbye">A gentle goodbye</button><button id="clearStory">Clear story details</button></div><p id="storyUsage" class="small">Empty fields use the regular lyric library.</p></details><details><summary>Song direction</summary><div class="row"><div><label for="energy">Intensity</label><select id="energy"><option>Slow build</option><option>Gentle throughout</option><option>Big chorus</option><option>Relentless</option></select></div><div><label for="perspective">Point of view</label><select id="perspective"><option>First person</option><option>We / together</option></select></div></div><label for="wording">Language intensity</label><select id="wording"><option>Clean</option><option>Gritty</option><option>Explicit</option></select><p class="small">Locked lines stay exactly as you saved them, regardless of language setting.</p><label for="motif">Central image (optional)</label><input id="motif" maxlength="70" placeholder="e.g. a light in the doorway"><button id="suggestHooks" style="margin-top:10px">Suggest 5 hooks</button><div id="hookChoices" class="presets"></div></details><button class="primary" id="generate">✦ Write my song</button><button id="surprise" style="width:100%;margin-top:8px">Surprise me</button><details><summary>Saved songs</summary><div id="history"></div><button id="clearHistory">Clear saved songs</button></details><p class="small">Offline lyric engine: curated original lines, theme matching, and varied arrangements. It is a simulation, not a language model; arbitrary prompts influence the theme and hook rather than being fully understood.</p></section><section class="panel"><div class="titlebar"><div><div class="badge">LYRIC STUDIO</div><h2 id="songTitle" style="margin:8px 0">Your song is ready</h2></div><span class="small" id="count"></span></div><div id="stylePrompt"></div><div class="actions"><button id="copy">Copy lyrics</button><button id="copyStyle">Copy style</button><button id="download">Download .txt</button><button id="print">Print</button><button id="saveSong">Save song</button></div><details class="chorusWorkshop"><summary>Choose your chorus</summary><p class="small">Generate three alternatives, then apply the one you like. Locked lines remain in place.</p><button id="makeChoruses">Generate 3 chorus choices</button><div id="chorusChoices"></div></details><label for="lyrics">Editable lyrics — change any line directly</label><textarea id="lyrics" spellcheck="true" aria-label="Editable song lyrics"></textarea><div class="actions"><select class="section" id="section" aria-label="Section to rewrite"><option>Verse 1</option><option>Chorus</option><option>Verse 2</option><option>Bridge</option></select><button id="rewrite">Rewrite section</button><button id="newVersion">New whole version</button><button id="undoSong">Undo last change</button><button id="lockChorus">Lock chorus: off</button></div><details id="lineLockPanel"><summary>Keep your favorite lines</summary><p class="small">Tap a line to lock its position in that section. Locks carry into rewrites and new versions until you unlock them.</p><button id="clearLineLocks">Unlock all lines</button><p id="lockCount" class="small"></p><div id="lineLockList"></div></details><details><summary>Rhyme desk & song notes</summary><div class="row"><input id="rhymeWord" placeholder="Try light, rain, home, heart…" aria-label="Word to rhyme"><button id="findRhymes">Find rhymes</button></div><p id="rhymeResults"></p><label for="songNotes">Your writing notes (kept with this draft)</label><textarea id="songNotes" rows="3" maxlength="3000" placeholder="What should the next version change?"></textarea><button id="checkSong">Review song structure</button><p id="songReview"></p></details><div id="status" role="status" aria-live="polite"></div></section></main><footer>Lyrics only • no audio is generated • everything runs inside this single HTML file.</footer><script>
+
+/* ECHO GODS PHASE 1 */
+header{background:linear-gradient(90deg,#15111c,#211827 55%,#15111c);box-shadow:0 6px 24px #0008;position:relative;z-index:3}
+header b{text-shadow:0 0 14px color-mix(in srgb,var(--accent) 55%,transparent)}
+.tabs{box-shadow:0 4px 18px #0006}
+.panel{box-shadow:inset 0 1px #ffffff08,0 10px 28px #0005}
+button{transition:transform .12s ease,border-color .12s ease,filter .12s ease}
+button:active{transform:scale(.97)}
+.eg-status{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px}.eg-pill{font-size:9px;letter-spacing:1px;border:1px solid var(--line);border-radius:999px;padding:4px 7px;color:#d8c8dc;background:#15121c}.eg-pill strong{color:var(--accent)}
+.eg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:6px 0}.eg-card{border:1px solid var(--line);border-radius:9px;padding:7px;background:#15121c;font-size:10px;color:var(--muted)}.eg-card b{display:block;color:#fff;font-size:11px;margin-bottom:2px}
+@media(max-width:720px){header b{font-size:12px;letter-spacing:2px}.eg-grid{grid-template-columns:1fr 1fr}}
+
+#phase2Engine{border:1px solid color-mix(in srgb,var(--accent) 55%,var(--line));border-radius:10px;padding:4px 8px;margin-top:8px;background:linear-gradient(135deg,rgba(244,191,132,.07),rgba(128,92,255,.05))}#phase2Engine summary{letter-spacing:.5px}#phase2Engine .presets button{flex:1;min-width:72px}.engineFlash{animation:engineFlash .38s ease}@keyframes engineFlash{50%{box-shadow:0 0 24px rgba(244,191,132,.35)}}
+</style><header><b>◈ ECHO GODS</b><small>CHAT & SONG STUDIO</small><span>● NO INTERNET NEEDED</span></header><nav class="tabs"><button id="songTab" class="active">♫ Song studio</button><button id="chatTab">◈ Chat companion</button><button id="herbTab">❧ Herbs & nutrition</button><span id="libraryStats"></span></nav><section id="chatStudio" hidden><div class="chatHead"><select id="chatMood"><option>Everyday chat</option><option>Creative ideas</option><option>Fictional starship</option></select><button id="chatSave">Export chat</button><button id="chatClear">Clear chat</button><button id="chatTeach">Teach a note</button></div><div id="chatLog" role="log" aria-live="polite"></div><div id="answerChoices" class="chatChips" aria-label="Suggested topics"></div><details class="topicBrowser"><summary>Browse topics or find a question</summary><input id="topicQuery" aria-label="Search built-in topics" placeholder="Search song, computer, plant, home…"><div id="topicList"></div></details><div class="chatChips"><button data-chat="Hello">Hello</button><button data-chat="Give me a writing idea">Writing idea</button><button data-chat="Write a love song">Love song</button><button data-chat="How do computers work?">Computers</button><button data-chat="I had a long day">Long day</button></div><form id="chatForm"><textarea id="chatInput" rows="2" maxlength="1500" placeholder="Talk to ECHO GODS, ask a question, or ask for a song…" aria-label="Chat message"></textarea><button>Send ↗</button></form><small id="chatNotice">Offline companion • searchable built-in answers • no language model</small></section><section id="herbStudio" hidden><h1>Herb & nutrition catalog</h1><p>Search a plant, nutrient, or concern. Matches are reference entries, not a diagnosis or prescription. Food, tea, extract, and essential oil are different products.</p><div class="herbSearch"><input id="herbQuery" placeholder="Try ginger, nausea, sleep, iron, or bladder" aria-label="Catalog search"><select id="herbFilter" aria-label="Catalog category"><option>All entries</option><option>Herbs</option><option>Nutrition</option></select></div><div id="herbQuick" class="presets"></div><p id="herbCount"></p><div class="herbLayout"><div id="herbResults"></div><article id="herbDetail"><p>Select an entry to open its full record.</p></article></div><p class="small">Built-in reference snapshot checked September 30, 2026. Evidence and interactions can change. Ask a pharmacist or clinician before using supplements with medicines, during pregnancy, or for children.</p></section><main id="songStudio"><section class="panel"><div class="eg-status"><span class="eg-pill"><strong>CORE</strong> READY</span><span class="eg-pill">OFFLINE</span><span class="eg-pill">PHASE 1</span></div><h1>Make your next song</h1><p class="small" style="margin:2px 0 6px">Love, heartbreak, dark anthems, stories &amp; fresh starts.</p><div class="eg-grid"><div class="eg-card"><b>SONG ENGINE</b>Hooks, scenes, rewrites &amp; arrangements</div><div class="eg-card"><b>CREATIVE CORE</b>More moods, styles &amp; story directions</div></div><div class="presets"><button data-preset="love">Love song</button><button data-preset="heartbreak">Heartbreak</button><button data-preset="survival">Survivor</button><button data-preset="dark">Dark / industrial</button><button data-preset="celebration">Feel-good</button><button data-preset="space">Space story</button><button data-preset="rage">Rage anthem</button><button data-preset="dream">Dreamscape</button><button data-preset="story">Story song</button><button data-preset="mystery">Mystery</button></div><label for="idea">What is the song about?</label><textarea id="idea" rows="2" maxlength="300" placeholder="A love that feels like coming home">A love that feels like coming home</textarea><div class="row"><div><label for="theme">Theme</label><select id="theme"><option value="auto">Detect from my idea</option><option value="love">Love & devotion</option><option value="heartbreak">Heartbreak & goodbye</option><option value="survival">Survival & starting over</option><option value="dark">Dark mystery</option><option value="celebration">Celebration & joy</option><option value="space">Space & exploration</option></select></div><div><label for="genre">Music style</label><select id="genre"><option>Industrial rock</option><option>Pop</option><option>Country</option><option>Hip-hop</option><option>R&B</option><option>Acoustic ballad</option><option>Cinematic anthem</option><option>Electronic / dance</option><option>Alternative rock</option><option>Dark synthwave</option><option>Industrial hip-hop</option><option>Orchestral rock</option><option>Dream pop</option></select></div></div><div class="row"><div><label for="mood">Mood</label><select id="mood"><option>Tender</option><option>Dark</option><option>Hopeful</option><option>Defiant</option><option>Joyful</option><option>Bittersweet</option><option>Furious</option><option>Haunting</option><option>Dreamlike</option><option>Triumphant</option></select></div><div><label for="voice">Vocals</label><select id="voice"><option>Female lead</option><option>Male lead</option><option>Duet</option><option>Group chant</option></select></div></div><label for="hook">Your repeated hook / title (optional)</label><input id="hook" maxlength="100" placeholder="You are my way home"><label for="dedication">Name to include (optional)</label><input id="dedication" maxlength="50" placeholder="A name or nickname"><div class="row"><div><label for="length">Length</label><select id="length"><option>Full song</option><option>Short song</option></select></div><div><label for="form">Structure</label><select id="form"><option>Verse / chorus</option><option>Call & response</option><option>Rhythmic chant</option></select></div></div><details id="sceneBuilder"><summary>Automatic song scenes</summary><p class="small">Give your song a connected setting, turning point, and ending. Your own story details take priority.</p><label for="sceneMode">Scene mode</label><select id="sceneMode"><option>Automatic scene</option><option>My details only</option></select><label for="sceneChoice">Choose a story world</label><select id="sceneChoice"><option value="auto">Surprise me within my theme</option></select><label for="imageryLevel">Imagery intensity</label><select id="imageryLevel"><option>Grounded</option><option>Strange</option><option>Wildly surreal</option></select><label for="scenePalette">World atmosphere</label><select id="scenePalette"><option>Automatic</option><option>Cinematic</option><option>Futuristic</option><option>Gothic</option><option>Dreamlike</option></select><label for="wordcraft">Wordplay</label><select id="wordcraft"><option>Plain imagery</option><option>Paradoxes</option><option>Internal rhyme</option><option>Both</option></select><label for="arrangement">Song arrangement</label><select id="arrangement"><option>Automatic for music style</option><option>Story ballad</option><option>Anthem with breakdown</option><option>Dance hook cycle</option><option>Rap with refrain</option><option>Duet exchange</option></select><label for="finalHook">Final chorus</label><select id="finalHook"><option>Let the meaning develop</option><option>Repeat exactly</option></select><button id="newScene" style="margin-top:10px">Write with another scene</button><p id="sceneSummary" class="small">Your next song can unfold inside an automatic scene.</p></details><details id="personalStory"><summary>Your story — optional details</summary><p class="small">Use short phrases. These details become lyrics when you press Write my song.</p><label for="storyRelationship">Who or what connects the song?</label><input id="storyRelationship" maxlength="100" placeholder="e.g. two people growing old together"><label for="storyPlace">A place or setting</label><input id="storyPlace" maxlength="100" placeholder="e.g. our kitchen after midnight"><label for="storyMemory">A moment you remember</label><input id="storyMemory" maxlength="140" placeholder="e.g. laughing through the tears"><label for="storyStruggle">What made things difficult?</label><input id="storyStruggle" maxlength="140" placeholder="e.g. the years we barely had enough"><label for="storyKeepsake">An object, sound, or image</label><input id="storyKeepsake" maxlength="100" placeholder="e.g. your coat beside the door"><label for="storyPromise">The promise or message</label><input id="storyPromise" maxlength="100" placeholder="e.g. I still choose you"><label for="storyEnding">Where should the story end?</label><input id="storyEnding" maxlength="140" placeholder="e.g. finding our way back to each other"><div class="presets"><button data-story="love">Love through the years</button><button data-story="survival">Starting over</button><button data-story="goodbye">A gentle goodbye</button><button id="clearStory">Clear story details</button></div><p id="storyUsage" class="small">Empty fields use the regular lyric library.</p></details><details><summary>Song direction</summary><div class="row"><div><label for="energy">Intensity</label><select id="energy"><option>Slow build</option><option>Gentle throughout</option><option>Big chorus</option><option>Relentless</option></select></div><div><label for="perspective">Point of view</label><select id="perspective"><option>First person</option><option>We / together</option></select></div></div><label for="wording">Language intensity</label><select id="wording"><option>Clean</option><option>Gritty</option><option>Explicit</option></select><p class="small">Locked lines stay exactly as you saved them, regardless of language setting.</p><label for="motif">Central image (optional)</label><input id="motif" maxlength="70" placeholder="e.g. a light in the doorway"><button id="suggestHooks" style="margin-top:10px">Suggest 5 hooks</button><div id="hookChoices" class="presets"></div></details><details id="phase2Engine" open><summary>⚡ GODS song engine — Phase 2</summary><p class="small">Push each generation toward a different lyrical shape while keeping your idea and story at the center.</p><div class="row"><div><label for="lyricDensity">Lyric density</label><select id="lyricDensity"><option>Balanced</option><option>Lean / punchy</option><option>Dense / detailed</option></select></div><div><label for="hookForce">Hook strength</label><select id="hookForce"><option>Strong</option><option>Subtle</option><option>Huge / repetitive</option></select></div></div><div class="row"><div><label for="verseMotion">Verse movement</label><select id="verseMotion"><option>Story progression</option><option>Image collage</option><option>Escalating intensity</option></select></div><div><label for="endingMode">Ending</label><select id="endingMode"><option>Resolve</option><option>Open ending</option><option>Final punch line</option></select></div></div><div class="presets"><button type="button" id="engineRaw">RAW</button><button type="button" id="engineCinematic">CINEMATIC</button><button type="button" id="engineHook">HOOK HEAVY</button><button type="button" id="engineStory">STORY</button></div></details><button class="primary" id="generate">✦ Write my song</button><button id="surprise" style="width:100%;margin-top:8px">Surprise me</button><details><summary>Saved songs</summary><div id="history"></div><button id="clearHistory">Clear saved songs</button></details><p class="small">Offline lyric engine: curated original lines, theme matching, and varied arrangements. It is a simulation, not a language model; arbitrary prompts influence the theme and hook rather than being fully understood.</p></section><section class="panel"><div class="titlebar"><div><div class="badge">LYRIC STUDIO</div><h2 id="songTitle" style="margin:8px 0">Your song is ready</h2></div><span class="small" id="count"></span></div><div id="stylePrompt"></div><div class="actions"><button id="copy">Copy lyrics</button><button id="copyStyle">Copy style</button><button id="download">Download .txt</button><button id="print">Print</button><button id="saveSong">Save song</button></div><details class="chorusWorkshop"><summary>Choose your chorus</summary><p class="small">Generate three alternatives, then apply the one you like. Locked lines remain in place.</p><button id="makeChoruses">Generate 3 chorus choices</button><div id="chorusChoices"></div></details><label for="lyrics">Editable lyrics — change any line directly</label><textarea id="lyrics" spellcheck="true" aria-label="Editable song lyrics"></textarea><div class="actions"><select class="section" id="section" aria-label="Section to rewrite"><option>Verse 1</option><option>Chorus</option><option>Verse 2</option><option>Bridge</option></select><button id="rewrite">Rewrite section</button><button id="newVersion">New whole version</button><button id="undoSong">Undo last change</button><button id="lockChorus">Lock chorus: off</button></div><details id="lineLockPanel"><summary>Keep your favorite lines</summary><p class="small">Tap a line to lock its position in that section. Locks carry into rewrites and new versions until you unlock them.</p><button id="clearLineLocks">Unlock all lines</button><p id="lockCount" class="small"></p><div id="lineLockList"></div></details><details><summary>Rhyme desk & song notes</summary><div class="row"><input id="rhymeWord" placeholder="Try light, rain, home, heart…" aria-label="Word to rhyme"><button id="findRhymes">Find rhymes</button></div><p id="rhymeResults"></p><label for="songNotes">Your writing notes (kept with this draft)</label><textarea id="songNotes" rows="3" maxlength="3000" placeholder="What should the next version change?"></textarea><button id="checkSong">Review song structure</button><p id="songReview"></p></details><div id="status" role="status" aria-live="polite"></div></section></main><footer>Lyrics only • no audio is generated • everything runs inside this single HTML file.</footer><script>
 'use strict';const $=id=>document.getElementById(id),pick=a=>a[Math.floor(Math.random()*a.length)];
 const banks={
 love:{titles:['You Are My Way Home','Stay Until the Morning','A Light I Know','Every Road to You','Close Enough to Forever','The Quiet Between Us'],verses:[['Your coat is hanging by the door','My heart keeps asking nothing more','The kettle sings, the windows glow','You make a place the storms don’t know'],['I used to count the empty chairs','And leave my wishes on the stairs','You walked in softly, spoke my name','The room was never quite the same'],['We talk in circles after dark','You find the shelter in my heart','No perfect words, no grand parade','Just all the little things that stayed'],['The city rushes past our street','I slow my steps to match your feet','The world can turn its lights down low','Your hand is all I need to know'],['I keep the notes you leave behind','Small paper doors into your mind','A crooked heart, a coffee stain','A little sun against the rain'],['You saw the days I couldn’t stand','And never asked a different hand','You let the silence take its time','Then put your laughter next to mine']],chorus:[['If every road forgets my name','Your voice will call me back again','Let every restless river roam','Beside you I am home'],['Stay when the sky forgets its blue','I have a thousand dawns for you','No borrowed light, no distant throne','I want the life we call our own'],['I choose you in the quiet days','Beyond the fire, beyond the praise','When all the louder promises fall','Your little voice is worth them all']],bridges:[['We don’t need a perfect sky','Or all the reasons answered why','Just leave a little room for two','I’ll keep a little light for you'],['When silver gathers in our hair','I hope the same old chair is there','And you still steal my sleeve at night','And I still turn to hold you tight']]},
@@ -200,7 +213,7 @@ dark:{titles:['Under the Static','A Door Made of Fear','The Velvet Machine','Mid
 celebration:{titles:['Turn the Morning Up','All the Windows Open','We Brought the Sunshine','Good Trouble Tonight','A Little Louder'],verses:[['The kitchen radio is loud','We dance until we draw a crowd','The toast is burnt, the coffee’s sweet','The whole day moves beneath our feet'],['A crooked hat, a painted sign','You laugh and put your hand in mine','We’ve got no perfect place to go','Just every street we want to know'],['The neighbors lean across the rail','We swap a joke, we swap a tale','A little music fills the square','There’s room enough for everyone there'],['I shake the dust out of my coat','And find a half-forgotten note','It says to make a little noise','And leave a little room for joy']],chorus:[['Turn the morning up, let it play','We’ve got a little life today','Clap your hands and take your time','The ordinary starts to shine'],['Bring your tired heart along','There’s a place inside this song','We don’t need a perfect day','To laugh and let the music stay'],['A little louder, a little light','We put the stars back in tonight','No grand occasion, just us here','A little joy is reason clear']],bridges:[['The good can be a little thing','A kitchen floor, a chance to sing','I keep it close, I let it grow','And share the little light I know']]},
 space:{titles:['Beyond the Last Blue Light','The Quiet Star','Meridian Calling','Gardens on the Moon','A Map of Tomorrow'],verses:[['The cabin glass is cold and clear','The final coastline disappears','We pack a seed, we pack a song','A little home to take along'],['The engine counts the miles in light','A silver seam across the night','The captain draws a careful line','Between the stars and borrowed time'],['An empty station turns below','Its garden holds a sleeping glow','We open doors with gentle hands','And listen to the silent lands'],['A distant world begins to rise','Its rings like ribbons in the skies','We leave our names inside a chart','And keep the wonder in our hearts']],chorus:[['Beyond the last blue light we go','To places only stories know','A thousand suns, a single spark','We carry home across the dark'],['Meridian calling, signal clear','We’re far away, but love is here','The stars are wide, the ship is small','We make a home between them all'],['Plant a garden on the moon','Let the quiet learn a tune','Every journey, every mile','Needs a little human smile']],bridges:[['No map can make the distance kind','We leave some easy roads behind','But every hand upon this wheel','Can keep a fragile future real']]}}
 ;
-const genres={'Industrial rock':'Heavy distorted guitars, mechanical percussion, deep pulsing bass, tense verses, explosive melodic chorus, 96 BPM','Pop':'Bright modern pop, crisp drums, warm synths, strong melodic hook, layered chorus harmonies, 112 BPM','Country':'Contemporary country, acoustic guitar, warm electric guitar, steady drums, intimate storytelling, 88 BPM','Hip-hop':'Melodic hip-hop, punchy drums, deep bass, rhythmic spoken verses, sung hook, 90 BPM','R&B':'Smooth R&B, warm electric piano, gentle syncopated drums, expressive vocals, rich harmonies, 76 BPM','Acoustic ballad':'Intimate acoustic guitar and piano, restrained percussion, close expressive vocals, gradual emotional build, 72 BPM','Cinematic anthem':'Cinematic drums, sweeping strings, powerful vocal melody, spacious verses, triumphant chorus, 84 BPM','Electronic / dance':'Driving electronic dance, pulsing synth bass, bright arpeggios, four-on-the-floor drums, melodic chorus, 124 BPM'};
+const genres={'Industrial rock':'Heavy distorted guitars, mechanical percussion, deep pulsing bass, tense verses, explosive melodic chorus, 96 BPM','Pop':'Bright modern pop, crisp drums, warm synths, strong melodic hook, layered chorus harmonies, 112 BPM','Country':'Contemporary country, acoustic guitar, warm electric guitar, steady drums, intimate storytelling, 88 BPM','Hip-hop':'Melodic hip-hop, punchy drums, deep bass, rhythmic spoken verses, sung hook, 90 BPM','R&B':'Smooth R&B, warm electric piano, gentle syncopated drums, expressive vocals, rich harmonies, 76 BPM','Acoustic ballad':'Intimate acoustic guitar and piano, restrained percussion, close expressive vocals, gradual emotional build, 72 BPM','Cinematic anthem':'Cinematic drums, sweeping strings, powerful vocal melody, spacious verses, triumphant chorus, 84 BPM','Electronic / dance':'Driving electronic dance, pulsing synth bass, bright arpeggios, four-on-the-floor drums, melodic chorus, 124 BPM','Alternative rock':'Wide guitars, live drums, dynamic quiet-loud contrast, emotional lead vocal, memorable chorus, 102 BPM','Dark synthwave':'Nocturnal analog synths, gated drums, deep bass pulse, cinematic tension, 94 BPM','Industrial hip-hop':'Distorted percussion, sub bass, metallic textures, rhythmic verses, massive chant hook, 92 BPM','Orchestral rock':'Electric guitars, cinematic strings, thunderous drums, dramatic build, soaring chorus, 86 BPM','Dream pop':'Hazy guitars, soft synth layers, floating drums, intimate vocal, luminous chorus, 98 BPM'};
 let saved=[],current=null;try{const x=JSON.parse(localStorage.getItem('echo.songwriter.v2'));if(Array.isArray(x))saved=x.filter(s=>s&&typeof s.lyrics==='string').slice(0,20)}catch(e){}
 function detect(t){t=t.toLowerCase();if(/heartbreak|goodbye|breakup|left me|lost love|missing you/.test(t))return 'heartbreak';if(/surviv|overcome|starting over|depression|still here|strong|fight|old dirt/.test(t))return 'survival';if(/dark|shadow|static|nightmare|machine|creature/.test(t))return 'dark';if(/space|starship|galaxy|moon|planet/.test(t))return 'space';if(/party|celebrat|happy|joy|dance|sunshine/.test(t))return 'celebration';return 'love'}
 function settings(){return {idea:$('idea').value.trim(),theme:$('theme').value,genre:$('genre').value,mood:$('mood').value,voice:$('voice').value,hook:$('hook').value.trim(),dedication:$('dedication').value.trim(),length:$('length').value,form:$('form').value}}
@@ -213,7 +226,7 @@ function store(){try{localStorage.setItem('echo.songwriter.v2',JSON.stringify(sa
 function history(){$('history').replaceChildren();if(!saved.length){$('history').textContent='No saved songs yet.';return}saved.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s.title+' · '+s.date;b.onclick=()=>{show(JSON.parse(JSON.stringify(s)));for(const [k,v]of Object.entries(s.settings))if($(k))$(k).value=v;status('Saved song opened.');};$('history').append(b)})}
 async function copy(t){try{await navigator.clipboard.writeText(t);status('Copied.')}catch(e){const box=document.createElement('textarea');box.value=t;document.body.append(box);box.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}box.remove();if(ok)status('Copied.');else{$('lyrics').focus();$('lyrics').select();status('Clipboard unavailable. Select the text and use your device’s Copy command.')}}}
 $('generate').onclick=()=>show(compose(settings()));$('newVersion').onclick=()=>show(compose(settings()));$('lyrics').oninput=()=>{sync();count();saveDraft()};$('copy').onclick=()=>copy($('lyrics').value);$('copyStyle').onclick=()=>copy($('stylePrompt').textContent);$('saveSong').onclick=()=>{sync();if(!current)return;saved.unshift(JSON.parse(JSON.stringify(current)));saved=saved.slice(0,20);if(store())status('Saved song. Your latest 20 songs are kept on this browser.');history()};$('clearHistory').onclick=()=>{saved=[];if(store())status('Saved-song list cleared. Your open lyrics remain.');history()};$('download').onclick=()=>{sync();const text=current.title+'\n\nSTYLE PROMPT\n'+current.style+'\n\n'+current.lyrics;const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=(current.title.replace(/[^a-z0-9]+/gi,'_').slice(0,60)||'echo_song')+'.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);status('Song downloaded.')};$('print').onclick=()=>window.print();$('rewrite').onclick=()=>{sync();const name=$('section').value;const marker='['+name+']';const parts=current.lyrics.split(/\n\n(?=\[)/);if(!parts.some(p=>p.startsWith(marker))){status(name+' is not in this song. Choose a section that exists.');return}const text=sectionText(name,current.settings,current.theme,current.title);current.lyrics=parts.map(p=>p.startsWith(marker)?marker+'\n'+text:name==='Chorus'&&(p.startsWith('[Chorus]')||p.startsWith('[Final Chorus]'))?p.slice(0,p.indexOf('\n'))+'\n'+text:p).join('\n\n');$('lyrics').value=current.lyrics;count();saveDraft();status(name+' rewritten; matching chorus repetitions updated.')};
-const presets={love:['A love that feels like coming home','Tender','Acoustic ballad'],heartbreak:['Learning to live after goodbye','Bittersweet','R&B'],survival:['Still here, starting over after the storm','Defiant','Industrial rock'],dark:['A thousand shadows beneath the static','Dark','Industrial rock'],celebration:['Dancing in the kitchen on an ordinary morning','Joyful','Pop'],space:['A starship carrying a garden across the galaxy','Hopeful','Cinematic anthem']};document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{const t=b.dataset.preset,p=presets[t];$('theme').value=t;$('idea').value=p[0];$('mood').value=p[1];$('genre').value=p[2];$('hook').value='';show(compose(settings()))});$('surprise').onclick=()=>{const t=pick(Object.keys(presets));$('theme').value=t;$('idea').value=presets[t][0];$('genre').value=pick(Object.keys(genres));$('mood').value=presets[t][1];$('hook').value='';show(compose(settings()))};history();let draft=null;try{draft=JSON.parse(localStorage.getItem('echo.songwriter.draft.v2'))}catch(e){}if(draft&&draft.settings&&banks[draft.theme]&&typeof draft.lyrics==='string'){for(const [k,v]of Object.entries(draft.settings))if($(k))$(k).value=v;show(draft);status('Your last draft is restored.')}else show(compose(settings()));
+const presets={love:['A love that feels like coming home','Tender','Acoustic ballad'],heartbreak:['Learning to live after goodbye','Bittersweet','R&B'],survival:['Still here, starting over after the storm','Defiant','Industrial rock'],dark:['A thousand shadows beneath the static','Dark','Industrial rock'],celebration:['Dancing in the kitchen on an ordinary morning','Joyful','Pop'],space:['A starship carrying a garden across the galaxy','Hopeful','Cinematic anthem'],rage:['Breaking through the noise and taking my name back','Furious','Industrial hip-hop'],dream:['Walking through a city that only exists while I sleep','Dreamlike','Dream pop'],story:['A long road, one old photograph, and a promise kept','Bittersweet','Alternative rock'],mystery:['A signal appears every night from an empty room','Haunting','Dark synthwave']};document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{const t=b.dataset.preset,p=presets[t];$('theme').value=({rage:'survival',dream:'space',story:'love',mystery:'dark'}[t]||t);$('idea').value=p[0];$('mood').value=p[1];$('genre').value=p[2];$('hook').value='';show(compose(settings()))});$('surprise').onclick=()=>{const t=pick(Object.keys(presets));$('theme').value=({rage:'survival',dream:'space',story:'love',mystery:'dark'}[t]||t);$('idea').value=presets[t][0];$('genre').value=pick(Object.keys(genres));$('mood').value=presets[t][1];$('hook').value='';show(compose(settings()))};history();let draft=null;try{draft=JSON.parse(localStorage.getItem('echo.songwriter.draft.v2'))}catch(e){}if(draft&&draft.settings&&banks[draft.theme]&&typeof draft.lyrics==='string'){for(const [k,v]of Object.entries(draft.settings))if($(k))$(k).value=v;show(draft);status('Your last draft is restored.')}else show(compose(settings()));
 </script><style>@media print{body{background:white;color:black}header,main>section:first-child,.actions,label,footer,#status,#count{display:none}main{display:block;padding:0}.panel{border:0;background:white;padding:0}#stylePrompt{background:white;color:black;border:0}#lyrics{display:none}#printLyrics{white-space:pre-wrap;line-height:1.6;font-size:12pt}.badge{color:black}}@media screen{#printLyrics{display:none}}</style><script>const printLyrics=document.createElement('div');printLyrics.id='printLyrics';document.querySelectorAll('.panel')[1].append(printLyrics);window.addEventListener('beforeprint',()=>{printLyrics.textContent=document.getElementById('lyrics').value});</script>
 <style>
 [hidden]{display:none!important}
@@ -712,4 +725,991 @@ const showBeforeExotic=show;show=function(song){showBeforeExotic(song);$('imager
   if(sur) wrap.appendChild(sur);
 })();
 </script>
-</html>
+</html><script id="echoGodsPhase2">
+(()=>{'use strict';
+const byId=id=>document.getElementById(id), val=(id,fallback='')=>byId(id)?.value||fallback;
+const extraHooks={love:['Stay where the quiet knows our names','Every road keeps bending back to you','Home is the sound you make beside me'],heartbreak:['I can miss you and still walk away','Your empty side is not the end of me','Some goodbyes keep breathing after us'],survival:['I came back louder than the damage','Let the old dirt fall away','My pulse still owns tomorrow'],dark:['The static knows the shape of my name','I wear the midnight like a warning','Every shadow breaks when I move'],celebration:['Turn the ordinary into thunder','We are alive enough for tonight','Open every window to the noise'],space:['Carry the fire beyond the blue','We make a home between the stars','Signal clear — tomorrow is calling']};
+const texture={
+  'Lean / punchy':['Cut the wire','Name the fear','Move anyway','No borrowed crown','One pulse forward','Leave the dust'],
+  'Dense / detailed':['Neon rain maps constellations across the window glass','A rusted elevator counts the floors we never chose','Morning pours a thin gold line beneath the locked door','The engine room keeps time with every unfinished thought'],
+  'Balanced':['The room goes quiet when the old noise fades','I keep one honest light beside the door','The road bends slowly underneath my feet','A new horizon waits beyond the glass']};
+function phase2Settings(){return {density:val('lyricDensity','Balanced'),hook:val('hookForce','Strong'),motion:val('verseMotion','Story progression'),ending:val('endingMode','Resolve')}}
+function themeNow(){try{const s=typeof settings==='function'?settings():{};return s.theme==='auto'?(typeof detect==='function'?detect(s.idea||''):'love'):(s.theme||'love')}catch(e){return 'love'}}
+function enhance(song){if(!song||!song.lyrics)return song;const o=phase2Settings(),t=song.theme||themeNow(),pool=extraHooks[t]||extraHooks.love;let hook=(byId('hook')?.value||'').trim()||pool[Math.floor(Math.random()*pool.length)];let blocks=song.lyrics.split(/\n\n/);let seen=new Set();blocks=blocks.map((block,idx)=>{let lines=block.split('\n'),head=lines[0]||'';if(/^\[(Verse|Bridge)/.test(head)){let add=(texture[o.density]||texture.Balanced).filter(x=>!seen.has(x));if(add.length){let line=add[Math.floor(Math.random()*add.length)];seen.add(line);if(o.motion==='Escalating intensity') line=idx>2?line.toUpperCase():line;if(o.motion==='Image collage') line='— '+line+' —';lines.splice(Math.min(lines.length,3),0,line)}}if(/^\[(Chorus|Final Chorus)/.test(head)){if(o.hook==='Huge / repetitive')lines.push(hook,hook);else if(o.hook==='Strong')lines.push(hook);else if(o.hook==='Subtle'&&lines.length>5)lines.pop()}return lines.join('\n')});
+let ending=o.ending==='Open ending'?'[Outro]\nAnd the signal keeps going…':o.ending==='Final punch line'?'[Outro]\n'+hook.toUpperCase():null;if(ending){let oi=blocks.findIndex(b=>/^\[Outro\]/.test(b));if(oi>=0)blocks[oi]=ending;else blocks.push(ending)}song.lyrics=blocks.join('\n\n');song.style=(song.style||'')+' Phase 2 engine: '+o.density.toLowerCase()+' lyrics, '+o.hook.toLowerCase()+' hook, '+o.motion.toLowerCase()+', '+o.ending.toLowerCase()+'.';return song}
+// Wrap the existing compose function without disturbing the original engine.
+try{if(typeof compose==='function'&&!window.__echoGodsP2Wrapped){const base=compose;compose=function(s){return enhance(base(s))};window.__echoGodsP2Wrapped=true}}catch(e){}
+function preset(d,h,m,e){if(byId('lyricDensity'))byId('lyricDensity').value=d;if(byId('hookForce'))byId('hookForce').value=h;if(byId('verseMotion'))byId('verseMotion').value=m;if(byId('endingMode'))byId('endingMode').value=e;const p=byId('phase2Engine');p?.classList.remove('engineFlash');void p?.offsetWidth;p?.classList.add('engineFlash')}
+byId('engineRaw')?.addEventListener('click',()=>preset('Lean / punchy','Strong','Escalating intensity','Final punch line'));
+byId('engineCinematic')?.addEventListener('click',()=>preset('Dense / detailed','Strong','Image collage','Resolve'));
+byId('engineHook')?.addEventListener('click',()=>preset('Balanced','Huge / repetitive','Escalating intensity','Final punch line'));
+byId('engineStory')?.addEventListener('click',()=>preset('Dense / detailed','Subtle','Story progression','Open ending'));
+// Bigger hook suggestion button: append engine-aware originals after the existing handler runs.
+byId('suggestHooks')?.addEventListener('click',()=>setTimeout(()=>{const box=byId('hookChoices');if(!box)return;const t=themeNow(),existing=[...box.querySelectorAll('button')].map(b=>b.textContent);(extraHooks[t]||extraHooks.love).forEach(h=>{if(existing.includes(h))return;const b=document.createElement('button');b.type='button';b.textContent=h;b.onclick=()=>{if(byId('hook'))byId('hook').value=h};box.appendChild(b)})},0));
+})();
+</script>
+<style id="echoGodsPhase3Style">
+#echoBrainBar{display:flex;gap:6px;align-items:center;padding:7px 10px;border-bottom:1px solid var(--line);background:#121019;flex-wrap:wrap}
+#echoBrainBar select{width:auto;min-width:135px;padding:6px 8px}#echoBrainBar .brainStat{font-size:10px;color:var(--accent);margin-left:auto}.memoryCard{background:#211b29;border:1px solid #4a3a50;border-radius:9px;padding:7px 9px;margin:5px 10px;font-size:11px}.memoryCard b{color:var(--accent)}
+#echoMemoryPanel{border:1px solid var(--line);border-radius:9px;margin:0 10px 6px;padding:7px 9px}#echoMemoryList{max-height:120px;overflow:auto}.echoModeBtn.active{background:var(--accent);color:#241724}.echoHint{font-size:10px;color:#bbaabd;padding:0 10px 5px}
+@media(max-width:720px){#echoBrainBar .brainStat{width:100%;margin:0}#echoBrainBar select{flex:1;min-width:0}}
+</style>
+<script id="echoGodsPhase3">
+(()=>{'use strict';
+const $=id=>document.getElementById(id); if(!$('chatStudio')||window.__echoGodsP3)return; window.__echoGodsP3=true;
+const head=$('chatStudio').querySelector('.chatHead');
+const bar=document.createElement('div');bar.id='echoBrainBar';bar.innerHTML='<select id="echoBrainMode"><option>Companion</option><option>Creative partner</option><option>Songwriter</option><option>Computer guide</option><option>Starship ECHO</option></select><button type="button" id="echoMemoryBtn">Memory</button><button type="button" id="echoIdeasBtn">Idea burst</button><button type="button" id="echoRecallBtn">Recall</button><span class="brainStat" id="echoBrainStat">LOCAL BRAIN • READY</span>';head.after(bar);
+const mem=document.createElement('details');mem.id='echoMemoryPanel';mem.innerHTML='<summary>ECHO memory bank</summary><div class="echoHint">Teach short notes ECHO can recall later. Stored only in this browser.</div><div id="echoMemoryList"></div><div style="display:flex;gap:6px"><input id="echoMemoryInput" maxlength="240" placeholder="Example: My favorite song mood is dark and defiant"><button type="button" id="echoMemoryAdd">Remember</button></div><button type="button" id="echoMemoryClear" style="margin-top:6px">Clear memory</button>';bar.after(mem);mem.open=false;
+const KEY='echo.gods.memory.v3';let memories=[];try{memories=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(memories))memories=[]}catch(e){memories=[]}memories=memories.slice(-40);
+function save(){try{localStorage.setItem(KEY,JSON.stringify(memories.slice(-40)))}catch(e){}}
+function render(){const box=$('echoMemoryList');box.replaceChildren();if(!memories.length){box.textContent='No taught notes yet.';return}memories.slice().reverse().forEach((m,i)=>{const d=document.createElement('div');d.className='memoryCard';d.innerHTML='<b>MEM '+String(memories.length-i).padStart(2,'0')+'</b> '+escapeHtml(m);box.appendChild(d)})}
+function escapeHtml(x){return String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function bubble(text,who='echo'){const log=$('chatLog');if(!log)return;const d=document.createElement('div');d.className='bubble '+(who==='user'?'user':'');const sm=document.createElement('small');sm.textContent=who==='user'?'YOU':'ECHO GODS';d.append(sm,document.createTextNode(text));log.appendChild(d);log.scrollTop=log.scrollHeight}
+function addMemory(text){text=(text||'').trim();if(!text)return;memories.push(text);memories=memories.slice(-40);save();render();$('echoMemoryInput').value='';$('echoBrainStat').textContent='MEMORY STORED • '+memories.length;bubble('Stored locally: “'+text+'”')}
+$('echoMemoryBtn').onclick=()=>{mem.open=!mem.open};$('echoMemoryAdd').onclick=()=>addMemory($('echoMemoryInput').value);$('echoMemoryInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addMemory(e.target.value)}});$('echoMemoryClear').onclick=()=>{memories=[];save();render();bubble('Local memory bank cleared.');$('echoBrainStat').textContent='MEMORY • EMPTY'};
+$('echoRecallBtn').onclick=()=>bubble(memories.length?'Here is what you taught me:\n• '+memories.slice(-8).join('\n• '):'My local memory bank is empty. Teach me a note and I can recall it later.');
+const ideas=['Write a chorus where the title changes meaning on the final repeat.','Build a song around one object: a key, coat, photograph, radio, or empty chair.','Start with a calm verse, then let every section become stranger and louder.','Tell the same event from two viewpoints in alternating verses.','Use one impossible image as the hook: a staircase made of thunder.','Make the bridge contradict the chorus, then resolve both in the final line.','Write a tiny sci-fi scene and turn its emergency message into a chorus.','Take one ordinary sentence and make each verse reveal a different meaning.'];
+$('echoIdeasBtn').onclick=()=>bubble(ideas[Math.floor(Math.random()*ideas.length)]);
+const knowledge=[
+[/\b(html|web page|website)\b/i,'HTML gives a page its structure. CSS controls appearance, and JavaScript adds behavior. For an offline single-file project, all three can live inside one .html file.'],
+[/\b(css|style|layout)\b/i,'CSS controls layout, spacing, typography, animation, responsive behavior, and visual states. On phones, flexible grids and media queries keep controls usable.'],
+[/\b(javascript|js|script)\b/i,'JavaScript is the behavior layer: button clicks, game state, generators, saving, importing, calculations, and interface updates.'],
+[/\b(localstorage|save|saving)\b/i,'localStorage can preserve small amounts of browser data offline. It is best for compact text and settings; large images or huge histories can exceed browser quotas.'],
+[/\b(song|lyrics|chorus|verse|hook)\b/i,'A strong song engine can vary imagery, section shape, rhyme density, perspective, escalation, and hook repetition instead of merely swapping a few lines.'],
+[/\bcomputer|cpu|ram|gpu)\b/i,'A CPU handles general computation, RAM holds active working data, and a GPU specializes in highly parallel work such as graphics and many AI calculations.'],
+[/\boffline|internet)\b/i,'This ECHO build is designed to run locally. Its built-in chat is rule-and-library based, so it does not secretly contact an online language model.']];
+function modeReply(q){const mode=$('echoBrainMode').value;if(mode==='Starship ECHO')return 'STARSHIP ECHO // '+(['Navigation stable.','Archive deck online.','Creative reactor nominal.','Long-range signal quiet.'][Math.floor(Math.random()*4)])+' Your message is logged: “'+q.slice(0,90)+'”';if(mode==='Songwriter')return 'Songwriter mode: try turning “'+q.slice(0,70)+'” into a concrete image, then repeat the strongest phrase as the chorus anchor.';if(mode==='Creative partner')return 'Creative partner: take that idea in two directions — one grounded and intimate, one strange and cinematic. The contrast usually reveals the stronger version.';if(mode==='Computer guide')return 'Computer guide: describe what you want the button or screen to do, what it does now, and any visible error. That gives us the shortest path to a fix.';return null}
+const form=$('chatForm'),input=$('chatInput');if(form&&input){form.addEventListener('submit',e=>{const q=input.value.trim();if(!q)return;setTimeout(()=>{const log=$('chatLog');const last=log?.lastElementChild?.textContent||'';const special=modeReply(q);if(special&&$('echoBrainMode').value!=='Companion'){bubble(special);return}const k=knowledge.find(([re])=>re.test(q));if(k&&!last.includes(k[1].slice(0,35)))bubble(k[1]);if(/remember (that )?/i.test(q)){const note=q.replace(/^.*?remember (that )?/i,'').trim();if(note)addMemory(note)}if(/what do you remember|recall my|memory bank/i.test(q)&&memories.length)bubble('Local recall:\n• '+memories.slice(-6).join('\n• '))},40)},true)}
+render();
+})();
+</script>
+\n<style id="echoGodsPhase4Style">
+:root{--eg-glow:rgba(244,191,132,.18)}
+body.eg-contrast{--bg:#07070b;--panel:#111018;--input:#0b0a10;--line:#66526b;--muted:#d3c8d6}
+body.eg-compact main#songStudio{padding:6px;gap:6px} body.eg-compact .panel{padding:8px;border-radius:9px}
+body.eg-reduce-motion *,body.eg-reduce-motion *::before,body.eg-reduce-motion *::after{animation:none!important;transition:none!important}
+#egCommandBar{display:flex;gap:6px;align-items:center;padding:6px 10px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,#17131d,#211825);overflow:auto;flex:0 0 auto}
+#egCommandBar button{font-size:10px;padding:5px 8px}#egCommandBar .egState{margin-left:auto;font-size:10px;color:var(--accent);white-space:nowrap}
+#egDrawer{position:fixed;inset:0;z-index:9999;background:rgba(5,4,8,.76);display:grid;place-items:center;padding:12px}
+#egDrawer[hidden]{display:none!important}.egCard{width:min(760px,100%);max-height:88dvh;overflow:auto;background:#17141e;border:1px solid #735d70;border-radius:16px;box-shadow:0 24px 80px #000;padding:14px}
+.egCardHead{display:flex;align-items:center;gap:8px}.egCardHead h2{margin:0}.egCardHead button{margin-left:auto}.egGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}.egTile{background:#100e16;border:1px solid var(--line);border-radius:10px;padding:10px}.egTile b{display:block;color:var(--accent);margin-bottom:4px}.egWide{grid-column:1/-1}.egButtons{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.egMeter{height:7px;background:#292330;border-radius:99px;overflow:hidden;margin-top:6px}.egMeter i{display:block;height:100%;background:var(--accent);width:0}.egToast{position:fixed;right:12px;bottom:12px;z-index:10000;background:#17141e;border:1px solid var(--accent);padding:9px 12px;border-radius:10px;box-shadow:0 8px 30px #000;font-size:11px;max-width:80vw}
+@media(max-width:720px){#egCommandBar{padding:5px 7px}.egGrid{grid-template-columns:1fr}.egWide{grid-column:auto}.egCard{max-height:92dvh}}
+</style>
+<script id="echoGodsPhase4">
+(()=>{'use strict';
+const q=id=>document.getElementById(id), toast=t=>{let x=q('egToast');if(!x){x=document.createElement('div');x.id='egToast';x.className='egToast';document.body.append(x)}x.textContent=t;clearTimeout(window.__egToast);window.__egToast=setTimeout(()=>x.remove(),2200)};
+const safeGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}}, safeSet=(k,v)=>{try{localStorage.setItem(k,v);return true}catch(e){toast('Storage is full or unavailable — your open work is still safe.');return false}};
+const bar=document.createElement('div');bar.id='egCommandBar';bar.innerHTML='<button id="egDash">◈ Command center</button><button id="egBackup">⇩ Backup</button><button id="egRestore">⇧ Restore</button><button id="egFocus">Focus</button><span class="egState" id="egState">SYSTEM READY</span>';
+const tabs=document.querySelector('.tabs'); if(tabs) tabs.after(bar); else document.body.prepend(bar);
+const drawer=document.createElement('div');drawer.id='egDrawer';drawer.hidden=true;drawer.innerHTML=`<section class="egCard"><div class="egCardHead"><div><div class="badge">ECHO GODS // PHASE 4</div><h2>Offline Creative Command Center</h2></div><button id="egClose">Close</button></div><div class="egGrid"><div class="egTile"><b>Workspace</b><span id="egWorkspace">Scanning…</span><div class="egButtons"><button data-jump="songTab">Song studio</button><button data-jump="chatTab">Companion</button><button data-jump="herbTab">Reference</button></div></div><div class="egTile"><b>Recovery</b><span id="egRecovery">Autosave active</span><div class="egButtons"><button id="egSnapshot">Save snapshot</button><button id="egRecover">Recover snapshot</button></div></div><div class="egTile"><b>Display</b><span>Local interface controls</span><div class="egButtons"><button id="egContrast">Contrast</button><button id="egCompact">Compact</button><button id="egMotion">Motion</button></div></div><div class="egTile"><b>Storage health</b><span id="egStorageText">Checking…</span><div class="egMeter"><i id="egStorageMeter"></i></div><div class="egButtons"><button id="egClean">Clean temp data</button></div></div><div class="egTile egWide"><b>Project tools</b><span>One portable JSON backup can carry ECHO GODS browser data between copies of the HTML.</span><div class="egButtons"><button id="egExportAll">Export all data</button><button id="egImportAll">Import data</button><button id="egCopyDraft">Copy current lyrics</button></div></div><div class="egTile egWide"><b>System check</b><span id="egCheck">Ready to test the main controls without changing your work.</span><div class="egButtons"><button id="egRunCheck">Run diagnostics</button></div></div></div></section>`;document.body.append(drawer);
+const file=document.createElement('input');file.type='file';file.accept='.json,application/json';file.hidden=true;document.body.append(file);
+function keys(){const a=[];try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&(k.startsWith('echo.')||k.startsWith('eg.')))a.push(k)}}catch(e){}return a}
+function storage(){const ks=keys();let n=0;ks.forEach(k=>n+=(safeGet(k)||'').length);q('egStorageText').textContent=ks.length+' saved records • '+(n/1024).toFixed(1)+' KB';q('egStorageMeter').style.width=Math.min(100,n/45000*100)+'%';q('egWorkspace').textContent=(q('lyrics')?.value.trim().split(/\\s+/).filter(Boolean).length||0)+' lyric words • '+(document.querySelectorAll('#chatLog .bubble').length||0)+' chat bubbles'}
+function open(){drawer.hidden=false;storage()} function close(){drawer.hidden=true}
+q('egDash').onclick=open;q('egClose').onclick=close;drawer.addEventListener('click',e=>{if(e.target===drawer)close()});
+drawer.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>{q(b.dataset.jump)?.click();close()});
+function exportAll(){const data={app:'ECHO GODS',version:4,created:new Date().toISOString(),storage:{}};keys().forEach(k=>data.storage[k]=safeGet(k));data.openLyrics=q('lyrics')?.value||'';data.notes=q('songNotes')?.value||'';const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.download='echo_gods_backup_'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('ECHO GODS backup created.')}
+q('egBackup').onclick=exportAll;q('egExportAll').onclick=exportAll;q('egRestore').onclick=()=>file.click();q('egImportAll').onclick=()=>file.click();
+file.onchange=async()=>{const f=file.files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!d||d.app!=='ECHO GODS'||!d.storage)throw 0;Object.entries(d.storage).forEach(([k,v])=>safeSet(k,v));if(d.openLyrics&&q('lyrics')){q('lyrics').value=d.openLyrics;q('lyrics').dispatchEvent(new Event('input',{bubbles:true}))}if(d.notes&&q('songNotes'))q('songNotes').value=d.notes;toast('Backup restored. Reload to refresh every saved module.');storage()}catch(e){toast('That file is not a valid ECHO GODS backup.')}file.value=''};
+function snap(){const d={lyrics:q('lyrics')?.value||'',notes:q('songNotes')?.value||'',idea:q('idea')?.value||'',time:Date.now()};safeSet('eg.phase4.snapshot',JSON.stringify(d));toast('Recovery snapshot saved.')}
+q('egSnapshot').onclick=snap;q('egRecover').onclick=()=>{try{const d=JSON.parse(safeGet('eg.phase4.snapshot'));if(!d)throw 0;if(q('lyrics')){q('lyrics').value=d.lyrics||'';q('lyrics').dispatchEvent(new Event('input',{bubbles:true}))}if(q('songNotes'))q('songNotes').value=d.notes||'';if(q('idea'))q('idea').value=d.idea||'';toast('Snapshot recovered.')}catch(e){toast('No recovery snapshot yet.')}};
+q('egContrast').onclick=()=>{document.body.classList.toggle('eg-contrast');safeSet('eg.ui.contrast',document.body.classList.contains('eg-contrast')?'1':'0')};q('egCompact').onclick=()=>{document.body.classList.toggle('eg-compact');safeSet('eg.ui.compact',document.body.classList.contains('eg-compact')?'1':'0')};q('egMotion').onclick=()=>{document.body.classList.toggle('eg-reduce-motion');safeSet('eg.ui.motion',document.body.classList.contains('eg-reduce-motion')?'1':'0')};
+if(safeGet('eg.ui.contrast')==='1')document.body.classList.add('eg-contrast');if(safeGet('eg.ui.compact')==='1')document.body.classList.add('eg-compact');if(safeGet('eg.ui.motion')==='1')document.body.classList.add('eg-reduce-motion');
+q('egFocus').onclick=()=>{const song=q('songStudio');if(!song)return;document.querySelectorAll('header,.tabs,#egCommandBar').forEach(x=>x.hidden=!x.hidden);toast('Focus view toggled.');};
+q('egClean').onclick=()=>{['eg.temp','echo.temp','echo.cache'].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});storage();toast('Temporary data cleaned.')};
+q('egCopyDraft').onclick=async()=>{const t=q('lyrics')?.value||'';try{await navigator.clipboard.writeText(t);toast('Current lyrics copied.')}catch(e){toast('Clipboard unavailable on this browser.')}};
+q('egRunCheck').onclick=()=>{const ids=['songTab','chatTab','herbTab','generate','lyrics','copy','download','saveSong','chatForm','chatInput','herbQuery'];const missing=ids.filter(id=>!q(id));q('egCheck').textContent=missing.length?'Missing controls: '+missing.join(', '):'PASS — core Song, Chat, Reference, save, copy and download controls are present.';toast(missing.length?'Diagnostics found an issue.':'Core diagnostics passed.')};
+let timer;document.addEventListener('input',e=>{if(!['lyrics','songNotes','idea'].includes(e.target.id))return;clearTimeout(timer);q('egState').textContent='SAVING…';timer=setTimeout(()=>{snap();q('egState').textContent='AUTOSAVED';},900)},true);
+window.addEventListener('error',e=>{q('egState').textContent='RECOVERABLE ERROR';safeSet('eg.lastError',String(e.message||'Unknown error').slice(0,300))});
+setTimeout(()=>{q('egState').textContent='SYSTEM READY';storage()},300);
+})();
+</script>\n
+
+<!-- ECHO GODS // PHASE 4 EXTENDED COMMAND LAYER -->
+<style>
+#eg4xDock{position:fixed;right:10px;bottom:10px;z-index:9998;display:flex;gap:6px;align-items:flex-end}
+#eg4xOpen{border:1px solid var(--accent);box-shadow:0 0 18px #000;background:#17131f}
+#eg4xPanel{width:min(390px,calc(100vw - 20px));max-height:min(620px,78dvh);overflow:auto;background:#121018;border:1px solid #66506a;border-radius:14px;padding:10px;box-shadow:0 18px 60px #000;display:none}
+#eg4xPanel.open{display:block}
+.eg4xHead{display:flex;align-items:center;gap:8px;position:sticky;top:-10px;background:#121018;padding:6px 0 8px;z-index:2}
+.eg4xHead b{letter-spacing:2px}.eg4xHead span{margin-left:auto;font-size:10px;color:var(--accent)}
+.eg4xGrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.eg4xGrid button{white-space:normal;min-height:42px}
+.eg4xCard{border:1px solid var(--line);background:#191621;border-radius:10px;padding:8px;margin-top:8px}
+.eg4xCard h3{font-size:11px;letter-spacing:1.3px;color:var(--accent);margin:0 0 6px}
+#eg4xMeters{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.eg4xMeter{background:#0d0c12;border:1px solid var(--line);border-radius:8px;padding:7px;text-align:center}
+.eg4xMeter strong{display:block;font-size:16px}.eg4xMeter small{font-size:9px;color:var(--muted)}
+#eg4xLog{font:10px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;max-height:100px;overflow:auto;white-space:pre-wrap;color:#d8cadb}
+#eg4xSearch{margin-bottom:6px}
+#eg4xJump{display:flex;gap:5px;flex-wrap:wrap}
+#eg4xJump button{font-size:10px;padding:5px 7px}
+.eg4xPulse{animation:eg4xPulse 1.4s ease}
+@keyframes eg4xPulse{50%{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent)}}
+@media(max-width:720px){#eg4xDock{right:6px;bottom:6px}#eg4xPanel{width:calc(100vw - 12px);max-height:72dvh}.eg4xGrid{grid-template-columns:1fr 1fr}}
+body.eg4x-zen #songStudio .panel:first-child{display:none!important}
+body.eg4x-zen #songStudio{grid-template-columns:1fr!important}
+</style>
+
+<div id="eg4xDock">
+  <button id="eg4xOpen" type="button">⚡ GODS CONTROL</button>
+  <aside id="eg4xPanel" aria-label="ECHO GODS extended command center">
+    <div class="eg4xHead"><b>⚡ PHASE 4+</b><span id="eg4xClock">READY</span><button id="eg4xClose" type="button">×</button></div>
+    <input id="eg4xSearch" placeholder="Jump to song, chat, herbs, saved songs, chorus…">
+    <div id="eg4xJump"></div>
+
+    <div class="eg4xCard">
+      <h3>LIVE SYSTEM</h3>
+      <div id="eg4xMeters">
+        <div class="eg4xMeter"><strong id="eg4xWords">0</strong><small>WORDS</small></div>
+        <div class="eg4xMeter"><strong id="eg4xSaved">0</strong><small>SAVED</small></div>
+        <div class="eg4xMeter"><strong id="eg4xStore">0K</strong><small>STORAGE</small></div>
+      </div>
+    </div>
+
+    <div class="eg4xCard">
+      <h3>QUICK COMMANDS</h3>
+      <div class="eg4xGrid">
+        <button id="eg4xZen" type="button">◉ Lyrics focus</button>
+        <button id="eg4xRandom" type="button">✦ Instant song</button>
+        <button id="eg4xCheckpoint" type="button">◆ Checkpoint</button>
+        <button id="eg4xRecover" type="button">↶ Recover</button>
+        <button id="eg4xCopyPack" type="button">▣ Copy song + style</button>
+        <button id="eg4xTop" type="button">↑ Top</button>
+      </div>
+    </div>
+
+    <div class="eg4xCard">
+      <h3>SESSION</h3>
+      <div class="eg4xGrid">
+        <button id="eg4xExportSession" type="button">Export session</button>
+        <button id="eg4xClearSession" type="button">Clear session log</button>
+      </div>
+      <div id="eg4xLog">ECHO GODS Phase 4+ online.</div>
+    </div>
+  </aside>
+</div>
+
+<script>
+(()=>{
+'use strict';
+const q=id=>document.getElementById(id);
+if(!q('eg4xOpen')) return;
+const panel=q('eg4xPanel'), log=q('eg4xLog');
+const addLog=t=>{const stamp=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});log.textContent=(stamp+'  '+t+'\n'+log.textContent).slice(0,3500)};
+const safeGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const safeSet=(k,v)=>{try{localStorage.setItem(k,v);return true}catch(e){addLog('Storage full/unavailable');return false}};
+const toast=t=>{addLog(t); const st=q('status'); if(st) st.textContent=t};
+
+q('eg4xOpen').onclick=()=>{panel.classList.toggle('open');refresh()};
+q('eg4xClose').onclick=()=>panel.classList.remove('open');
+
+function bytes(){
+  let n=0; try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i)||'';n+=k.length+(localStorage.getItem(k)||'').length}}catch(e){}
+  return Math.round(n*2/1024);
+}
+function refresh(){
+  const lyrics=q('lyrics')?.value||'';
+  q('eg4xWords').textContent=lyrics.trim()?lyrics.trim().split(/\s+/).length:0;
+  let saved=0; try{const a=JSON.parse(safeGet('echo.songwriter.v2')||'[]');saved=Array.isArray(a)?a.length:0}catch(e){}
+  q('eg4xSaved').textContent=saved;
+  q('eg4xStore').textContent=bytes()+'K';
+}
+setInterval(()=>{q('eg4xClock').textContent=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); if(panel.classList.contains('open'))refresh()},1000);
+
+const jumps=[
+ ['Song Studio','songTab'],['Chat','chatTab'],['Herbs','herbTab'],['Saved Songs','clearHistory'],
+ ['Chorus','makeChoruses'],['Story','personalStory'],['Scenes','sceneBuilder'],['Lyrics','lyrics']
+];
+function doJump(id){
+  if(id==='songTab'||id==='chatTab'||id==='herbTab') q(id)?.click();
+  const el=q(id); if(!el)return;
+  if(el.tagName==='DETAILS') el.open=true;
+  el.scrollIntoView({behavior:'smooth',block:'center'});
+  el.classList.add('eg4xPulse'); setTimeout(()=>el.classList.remove('eg4xPulse'),1500);
+  panel.classList.remove('open');
+}
+function renderJumps(filter=''){
+  const box=q('eg4xJump');box.replaceChildren();
+  jumps.filter(x=>x[0].toLowerCase().includes(filter.toLowerCase())).forEach(([name,id])=>{
+    const b=document.createElement('button');b.type='button';b.textContent=name;b.onclick=()=>doJump(id);box.append(b)
+  });
+}
+renderJumps(); q('eg4xSearch').oninput=e=>renderJumps(e.target.value);
+
+q('eg4xZen').onclick=()=>{document.body.classList.toggle('eg4x-zen');toast(document.body.classList.contains('eg4x-zen')?'Lyrics focus enabled.':'Full studio restored.');panel.classList.remove('open')};
+q('eg4xRandom').onclick=()=>{q('surprise')?.click();q('songTab')?.click();toast('Instant song generated.');panel.classList.remove('open')};
+
+function checkpoint(){
+ const d={time:Date.now(),lyrics:q('lyrics')?.value||'',notes:q('songNotes')?.value||'',idea:q('idea')?.value||'',title:q('songTitle')?.textContent||''};
+ if(safeSet('eg.phase4plus.checkpoint',JSON.stringify(d))) toast('Phase 4+ checkpoint saved.');
+}
+q('eg4xCheckpoint').onclick=checkpoint;
+q('eg4xRecover').onclick=()=>{
+ try{
+  const d=JSON.parse(safeGet('eg.phase4plus.checkpoint')||'null'); if(!d) throw 0;
+  if(q('lyrics')){q('lyrics').value=d.lyrics||'';q('lyrics').dispatchEvent(new Event('input',{bubbles:true}))}
+  if(q('songNotes'))q('songNotes').value=d.notes||'';
+  if(q('idea'))q('idea').value=d.idea||'';
+  toast('Phase 4+ checkpoint recovered.');panel.classList.remove('open')
+ }catch(e){toast('No Phase 4+ checkpoint exists yet.')}
+};
+q('eg4xCopyPack').onclick=async()=>{
+ const text=(q('songTitle')?.textContent||'ECHO GODS SONG')+'\n\nSTYLE\n'+(q('stylePrompt')?.textContent||'')+'\n\n'+(q('lyrics')?.value||'');
+ try{await navigator.clipboard.writeText(text);toast('Song and style copied together.')}catch(e){toast('Clipboard unavailable.')}
+};
+q('eg4xTop').onclick=()=>{window.scrollTo({top:0,behavior:'smooth'});panel.classList.remove('open')};
+
+q('eg4xExportSession').onclick=()=>{
+ const d={app:'ECHO GODS',phase:'4+',exported:new Date().toISOString(),title:q('songTitle')?.textContent||'',lyrics:q('lyrics')?.value||'',style:q('stylePrompt')?.textContent||'',idea:q('idea')?.value||'',notes:q('songNotes')?.value||'',log:log.textContent};
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(d,null,2)],{type:'application/json'}));a.download='echo_gods_session_'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1200);toast('Session exported.');
+};
+q('eg4xClearSession').onclick=()=>{log.textContent='Session log cleared.'};
+document.addEventListener('input',e=>{if(e.target.id==='lyrics')refresh()},true);
+window.addEventListener('beforeunload',checkpoint);
+refresh();
+})();
+</script>
+
+
+
+<!-- ECHO GODS // PHASE 5 CREATOR DECK -->
+<style>
+#eg5Deck{position:fixed;left:10px;bottom:10px;z-index:9997}
+#eg5Open{background:#181420;border:1px solid var(--accent);box-shadow:0 0 20px #000}
+#eg5Panel{display:none;width:min(440px,calc(100vw - 20px));max-height:76dvh;overflow:auto;background:#111018;border:1px solid #5c4a63;border-radius:14px;padding:10px;box-shadow:0 20px 70px #000}
+#eg5Panel.open{display:block}
+.eg5Head{display:flex;gap:8px;align-items:center;position:sticky;top:-10px;background:#111018;padding:6px 0 8px;z-index:3}
+.eg5Head b{letter-spacing:2px}.eg5Head small{color:var(--accent);margin-left:auto}.eg5Head button{padding:4px 9px}
+.eg5Card{background:#191621;border:1px solid var(--line);border-radius:10px;padding:9px;margin-top:8px}
+.eg5Card h3{margin:0 0 7px;font-size:11px;color:var(--accent);letter-spacing:1.4px}
+.eg5Grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.eg5Grid button{white-space:normal;min-height:42px}
+#eg5Ideas{display:grid;gap:5px}#eg5Ideas button{text-align:left;white-space:normal}
+#eg5Scratch{min-height:90px;resize:vertical}
+#eg5Versions{display:grid;gap:5px;max-height:150px;overflow:auto}
+#eg5Versions button{text-align:left;white-space:normal;font-size:10px}
+.eg5Tiny{font-size:10px;color:var(--muted);margin:5px 0}
+@media(max-width:720px){#eg5Deck{left:6px;bottom:6px}#eg5Panel{width:calc(100vw - 12px);max-height:70dvh}}
+</style>
+<div id="eg5Deck">
+<button id="eg5Open" type="button">✦ CREATOR DECK</button>
+<aside id="eg5Panel" aria-label="ECHO GODS creator deck">
+ <div class="eg5Head"><b>✦ PHASE 5</b><small>CREATOR ENGINE</small><button id="eg5Close" type="button">×</button></div>
+ <div class="eg5Card">
+  <h3>IDEA FORGE</h3>
+  <div class="eg5Grid">
+   <button id="eg5Forge" type="button">⚡ Forge 6 ideas</button>
+   <button id="eg5HookForge" type="button">◎ Forge 6 hooks</button>
+  </div>
+  <div id="eg5Ideas"></div>
+ </div>
+ <div class="eg5Card">
+  <h3>LYRIC TRANSFORM</h3>
+  <p class="eg5Tiny">Transforms the current editable lyrics without replacing the main song engine.</p>
+  <div class="eg5Grid">
+   <button data-eg5tx="tight">Tighten lines</button>
+   <button data-eg5tx="space">Add breathing room</button>
+   <button data-eg5tx="chant">Chant ending</button>
+   <button data-eg5tx="echo">Echo hook</button>
+  </div>
+ </div>
+ <div class="eg5Card">
+  <h3>VERSION VAULT</h3>
+  <div class="eg5Grid"><button id="eg5Snap">Save version</button><button id="eg5ClearVersions">Clear versions</button></div>
+  <div id="eg5Versions"></div>
+ </div>
+ <div class="eg5Card">
+  <h3>SCRATCH PAD</h3>
+  <textarea id="eg5Scratch" placeholder="Loose lines, images, hooks, production thoughts…"></textarea>
+  <div class="eg5Grid"><button id="eg5ScratchToIdea">Send to song idea</button><button id="eg5ScratchClear">Clear pad</button></div>
+ </div>
+ <div class="eg5Card">
+  <h3>PROJECT PACKAGE</h3>
+  <div class="eg5Grid"><button id="eg5ProjectExport">Export project</button><button id="eg5TextExport">Export lyrics package</button></div>
+ </div>
+</aside>
+</div>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+if(!$('eg5Open'))return;
+const p=$('eg5Panel'), ideas=$('eg5Ideas');
+const safeGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const safeSet=(k,v)=>{try{localStorage.setItem(k,v);return true}catch(e){return false}};
+const say=t=>{const st=$('status');if(st)st.textContent=t};
+$('eg5Open').onclick=()=>{p.classList.toggle('open');renderVersions()};
+$('eg5Close').onclick=()=>p.classList.remove('open');
+
+const subjects=['a promise surviving the wreckage','two people awake after midnight','walking out of an old life','a signal arriving from deep space','a memory that refuses to fade','finding daylight after a brutal night','love hidden inside ordinary things','a machine dreaming about freedom','wearing a different name','the last light in an empty city'];
+const images=['neon rain','a cracked mirror','an open doorway','dust on old boots','a silent radio','a burning skyline','cold stars','a kitchen light','an empty highway','a pulse beneath the floor'];
+const verbs=['returns','breaks open','keeps calling','won’t surrender','learns to breathe','turns to fire','crosses the distance','outlives the noise'];
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function addChoice(text,fn){const b=document.createElement('button');b.type='button';b.textContent=text;b.onclick=fn;ideas.append(b)}
+$('eg5Forge').onclick=()=>{ideas.replaceChildren();for(let i=0;i<6;i++){const t=pick(subjects)+' — '+pick(images);addChoice(t,()=>{if($('idea'))$('idea').value=t;say('Idea moved into Song Studio.');p.classList.remove('open')})}};
+$('eg5HookForge').onclick=()=>{ideas.replaceChildren();for(let i=0;i<6;i++){const h=(pick(images)+' '+pick(verbs)).replace(/^./,c=>c.toUpperCase());addChoice(h,()=>{if($('hook'))$('hook').value=h;say('Hook loaded.');p.classList.remove('open')})}};
+
+function applyLyrics(v){
+ if(!$('lyrics'))return;
+ $('lyrics').value=v;
+ $('lyrics').dispatchEvent(new Event('input',{bubbles:true}));
+}
+document.querySelectorAll('[data-eg5tx]').forEach(b=>b.onclick=()=>{
+ const raw=$('lyrics')?.value||''; if(!raw.trim())return;
+ let v=raw, mode=b.dataset.eg5tx;
+ if(mode==='tight') v=raw.split('\n').map(x=>x.length>72?x.slice(0,69).replace(/\s+\S*$/,'')+'…':x).join('\n');
+ if(mode==='space') v=raw.replace(/\n(?=[^\n\[])/g,'\n\n').replace(/\n{3,}/g,'\n\n');
+ if(mode==='chant'){const title=$('songTitle')?.textContent||'ECHO';v=raw.trim()+'\n\n[Chant Outro]\n'+title+'\n'+title+'\n'+title;}
+ if(mode==='echo'){const hook=$('hook')?.value.trim()||$('songTitle')?.textContent||'Echo';v=raw.replace(/\[Chorus\]\n/g,'[Chorus]\n'+hook+'\n');}
+ applyLyrics(v);say('Phase 5 lyric transform applied. Use Undo if you prefer the previous version.');
+});
+
+function versions(){try{const x=JSON.parse(safeGet('eg.phase5.versions')||'[]');return Array.isArray(x)?x:[]}catch(e){return[]}}
+function renderVersions(){
+ const box=$('eg5Versions');box.replaceChildren();const a=versions();
+ if(!a.length){box.textContent='No Phase 5 versions yet.';return}
+ a.forEach((v,i)=>{const b=document.createElement('button');b.type='button';b.textContent=(v.title||'Version')+' · '+new Date(v.time).toLocaleString();b.onclick=()=>{applyLyrics(v.lyrics||'');if($('songNotes'))$('songNotes').value=v.notes||'';say('Version restored from vault.');p.classList.remove('open')};box.append(b)})
+}
+$('eg5Snap').onclick=()=>{
+ let a=versions();a.unshift({time:Date.now(),title:$('songTitle')?.textContent||'Song',lyrics:$('lyrics')?.value||'',notes:$('songNotes')?.value||'',style:$('stylePrompt')?.textContent||''});a=a.slice(0,12);
+ if(safeSet('eg.phase5.versions',JSON.stringify(a)))say('Version saved to Phase 5 vault.');else say('Could not save version; browser storage may be full.');renderVersions()
+};
+$('eg5ClearVersions').onclick=()=>{safeSet('eg.phase5.versions','[]');renderVersions();say('Phase 5 version vault cleared.')};
+
+const scratch=$('eg5Scratch');scratch.value=safeGet('eg.phase5.scratch')||'';
+scratch.oninput=()=>safeSet('eg.phase5.scratch',scratch.value.slice(0,8000));
+$('eg5ScratchToIdea').onclick=()=>{if($('idea'))$('idea').value=scratch.value.trim().slice(0,300);say('Scratch-pad text moved into the song idea field.');p.classList.remove('open')};
+$('eg5ScratchClear').onclick=()=>{scratch.value='';safeSet('eg.phase5.scratch','');say('Scratch pad cleared.')};
+
+function download(name,text,type='text/plain'){
+ const u=URL.createObjectURL(new Blob([text],{type:type+';charset=utf-8'})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1200)
+}
+$('eg5ProjectExport').onclick=()=>{
+ const d={app:'ECHO GODS',phase:5,exported:new Date().toISOString(),title:$('songTitle')?.textContent||'',idea:$('idea')?.value||'',hook:$('hook')?.value||'',style:$('stylePrompt')?.textContent||'',lyrics:$('lyrics')?.value||'',notes:$('songNotes')?.value||'',scratch:scratch.value,versions:versions()};
+ download('echo_gods_phase5_project.json',JSON.stringify(d,null,2),'application/json');say('Phase 5 project exported.')
+};
+$('eg5TextExport').onclick=()=>{
+ const t=($('songTitle')?.textContent||'ECHO GODS')+'\n\nPRODUCTION STYLE\n'+($('stylePrompt')?.textContent||'')+'\n\nLYRICS\n'+($('lyrics')?.value||'')+'\n\nNOTES\n'+($('songNotes')?.value||'')+'\n\nSCRATCH PAD\n'+scratch.value;
+ download('echo_gods_song_package.txt',t);say('Complete lyrics package exported.')
+};
+renderVersions();
+})();
+</script>
+
+
+
+<!-- ECHO GODS // PHASE 6 ARRANGEMENT LAB -->
+<style>
+#eg6Lab{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:9996}
+#eg6Open{background:#181420;border:1px solid var(--accent);box-shadow:0 0 18px #000}
+#eg6Panel{display:none;width:min(520px,calc(100vw - 20px));max-height:76dvh;overflow:auto;background:#100f17;border:1px solid #66506a;border-radius:14px;padding:10px;box-shadow:0 20px 70px #000}
+#eg6Panel.open{display:block}
+.eg6Head{display:flex;align-items:center;gap:8px;position:sticky;top:-10px;background:#100f17;padding:6px 0 8px;z-index:2}
+.eg6Head b{letter-spacing:2px}.eg6Head small{margin-left:auto;color:var(--accent)}
+.eg6Card{border:1px solid var(--line);background:#191621;border-radius:10px;padding:9px;margin-top:8px}
+.eg6Card h3{margin:0 0 7px;font-size:11px;color:var(--accent);letter-spacing:1.4px}
+.eg6Grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}.eg6Grid button{white-space:normal;min-height:42px}
+#eg6Map{font:10px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;background:#0c0b10;border:1px solid var(--line);border-radius:8px;padding:8px;white-space:pre-wrap;max-height:160px;overflow:auto}
+.eg6Row{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.eg6Tiny{font-size:10px;color:var(--muted)}
+@media(max-width:720px){#eg6Lab{bottom:56px;width:calc(100% - 12px)}#eg6Open{display:block;margin:auto}#eg6Panel{width:100%;max-height:68dvh}.eg6Grid{grid-template-columns:1fr 1fr}}
+</style>
+<div id="eg6Lab">
+<button id="eg6Open" type="button">🎚 ARRANGEMENT LAB</button>
+<aside id="eg6Panel">
+ <div class="eg6Head"><b>🎚 PHASE 6</b><small>SONG ARCHITECT</small><button id="eg6Close">×</button></div>
+ <div class="eg6Card">
+  <h3>SONG MAP</h3>
+  <div id="eg6Map">Open the lab to analyze your current song.</div>
+  <div class="eg6Grid" style="margin-top:6px"><button id="eg6Analyze">Analyze structure</button><button id="eg6Clean">Clean spacing</button></div>
+ </div>
+ <div class="eg6Card">
+  <h3>ARRANGEMENT BUILDER</h3>
+  <div class="eg6Row">
+   <div><label>Intro</label><select id="eg6Intro"><option>None</option><option>Instrumental pulse</option><option>Whispered hook</option><option>Ambient opening</option><option>Drum pickup</option></select></div>
+   <div><label>Breakdown</label><select id="eg6Break"><option>None</option><option>Half-time breakdown</option><option>Drop to vocal</option><option>Industrial breakdown</option><option>Cinematic pause</option></select></div>
+  </div>
+  <div class="eg6Row">
+   <div><label>Final lift</label><select id="eg6Lift"><option>Repeat final chorus</option><option>Key-change feel</option><option>Double chorus</option><option>Strip to final line</option></select></div>
+   <div><label>Outro</label><select id="eg6Outro"><option>Keep existing</option><option>Fade hook</option><option>Hard stop</option><option>Spoken final line</option><option>Instrumental tail</option></select></div>
+  </div>
+  <button id="eg6Apply" style="width:100%;margin-top:7px">Apply arrangement markers</button>
+ </div>
+ <div class="eg6Card">
+  <h3>SECTION WORKSHOP</h3>
+  <div class="eg6Grid">
+   <button data-eg6="pre">Add pre-chorus</button>
+   <button data-eg6="post">Add post-chorus</button>
+   <button data-eg6="break">Add breakdown</button>
+   <button data-eg6="instrumental">Add instrumental</button>
+  </div>
+  <p class="eg6Tiny">These add clearly labeled sections to the editable lyrics, so you can rewrite them afterward.</p>
+ </div>
+ <div class="eg6Card">
+  <h3>PRODUCTION PROMPT+</h3>
+  <div class="eg6Row">
+   <div><label>Guitar / texture</label><select id="eg6Texture"><option>Automatic</option><option>Distorted wall</option><option>Clean atmospheric</option><option>Acoustic intimate</option><option>Synth driven</option></select></div>
+   <div><label>Drums</label><select id="eg6Drums"><option>Automatic</option><option>Huge live drums</option><option>Mechanical percussion</option><option>Minimal pulse</option><option>Four-on-the-floor</option></select></div>
+  </div>
+  <div class="eg6Row">
+   <div><label>Dynamics</label><select id="eg6Dynamics"><option>Slow build</option><option>Quiet/loud contrast</option><option>Relentless pressure</option><option>Wide cinematic rise</option></select></div>
+   <div><label>Vocal treatment</label><select id="eg6Vocal"><option>Natural lead</option><option>Layered chorus</option><option>Close whispered verse</option><option>Gang-vocal accents</option></select></div>
+  </div>
+  <button id="eg6Prompt" style="width:100%;margin-top:7px">Upgrade production prompt</button>
+ </div>
+</aside>
+</div>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+if(!$('eg6Open'))return;
+const panel=$('eg6Panel'), map=$('eg6Map');
+const say=t=>{if($('status'))$('status').textContent=t};
+function lyrics(){return $('lyrics')?.value||''}
+function setLyrics(v){if(!$('lyrics'))return;$('lyrics').value=v;$('lyrics').dispatchEvent(new Event('input',{bubbles:true}))}
+function analyze(){
+ const raw=lyrics(), sections=[...raw.matchAll(/^\[([^\]]+)\]/gm)].map(x=>x[1]);
+ const words=raw.trim()?raw.trim().split(/\s+/).length:0;
+ const lines=raw.split('\n').filter(x=>x.trim()&&!/^\[/.test(x)).length;
+ const chorus=sections.filter(x=>/chorus/i.test(x)).length;
+ map.textContent='SECTIONS  '+(sections.length||0)+'\n'+(sections.length?sections.map((x,i)=>String(i+1).padStart(2,'0')+'  '+x).join('\n'):'No labeled sections found.')+'\n\nWORDS     '+words+'\nLYRIC LINES '+lines+'\nCHORUS PASSES '+chorus;
+}
+$('eg6Open').onclick=()=>{panel.classList.toggle('open');analyze()};
+$('eg6Close').onclick=()=>panel.classList.remove('open');
+$('eg6Analyze').onclick=analyze;
+$('eg6Clean').onclick=()=>{setLyrics(lyrics().replace(/[ \t]+\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim());analyze();say('Song spacing cleaned.')};
+
+const markerText={
+ pre:'[Pre-Chorus]\nPressure rising, hold the line\nOne more breath before the light',
+ post:'[Post-Chorus]\nEcho the hook, let it remain\nOne last spark inside the refrain',
+ break:'[Breakdown]\n[Half-time / stripped instrumentation]\nLet the central line hit alone',
+ instrumental:'[Instrumental]\n[8 bars — motif develops without new lyrics]'
+};
+document.querySelectorAll('[data-eg6]').forEach(b=>b.onclick=()=>{setLyrics(lyrics().trim()+'\n\n'+markerText[b.dataset.eg6]);analyze();say('New arrangement section added.')});
+
+$('eg6Apply').onclick=()=>{
+ let raw=lyrics().trim();
+ const intro=$('eg6Intro').value, br=$('eg6Break').value, lift=$('eg6Lift').value, outro=$('eg6Outro').value;
+ if(intro!=='None'&&!/^\[Intro\]/m.test(raw))raw='[Intro]\n['+intro+']\n\n'+raw;
+ if(br!=='None')raw+='\n\n[Breakdown Direction]\n['+br+']';
+ raw+='\n\n[Final Lift]\n['+lift+']';
+ if(outro!=='Keep existing')raw+='\n\n[Outro Direction]\n['+outro+']';
+ setLyrics(raw);analyze();say('Arrangement markers applied.')
+};
+$('eg6Prompt').onclick=()=>{
+ const base=$('stylePrompt')?.textContent||'';
+ const extra=' Texture: '+$('eg6Texture').value+'. Drums: '+$('eg6Drums').value+'. Dynamics: '+$('eg6Dynamics').value+'. Vocal treatment: '+$('eg6Vocal').value+'. Preserve a clear verse-to-chorus lift and leave space around the main hook.';
+ if($('stylePrompt'))$('stylePrompt').textContent=(base+' '+extra).replace(/\s+/g,' ').trim();
+ if(typeof current!=='undefined'&&current)current.style=$('stylePrompt').textContent;
+ say('Production prompt upgraded for arrangement and dynamics.')
+};
+analyze();
+})();
+</script>
+
+
+
+<!-- ECHO GODS // PHASE 7 WORDCRAFT MATRIX -->
+<style>
+#eg7Lab{position:fixed;right:10px;bottom:58px;z-index:9995}
+#eg7Open{background:#181420;border:1px solid var(--accent);box-shadow:0 0 18px #000}
+#eg7Panel{display:none;width:min(500px,calc(100vw - 20px));max-height:74dvh;overflow:auto;background:#100f17;border:1px solid #66506a;border-radius:14px;padding:10px;box-shadow:0 20px 70px #000}
+#eg7Panel.open{display:block}
+.eg7Head{display:flex;align-items:center;gap:8px;position:sticky;top:-10px;background:#100f17;padding:6px 0 8px;z-index:2}
+.eg7Head b{letter-spacing:2px}.eg7Head small{margin-left:auto;color:var(--accent)}
+.eg7Card{border:1px solid var(--line);background:#191621;border-radius:10px;padding:9px;margin-top:8px}
+.eg7Card h3{margin:0 0 7px;font-size:11px;color:var(--accent);letter-spacing:1.4px}
+.eg7Grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.eg7Grid button{white-space:normal;min-height:42px}
+.eg7Row{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+#eg7Readout{font:10px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;background:#0c0b10;border:1px solid var(--line);border-radius:8px;padding:8px;max-height:170px;overflow:auto}
+#eg7Bank{display:flex;gap:5px;flex-wrap:wrap}
+#eg7Bank button{font-size:10px;padding:5px 7px;white-space:normal}
+.eg7Tiny{font-size:10px;color:var(--muted)}
+@media(max-width:720px){#eg7Lab{right:6px;bottom:106px}#eg7Panel{width:calc(100vw - 12px);max-height:66dvh}}
+</style>
+<div id="eg7Lab">
+<button id="eg7Open" type="button">◇ WORDCRAFT</button>
+<aside id="eg7Panel">
+ <div class="eg7Head"><b>◇ PHASE 7</b><small>WORDCRAFT MATRIX</small><button id="eg7Close">×</button></div>
+ <div class="eg7Card">
+  <h3>LYRIC SCANNER</h3>
+  <div id="eg7Readout">Scan the current lyrics for repetition and line shape.</div>
+  <div class="eg7Grid" style="margin-top:6px"><button id="eg7Scan">Scan lyrics</button><button id="eg7FindHook">Find strongest repeats</button></div>
+ </div>
+ <div class="eg7Card">
+  <h3>IMAGERY INJECTOR</h3>
+  <div class="eg7Row">
+   <div><label>Image world</label><select id="eg7World"><option>Night city</option><option>Storm & dirt</option><option>Machine room</option><option>Deep space</option><option>Home after midnight</option><option>Dream landscape</option></select></div>
+   <div><label>Intensity</label><select id="eg7Intensity"><option>Subtle</option><option>Strong</option><option>Surreal</option></select></div>
+  </div>
+  <button id="eg7Images" style="width:100%;margin-top:7px">Generate image fragments</button>
+  <div id="eg7Bank" style="margin-top:7px"></div>
+ </div>
+ <div class="eg7Card">
+  <h3>LINE SURGERY</h3>
+  <p class="eg7Tiny">Select a line inside the main lyrics box first, then use one of these.</p>
+  <div class="eg7Grid">
+   <button data-eg7line="short">Cut selected line</button>
+   <button data-eg7line="repeat">Repeat selected line</button>
+   <button data-eg7line="caps">Make selected line hit</button>
+   <button data-eg7line="echo">Add echo response</button>
+  </div>
+ </div>
+ <div class="eg7Card">
+  <h3>RHYTHM SHAPER</h3>
+  <div class="eg7Grid">
+   <button data-eg7shape="punch">Punchier layout</button>
+   <button data-eg7shape="breath">More breathing room</button>
+   <button data-eg7shape="chant">Chant punctuation</button>
+   <button data-eg7shape="clean">Normalize lines</button>
+  </div>
+ </div>
+</aside>
+</div>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+if(!$('eg7Open'))return;
+const panel=$('eg7Panel'), read=$('eg7Readout'), bank=$('eg7Bank');
+const say=t=>{if($('status'))$('status').textContent=t};
+const get=()=>$('lyrics')?.value||'';
+const put=v=>{if(!$('lyrics'))return;$('lyrics').value=v;$('lyrics').dispatchEvent(new Event('input',{bubbles:true}))};
+function scan(){
+ const raw=get(), lines=raw.split('\n').map(x=>x.trim()).filter(x=>x&&!/^\[.*\]$/.test(x));
+ const words=raw.toLowerCase().match(/[a-z0-9’']+/g)||[];
+ const freq={};words.forEach(w=>{if(w.length>3)freq[w]=(freq[w]||0)+1});
+ const top=Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,8);
+ const avg=lines.length?(words.length/lines.length).toFixed(1):0;
+ const exact={};lines.forEach(l=>exact[l]=(exact[l]||0)+1);
+ const repeats=Object.entries(exact).filter(x=>x[1]>1).sort((a,b)=>b[1]-a[1]).slice(0,5);
+ read.textContent='WORDS        '+words.length+'\nLYRIC LINES  '+lines.length+'\nAVG WORDS/LINE '+avg+'\n\nREPEATED WORDS\n'+(top.map(x=>x[0]+' ×'+x[1]).join('\n')||'None')+'\n\nREPEATED LINES\n'+(repeats.map(x=>'×'+x[1]+'  '+x[0]).join('\n')||'No exact repeated lyric lines.');
+}
+$('eg7Open').onclick=()=>{panel.classList.toggle('open');scan()};
+$('eg7Close').onclick=()=>panel.classList.remove('open');
+$('eg7Scan').onclick=scan;
+$('eg7FindHook').onclick=()=>{scan();say('Repeated words and exact repeated lines are shown in the Wordcraft scanner.')};
+
+const worlds={
+ 'Night city':['neon bleeding into rain','headlights crawling over wet glass','a midnight signal under the street','elevator light on an empty floor','static glowing behind the skyline'],
+ 'Storm & dirt':['old dirt falling from my hands','thunder caught beneath my boots','rain hammering the rust away','a road cut open by lightning','mud holding yesterday’s footprints'],
+ 'Machine room':['gears breathing below the floor','a red diode blinking like a pulse','wires humming behind the walls','iron rhythm under my skin','a dead screen waking in the dark'],
+ 'Deep space':['cold stars beyond the cabin glass','a blue planet shrinking behind us','radio ghosts between the planets','engine light across an empty orbit','a garden sleeping under moonlight'],
+ 'Home after midnight':['one kitchen light after midnight','your coat waiting beside the door','cold coffee beside the sink','floorboards talking in the quiet','the refrigerator humming our old song'],
+ 'Dream landscape':['a staircase folding into clouds','black flowers opening in daylight','an ocean hanging above the room','a doorway made from sleeping light','shadows wearing borrowed wings']
+};
+$('eg7Images').onclick=()=>{
+ bank.replaceChildren();let a=[...worlds[$('eg7World').value]];
+ if($('eg7Intensity').value==='Surreal')a=a.map(x=>x+' while gravity forgets my name');
+ if($('eg7Intensity').value==='Strong')a=a.map(x=>x+' — sharp enough to remember');
+ a.forEach(t=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.onclick=()=>{const box=$('lyrics');if(!box)return;const pos=box.selectionStart||box.value.length;box.value=box.value.slice(0,pos)+(pos?'\n':'')+t+box.value.slice(pos);box.dispatchEvent(new Event('input',{bubbles:true}));say('Image fragment inserted into lyrics.')};bank.append(b)})
+};
+
+document.querySelectorAll('[data-eg7line]').forEach(b=>b.onclick=()=>{
+ const box=$('lyrics');if(!box)return;const a=box.selectionStart,c=box.selectionEnd;
+ let sel=box.value.slice(a,c).trim();if(!sel){say('Select a lyric line first.');return}
+ let r=sel;
+ if(b.dataset.eg7line==='short')r=sel.split(/\s+/).slice(0,Math.max(3,Math.ceil(sel.split(/\s+/).length*.65))).join(' ');
+ if(b.dataset.eg7line==='repeat')r=sel+'\n'+sel;
+ if(b.dataset.eg7line==='caps')r=sel.toUpperCase();
+ if(b.dataset.eg7line==='echo')r=sel+'\n(Echo) '+sel;
+ box.setRangeText(r,a,c,'select');box.dispatchEvent(new Event('input',{bubbles:true}));scan();say('Selected lyric transformed.')
+});
+document.querySelectorAll('[data-eg7shape]').forEach(b=>b.onclick=()=>{
+ let v=get();
+ if(b.dataset.eg7shape==='punch')v=v.split('\n').map(x=>x.trim().split(/\s+/).length>9?x.trim().split(/\s+/).slice(0,9).join(' '):x).join('\n');
+ if(b.dataset.eg7shape==='breath')v=v.replace(/\n(?=[^\n\[])/g,'\n\n').replace(/\n{3,}/g,'\n\n');
+ if(b.dataset.eg7shape==='chant')v=v.split('\n').map(x=>(x&&!x.startsWith('[')&&!/[.!?]$/.test(x))?x+' —':x).join('\n');
+ if(b.dataset.eg7shape==='clean')v=v.split('\n').map(x=>x.trimEnd()).join('\n').replace(/\n{3,}/g,'\n\n').trim();
+ put(v);scan();say('Rhythm shaping applied.')
+});
+scan();
+})();
+</script>
+
+
+
+<!-- ECHO GODS // PHASE 8 PERFORMANCE STAGE -->
+<style>
+#eg8Stage{position:fixed;left:50%;top:10px;transform:translateX(-50%);z-index:9994}
+#eg8Open{background:#181420;border:1px solid var(--accent);box-shadow:0 0 18px #000}
+#eg8Panel{display:none;width:min(560px,calc(100vw - 20px));max-height:80dvh;overflow:auto;background:#100f17;border:1px solid #66506a;border-radius:14px;padding:10px;box-shadow:0 20px 70px #000}
+#eg8Panel.open{display:block}
+.eg8Head{display:flex;align-items:center;gap:8px;position:sticky;top:-10px;background:#100f17;padding:6px 0 8px;z-index:2}
+.eg8Head b{letter-spacing:2px}.eg8Head small{margin-left:auto;color:var(--accent)}
+.eg8Card{border:1px solid var(--line);background:#191621;border-radius:10px;padding:9px;margin-top:8px}
+.eg8Card h3{margin:0 0 7px;font-size:11px;color:var(--accent);letter-spacing:1.4px}
+.eg8Grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.eg8Grid button{white-space:normal;min-height:42px}
+.eg8Row{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+#eg8Tele{font-size:clamp(17px,4vw,27px);line-height:1.55;text-align:center;background:#09080d;border:1px solid var(--line);border-radius:10px;padding:16px;min-height:180px;max-height:300px;overflow:auto;white-space:pre-wrap}
+#eg8Cue{font:10px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;background:#0c0b10;border:1px solid var(--line);border-radius:8px;padding:8px;max-height:150px;overflow:auto}
+.eg8Active{outline:2px solid var(--accent);background:#241c2a!important}
+body.eg8-performance header,body.eg8-performance .tabs,body.eg8-performance #eg4xDock,body.eg8-performance #eg5Deck,body.eg8-performance #eg6Lab,body.eg8-performance #eg7Lab{display:none!important}
+body.eg8-performance #songStudio,body.eg8-performance #chatStudio,body.eg8-performance #herbStudio{display:none!important}
+body.eg8-performance #eg8Stage{position:fixed;inset:0;transform:none;background:#09080d;padding:10px;overflow:auto}
+body.eg8-performance #eg8Open{display:none}
+body.eg8-performance #eg8Panel{display:block!important;width:min(900px,100%);max-height:none;margin:auto;border:0;box-shadow:none}
+body.eg8-performance #eg8Tele{min-height:60dvh;font-size:clamp(22px,5vw,42px)}
+@media(max-width:720px){#eg8Stage{top:6px}#eg8Panel{width:calc(100vw - 12px);max-height:75dvh}.eg8Grid,.eg8Row{grid-template-columns:1fr 1fr}}
+</style>
+<div id="eg8Stage">
+<button id="eg8Open" type="button">🎤 PERFORMANCE</button>
+<aside id="eg8Panel">
+ <div class="eg8Head"><b>🎤 PHASE 8</b><small>PERFORMANCE STAGE</small><button id="eg8Close">×</button></div>
+ <div class="eg8Card">
+  <h3>TELEPROMPTER</h3>
+  <div id="eg8Tele">Your current lyrics appear here.</div>
+  <div class="eg8Grid" style="margin-top:7px">
+   <button id="eg8Prev">← Previous line</button><button id="eg8Next">Next line →</button>
+   <button id="eg8Full">◉ Full-screen stage</button><button id="eg8Reset">↶ Reset</button>
+  </div>
+ </div>
+ <div class="eg8Card">
+  <h3>PERFORMANCE CUES</h3>
+  <div class="eg8Row">
+   <div><label>Delivery</label><select id="eg8Delivery"><option>Natural</option><option>Intimate</option><option>Aggressive</option><option>Haunted</option><option>Defiant</option><option>Cinematic</option></select></div>
+   <div><label>Chorus size</label><select id="eg8Chorus"><option>Normal</option><option>Lift hard</option><option>Group chant</option><option>Layered harmonies</option><option>Strip first, explode second</option></select></div>
+  </div>
+  <div class="eg8Row">
+   <div><label>Verse feel</label><select id="eg8Verse"><option>Steady</option><option>Near-spoken</option><option>Rhythmic</option><option>Whispered</option><option>Building tension</option></select></div>
+   <div><label>Ending</label><select id="eg8Ending"><option>Hard stop</option><option>Fade</option><option>Final line alone</option><option>Repeated hook</option></select></div>
+  </div>
+  <button id="eg8BuildCue" style="width:100%;margin-top:7px">Build performance sheet</button>
+  <div id="eg8Cue" style="margin-top:7px"></div>
+ </div>
+ <div class="eg8Card">
+  <h3>VOCAL MARKERS</h3>
+  <div class="eg8Grid">
+   <button data-eg8mark="Whisper">[Whisper]</button>
+   <button data-eg8mark="Shout">[Shout]</button>
+   <button data-eg8mark="Group Chant">[Group Chant]</button>
+   <button data-eg8mark="Drop Instruments">[Drop Instruments]</button>
+   <button data-eg8mark="Build">[Build]</button>
+   <button data-eg8mark="Silence">[Silence]</button>
+  </div>
+ </div>
+</aside>
+</div>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+if(!$('eg8Open'))return;
+const panel=$('eg8Panel'), tele=$('eg8Tele'), cue=$('eg8Cue');
+let lines=[],index=0;
+const say=t=>{if($('status'))$('status').textContent=t};
+function sync(){
+ const raw=$('lyrics')?.value||'';
+ lines=raw.split('\n').map(x=>x.trim()).filter(Boolean);
+ if(index>=lines.length)index=Math.max(0,lines.length-1);
+ render();
+}
+function render(){
+ if(!lines.length){tele.textContent='No lyrics loaded.';return}
+ const before=lines[index-1]||'', now=lines[index]||'', after=lines[index+1]||'';
+ tele.innerHTML='';
+ const a=document.createElement('div');a.style.opacity='.35';a.style.fontSize='.6em';a.textContent=before;
+ const b=document.createElement('div');b.className='eg8Active';b.style.padding='10px';b.style.margin='8px 0';b.textContent=now;
+ const c=document.createElement('div');c.style.opacity='.45';c.style.fontSize='.7em';c.textContent=after;
+ tele.append(a,b,c);
+}
+$('eg8Open').onclick=()=>{panel.classList.toggle('open');sync()};
+$('eg8Close').onclick=()=>panel.classList.remove('open');
+$('eg8Prev').onclick=()=>{index=Math.max(0,index-1);render()};
+$('eg8Next').onclick=()=>{index=Math.min(Math.max(0,lines.length-1),index+1);render()};
+$('eg8Reset').onclick=()=>{index=0;sync()};
+$('eg8Full').onclick=()=>{
+ document.body.classList.toggle('eg8-performance');
+ $('eg8Full').textContent=document.body.classList.contains('eg8-performance')?'Exit full-screen stage':'◉ Full-screen stage';
+ sync();
+};
+$('eg8BuildCue').onclick=()=>{
+ const raw=$('lyrics')?.value||'', secs=[...raw.matchAll(/^\[([^\]]+)\]/gm)].map(x=>x[1]);
+ cue.textContent='DELIVERY  '+$('eg8Delivery').value+
+ '\nVERSE     '+$('eg8Verse').value+
+ '\nCHORUS    '+$('eg8Chorus').value+
+ '\nENDING    '+$('eg8Ending').value+
+ '\n\nSECTION RUN\n'+(secs.length?secs.map((x,i)=>(i+1)+'. '+x).join('\n'):'No labeled sections')+
+ '\n\nPERFORMANCE NOTE\nKeep the main hook intelligible. Let verses contrast with the chorus rather than performing every section at maximum intensity.';
+ say('Performance sheet built.');
+};
+document.querySelectorAll('[data-eg8mark]').forEach(b=>b.onclick=()=>{
+ const box=$('lyrics');if(!box)return;
+ const pos=box.selectionStart||0,mark='['+b.dataset.eg8mark+']\n';
+ box.setRangeText(mark,pos,pos,'end');box.dispatchEvent(new Event('input',{bubbles:true}));sync();say(b.dataset.eg8mark+' marker inserted.')
+});
+$('lyrics')?.addEventListener('input',sync);
+document.addEventListener('keydown',e=>{
+ if(!document.body.classList.contains('eg8-performance'))return;
+ if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();$('eg8Next').click()}
+ if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();$('eg8Prev').click()}
+ if(e.key==='Escape'){$('eg8Full').click()}
+});
+sync();
+})();
+</script>
+
+
+
+<!-- ECHO GODS // PHASE 9 PROJECT VAULT -->
+<style>
+#eg9Vault{position:fixed;right:10px;top:58px;z-index:9993}
+#eg9Open{background:#181420;border:1px solid var(--accent);box-shadow:0 0 18px #000}
+#eg9Panel{display:none;width:min(540px,calc(100vw - 20px));max-height:78dvh;overflow:auto;background:#100f17;border:1px solid #66506a;border-radius:14px;padding:10px;box-shadow:0 20px 70px #000}
+#eg9Panel.open{display:block}
+.eg9Head{display:flex;align-items:center;gap:8px;position:sticky;top:-10px;background:#100f17;padding:6px 0 8px;z-index:2}
+.eg9Head b{letter-spacing:2px}.eg9Head small{margin-left:auto;color:var(--accent)}
+.eg9Card{border:1px solid var(--line);background:#191621;border-radius:10px;padding:9px;margin-top:8px}
+.eg9Card h3{margin:0 0 7px;font-size:11px;color:var(--accent);letter-spacing:1.4px}
+.eg9Grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.eg9Grid button{white-space:normal;min-height:42px}
+.eg9Row{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+#eg9Projects{display:grid;gap:6px;max-height:240px;overflow:auto}
+.eg9Project{border:1px solid var(--line);border-radius:9px;padding:7px;background:#0e0d13}
+.eg9Project b{display:block;font-size:12px}.eg9Project small{color:var(--muted);font-size:9px}
+.eg9Project .tools{display:flex;gap:5px;margin-top:5px}.eg9Project .tools button{font-size:9px;padding:5px;flex:1}
+#eg9Stats{font:10px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;background:#0c0b10;border:1px solid var(--line);border-radius:8px;padding:8px}
+@media(max-width:720px){#eg9Vault{right:6px;top:52px}#eg9Panel{width:calc(100vw - 12px);max-height:72dvh}}
+</style>
+<div id="eg9Vault">
+<button id="eg9Open" type="button">▦ PROJECT VAULT</button>
+<aside id="eg9Panel">
+ <div class="eg9Head"><b>▦ PHASE 9</b><small>PROJECT VAULT</small><button id="eg9Close">×</button></div>
+ <div class="eg9Card">
+  <h3>CURRENT PROJECT</h3>
+  <div class="eg9Row"><input id="eg9Name" placeholder="Project name"><select id="eg9Tag"><option>Song</option><option>Love</option><option>Dark</option><option>Survival</option><option>Story</option><option>Experimental</option></select></div>
+  <div class="eg9Grid" style="margin-top:7px"><button id="eg9Save">Save project</button><button id="eg9Duplicate">Duplicate current</button></div>
+ </div>
+ <div class="eg9Card">
+  <h3>VAULT</h3>
+  <input id="eg9Search" placeholder="Search saved projects…">
+  <div id="eg9Projects" style="margin-top:7px"></div>
+ </div>
+ <div class="eg9Card">
+  <h3>LIBRARY HEALTH</h3>
+  <div id="eg9Stats"></div>
+  <div class="eg9Grid" style="margin-top:7px"><button id="eg9ExportAll">Export vault</button><button id="eg9Purge">Delete all vault projects</button></div>
+ </div>
+</aside>
+</div>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+if(!$('eg9Open'))return;
+const panel=$('eg9Panel'), list=$('eg9Projects'), stats=$('eg9Stats');
+const KEY='eg.phase9.projects';
+const say=t=>{if($('status'))$('status').textContent=t};
+const getRaw=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const setRaw=(k,v)=>{try{localStorage.setItem(k,v);return true}catch(e){say('Project vault could not save; browser storage may be full.');return false}};
+function projects(){try{const a=JSON.parse(getRaw(KEY)||'[]');return Array.isArray(a)?a:[]}catch(e){return[]}}
+function currentData(name,tag){
+ return {id:'p'+Date.now()+Math.random().toString(36).slice(2,6),time:Date.now(),name:name||$('songTitle')?.textContent||'Untitled',tag:tag||$('eg9Tag').value,
+ idea:$('idea')?.value||'',hook:$('hook')?.value||'',lyrics:$('lyrics')?.value||'',style:$('stylePrompt')?.textContent||'',notes:$('songNotes')?.value||'',scratch:$('eg5Scratch')?.value||''}
+}
+function saveArray(a){return setRaw(KEY,JSON.stringify(a.slice(0,30)))}
+function loadProject(p){
+ if($('idea'))$('idea').value=p.idea||'';
+ if($('hook'))$('hook').value=p.hook||'';
+ if($('lyrics')){$('lyrics').value=p.lyrics||'';$('lyrics').dispatchEvent(new Event('input',{bubbles:true}))}
+ if($('stylePrompt'))$('stylePrompt').textContent=p.style||'';
+ if($('songNotes'))$('songNotes').value=p.notes||'';
+ if($('eg5Scratch')){$('eg5Scratch').value=p.scratch||'';$('eg5Scratch').dispatchEvent(new Event('input',{bubbles:true}))}
+ if($('songTitle'))$('songTitle').textContent=p.name||'Project';
+ $('songTab')?.click();say('Project loaded: '+p.name);panel.classList.remove('open')
+}
+function render(){
+ const q=($('eg9Search').value||'').toLowerCase(),a=projects().filter(p=>(p.name+' '+p.tag).toLowerCase().includes(q));
+ list.replaceChildren();
+ if(!a.length)list.textContent='No matching projects.';
+ a.forEach(p=>{
+  const card=document.createElement('div');card.className='eg9Project';
+  const b=document.createElement('b');b.textContent=p.name;
+  const sm=document.createElement('small');sm.textContent=p.tag+' · '+new Date(p.time).toLocaleString();
+  const tools=document.createElement('div');tools.className='tools';
+  const open=document.createElement('button');open.textContent='Open';open.onclick=()=>loadProject(p);
+  const exp=document.createElement('button');exp.textContent='Export';exp.onclick=()=>download((p.name||'project').replace(/[^a-z0-9]+/gi,'_')+'.json',JSON.stringify(p,null,2),'application/json');
+  const del=document.createElement('button');del.textContent='Delete';del.onclick=()=>{saveArray(projects().filter(x=>x.id!==p.id));render();say('Project deleted.')};
+  tools.append(open,exp,del);card.append(b,sm,tools);list.append(card)
+ });
+ const all=projects(), chars=all.reduce((n,p)=>n+(p.lyrics||'').length,0);
+ stats.textContent='PROJECTS   '+all.length+'/30\nLYRIC CHARS '+chars.toLocaleString()+'\nVAULT SIZE  '+Math.round((getRaw(KEY)||'').length*2/1024)+' KB\nMODE        LOCAL BROWSER STORAGE';
+}
+function download(name,text,type){
+ const u=URL.createObjectURL(new Blob([text],{type:(type||'text/plain')+';charset=utf-8'})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1200)
+}
+$('eg9Open').onclick=()=>{panel.classList.toggle('open');$('eg9Name').value=$('songTitle')?.textContent||'';render()};
+$('eg9Close').onclick=()=>panel.classList.remove('open');
+$('eg9Search').oninput=render;
+$('eg9Save').onclick=()=>{
+ let a=projects(),name=$('eg9Name').value.trim()||$('songTitle')?.textContent||'Untitled';
+ const existing=a.findIndex(p=>p.name.toLowerCase()===name.toLowerCase());
+ const p=currentData(name,$('eg9Tag').value);
+ if(existing>=0){p.id=a[existing].id;a[existing]=p}else a.unshift(p);
+ if(saveArray(a)){say(existing>=0?'Project updated in vault.':'Project saved to vault.');render()}
+};
+$('eg9Duplicate').onclick=()=>{
+ let a=projects(),base=$('eg9Name').value.trim()||$('songTitle')?.textContent||'Untitled',p=currentData(base+' Copy',$('eg9Tag').value);a.unshift(p);
+ if(saveArray(a)){say('Project duplicated.');render()}
+};
+$('eg9ExportAll').onclick=()=>download('echo_gods_project_vault.json',JSON.stringify({app:'ECHO GODS',phase:9,exported:new Date().toISOString(),projects:projects()},null,2),'application/json');
+$('eg9Purge').onclick=()=>{
+ if(confirm('Delete every Phase 9 vault project? This does not erase the song currently open.')){setRaw(KEY,'[]');render();say('Project vault cleared.')}
+};
+render();
+})();
+</script>
+
+
+
+<!-- ECHO GODS // PHASE 10 UNIFIED GODS OS -->
+<style>
+:root{--eg10Glow:0 0 22px color-mix(in srgb,var(--accent) 28%,transparent)}
+#eg10Bar{position:fixed;z-index:10020;left:50%;bottom:8px;transform:translateX(-50%);width:min(940px,calc(100vw - 16px));background:rgba(15,13,21,.96);border:1px solid #59475f;border-radius:14px;padding:6px;box-shadow:0 15px 55px #000;display:flex;gap:5px;align-items:center;overflow-x:auto;backdrop-filter:blur(10px)}
+#eg10Bar button{font-size:10px;padding:7px 9px;flex:0 0 auto}
+#eg10Bar .brand{color:var(--accent);font-weight:800;letter-spacing:1.5px;padding:0 6px;white-space:nowrap}
+#eg10Status{margin-left:auto;color:#bdaec3;font-size:9px;white-space:nowrap;padding:0 5px}
+#eg10Home{position:fixed;inset:0;z-index:10010;background:radial-gradient(circle at 50% 10%,#251b2a 0,#100f17 45%,#09080d 100%);display:none;overflow:auto;padding:20px 12px 84px}
+#eg10Home.open{display:block}
+.eg10Shell{max-width:1000px;margin:auto}
+.eg10Hero{border:1px solid #5b4861;background:linear-gradient(145deg,#1c1722,#111018);border-radius:18px;padding:18px;box-shadow:var(--eg10Glow);position:relative;overflow:hidden}
+.eg10Hero:after{content:'';position:absolute;inset:auto -10% -65% 35%;height:180px;background:radial-gradient(circle,var(--accent),transparent 65%);opacity:.09;pointer-events:none}
+.eg10Hero h1{font-size:clamp(22px,5vw,42px);letter-spacing:5px;margin:0}.eg10Hero p{max-width:680px}
+.eg10Pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent);margin-right:7px}
+.eg10Stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}
+.eg10Stat{background:#0d0c12;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}.eg10Stat strong{display:block;font-size:20px}.eg10Stat small{font-size:9px;color:var(--muted)}
+.eg10Apps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.eg10App{min-height:112px;text-align:left;white-space:normal;padding:12px;border-radius:13px;background:linear-gradient(145deg,#211a27,#15121b)}
+.eg10App b{display:block;font-size:13px;color:var(--accent);margin-bottom:4px}.eg10App small{display:block;color:#b9aabc;line-height:1.35}
+.eg10Section{margin-top:12px;border:1px solid var(--line);background:#14121b;border-radius:13px;padding:11px}
+.eg10Section h2{font-size:12px;letter-spacing:1.5px;color:var(--accent);margin:0 0 8px}
+#eg10Recent{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.eg10RecentCard{background:#0d0c12;border:1px solid var(--line);border-radius:9px;padding:8px;min-height:65px}.eg10RecentCard b{display:block}.eg10RecentCard small{color:var(--muted)}
+body.eg10-home-lock{overflow:hidden!important}
+body.eg10-calm *{animation:none!important;transition:none!important}
+body.eg10-large{font-size:16px}body.eg10-large button,body.eg10-large input,body.eg10-large select,body.eg10-large textarea{font-size:15px}
+#eg10Emergency{display:none;position:fixed;inset:0;z-index:11000;background:#08070b;padding:16px;overflow:auto}
+#eg10Emergency.open{display:block}
+#eg10Emergency .inner{max-width:760px;margin:auto}
+#eg10Emergency textarea{min-height:55dvh;font-size:16px;line-height:1.55}
+.eg10Tools{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+@media(max-width:800px){.eg10Apps{grid-template-columns:1fr 1fr}.eg10Stats{grid-template-columns:1fr 1fr}#eg10Recent{grid-template-columns:1fr}}
+@media(max-width:480px){.eg10App{min-height:96px}.eg10Hero{padding:14px}#eg10Status{display:none}}
+</style>
+
+<div id="eg10Home">
+ <div class="eg10Shell">
+  <section class="eg10Hero">
+   <div><span class="eg10Pulse"></span><small>ECHO GODS // UNIFIED OFFLINE CREATIVE SYSTEM</small></div>
+   <h1>ECHO GODS</h1>
+   <p>Songwriting, offline conversation, reference tools, arrangement, wordcraft, performance, recovery and project storage — brought together behind one command deck.</p>
+   <div class="eg10Stats">
+    <div class="eg10Stat"><strong id="eg10Words">0</strong><small>CURRENT WORDS</small></div>
+    <div class="eg10Stat"><strong id="eg10Projects">0</strong><small>VAULT PROJECTS</small></div>
+    <div class="eg10Stat"><strong id="eg10Versions">0</strong><small>VERSIONS</small></div>
+    <div class="eg10Stat"><strong id="eg10Storage">0K</strong><small>LOCAL STORAGE</small></div>
+   </div>
+  </section>
+  <section class="eg10Section">
+   <h2>COMMAND DECK</h2>
+   <div class="eg10Apps">
+    <button class="eg10App" data-eg10tab="songTab"><b>♫ SONG STUDIO</b><small>Write, rewrite, save and export complete songs.</small></button>
+    <button class="eg10App" data-eg10tab="chatTab"><b>◈ ECHO COMPANION</b><small>Offline conversation, creative prompts and learned notes.</small></button>
+    <button class="eg10App" data-eg10tab="herbTab"><b>❧ REFERENCE</b><small>Open the built-in herbs and nutrition reference catalog.</small></button>
+    <button class="eg10App" data-eg10open="eg5Open"><b>✦ CREATOR DECK</b><small>Idea forge, hook forge, versions and scratch pad.</small></button>
+    <button class="eg10App" data-eg10open="eg6Open"><b>🎚 ARRANGEMENT</b><small>Map sections and shape production dynamics.</small></button>
+    <button class="eg10App" data-eg10open="eg7Open"><b>◇ WORDCRAFT</b><small>Scan repetition, inject imagery and reshape lines.</small></button>
+    <button class="eg10App" data-eg10open="eg8Open"><b>🎤 PERFORMANCE</b><small>Teleprompter, delivery cues and vocal markers.</small></button>
+    <button class="eg10App" data-eg10open="eg9Open"><b>▦ PROJECT VAULT</b><small>Store, search, reopen and export complete projects.</small></button>
+   </div>
+  </section>
+  <section class="eg10Section">
+   <h2>RECENT PROJECTS</h2>
+   <div id="eg10Recent"></div>
+  </section>
+  <section class="eg10Section">
+   <h2>SYSTEM TOOLS</h2>
+   <div class="eg10Tools">
+    <button id="eg10Backup">Export emergency backup</button>
+    <button id="eg10Calm">Reduced motion</button>
+    <button id="eg10Large">Large controls</button>
+    <button id="eg10Safe">Safe lyrics screen</button>
+    <button id="eg10CloseHome">Return to workspace</button>
+   </div>
+  </section>
+ </div>
+</div>
+
+<nav id="eg10Bar" aria-label="ECHO GODS master navigation">
+ <span class="brand">◈ ECHO GODS</span>
+ <button id="eg10HomeBtn">⌂ Home</button>
+ <button data-eg10tab="songTab">♫ Song</button>
+ <button data-eg10tab="chatTab">◈ Chat</button>
+ <button data-eg10open="eg5Open">✦ Create</button>
+ <button data-eg10open="eg6Open">🎚 Arrange</button>
+ <button data-eg10open="eg7Open">◇ Words</button>
+ <button data-eg10open="eg8Open">🎤 Stage</button>
+ <button data-eg10open="eg9Open">▦ Vault</button>
+ <span id="eg10Status">OFFLINE • READY</span>
+</nav>
+
+<div id="eg10Emergency">
+ <div class="inner">
+  <h1>SAFE LYRICS SCREEN</h1>
+  <p>Minimal recovery view. Your current lyrics are copied here so you can keep editing even if the main interface becomes distracting.</p>
+  <textarea id="eg10SafeLyrics"></textarea>
+  <div class="eg10Tools"><button id="eg10SafeBack">Return changes to ECHO GODS</button><button id="eg10SafeExit">Exit without replacing</button></div>
+ </div>
+</div>
+
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+if(!$('eg10Bar'))return;
+const home=$('eg10Home'), emergency=$('eg10Emergency');
+const raw=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const parse=(k,f=[])=>{try{const x=JSON.parse(raw(k)||'null');return x??f}catch(e){return f}};
+function storageKB(){let n=0;try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i)||'';n+=k.length+(localStorage.getItem(k)||'').length}}catch(e){}return Math.round(n*2/1024)}
+function refresh(){
+ const lyr=$('lyrics')?.value||'';
+ $('eg10Words').textContent=lyr.trim()?lyr.trim().split(/\s+/).length:0;
+ const ps=parse('eg.phase9.projects',[]),vs=parse('eg.phase5.versions',[]);
+ $('eg10Projects').textContent=Array.isArray(ps)?ps.length:0;
+ $('eg10Versions').textContent=Array.isArray(vs)?vs.length:0;
+ $('eg10Storage').textContent=storageKB()+'K';
+ const recent=$('eg10Recent');recent.replaceChildren();
+ (Array.isArray(ps)?ps.slice(0,6):[]).forEach(p=>{
+  const d=document.createElement('div');d.className='eg10RecentCard';
+  const b=document.createElement('b');b.textContent=p.name||'Untitled';
+  const sm=document.createElement('small');sm.textContent=(p.tag||'Song')+' · '+new Date(p.time||Date.now()).toLocaleDateString();
+  d.append(b,sm);d.onclick=()=>{$('eg9Open')?.click();closeHome()};recent.append(d)
+ });
+ if(!recent.children.length)recent.textContent='Your Phase 9 project vault is empty. Save a project and it will appear here.';
+ $('eg10Status').textContent='OFFLINE • '+storageKB()+' KB • READY';
+}
+function openHome(){refresh();home.classList.add('open');document.body.classList.add('eg10-home-lock')}
+function closeHome(){home.classList.remove('open');document.body.classList.remove('eg10-home-lock')}
+$('eg10HomeBtn').onclick=openHome;$('eg10CloseHome').onclick=closeHome;
+document.querySelectorAll('[data-eg10tab]').forEach(b=>b.onclick=()=>{closeHome();$(b.dataset.eg10tab)?.click();window.scrollTo({top:0,behavior:'smooth'})});
+document.querySelectorAll('[data-eg10open]').forEach(b=>b.onclick=()=>{closeHome();const id=b.dataset.eg10open,el=$(id);if(el){const target=$(id.replace('Open','Panel'));if(target&&!target.classList.contains('open'))el.click();else if(!target)el.click()}});
+
+$('eg10Calm').onclick=()=>{document.body.classList.toggle('eg10-calm');$('eg10Calm').textContent=document.body.classList.contains('eg10-calm')?'Motion reduced ✓':'Reduced motion'};
+$('eg10Large').onclick=()=>{document.body.classList.toggle('eg10-large');$('eg10Large').textContent=document.body.classList.contains('eg10-large')?'Large controls ✓':'Large controls'};
+$('eg10Safe').onclick=()=>{$('eg10SafeLyrics').value=$('lyrics')?.value||'';emergency.classList.add('open')};
+$('eg10SafeBack').onclick=()=>{if($('lyrics')){$('lyrics').value=$('eg10SafeLyrics').value;$('lyrics').dispatchEvent(new Event('input',{bubbles:true}))}emergency.classList.remove('open')};
+$('eg10SafeExit').onclick=()=>emergency.classList.remove('open');
+
+function dl(name,text,type='application/json'){
+ const u=URL.createObjectURL(new Blob([text],{type:type+';charset=utf-8'})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1200)
+}
+$('eg10Backup').onclick=()=>{
+ const data={app:'ECHO GODS',phase:10,exported:new Date().toISOString(),current:{title:$('songTitle')?.textContent||'',idea:$('idea')?.value||'',hook:$('hook')?.value||'',lyrics:$('lyrics')?.value||'',style:$('stylePrompt')?.textContent||'',notes:$('songNotes')?.value||''},projects:parse('eg.phase9.projects',[]),versions:parse('eg.phase5.versions',[]),scratch:raw('eg.phase5.scratch')||''};
+ dl('echo_gods_phase10_emergency_backup.json',JSON.stringify(data,null,2))
+};
+$('lyrics')?.addEventListener('input',refresh);
+setInterval(()=>{if(!document.hidden)refresh()},10000);
+refresh();
+setTimeout(openHome,250);
+})();
+</script>
+
