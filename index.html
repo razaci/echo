@@ -9355,3 +9355,1457 @@ rail.onclick=e=>{
 };
 })();
 </script>
+
+
+<!-- ECHO GODS // CONDENSED EDITOR PHASE 2G // ULTRA SINGLE-SCREEN TOOL DOCK -->
+<style>
+/* One compact dock replaces several visible rails in Writing Desk mode. */
+body.egWritingDesk #egCondenseBar,
+body.egWritingDesk #egDeskNav,
+body.egWritingDesk #egP2dRail,
+body.egWritingDesk #egP2fRail,
+body.egWritingDesk #egEditedLyricsBar{display:none!important}
+
+#egP2gDock{
+ display:none;position:sticky;top:2px;z-index:1500;
+ grid-template-columns:auto auto auto auto 1fr auto;gap:2px;
+ padding:3px;margin:2px 0;background:rgba(5,7,11,.97);
+ border:1px solid rgba(125,225,255,.18);border-radius:7px;
+ backdrop-filter:blur(12px)
+}
+body.egWritingDesk #egP2gDock{display:grid}
+#egP2gDock button{min-height:27px;padding:2px 6px;font-size:6.5px;white-space:nowrap}
+#egP2gTitle{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+ align-self:center;text-align:center;color:var(--accent);font:7px ui-monospace,monospace}
+#egP2gMenu{
+ display:none;position:fixed;z-index:26000;left:6px;right:6px;top:44px;
+ padding:5px;background:rgba(6,8,12,.98);border:1px solid rgba(125,225,255,.22);
+ border-radius:9px;box-shadow:0 18px 60px #000
+}
+#egP2gMenu.open{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+#egP2gMenu button{min-height:38px;font-size:7px;white-space:normal}
+body.egWritingDesk #lyrics{
+ min-height:82vh!important;max-height:86vh!important;
+ font-size:12px!important;line-height:1.04!important;padding:6px!important
+}
+@media(max-width:560px){
+ #egP2gDock{grid-template-columns:auto auto auto 1fr auto}
+ #egP2gDock button[data-g="versions"]{display:none}
+ #egP2gMenu.open{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+
+<div id="egP2gMenu">
+ <button data-m="verse">+ VERSE</button><button data-m="chorus">+ CHORUS</button>
+ <button data-m="pre">+ PRE</button><button data-m="bridge">+ BRIDGE</button>
+ <button data-m="intro">+ INTRO</button><button data-m="outro">+ OUTRO</button>
+ <button data-m="find">⌕ FIND</button><button data-m="versions">⑂ VERSIONS</button>
+ <button data-m="rhythm">▦ RHYTHM</button><button data-m="melody">♩ MELODY</button>
+ <button data-m="vocals">◉ VOCALS</button><button data-m="arrange">▤ ARRANGE</button>
+</div>
+
+<script>
+(()=>{
+const $=x=>document.getElementById(x), ta=$('lyrics');
+if(!ta||$('egP2gDock'))return;
+const dock=document.createElement('div');dock.id='egP2gDock';
+dock.innerHTML=`<button data-g="menu">☰</button><button data-g="undo">↶</button>
+<button data-g="save">✓ SAVE</button><button data-g="versions">⑂ VERSIONS</button>
+<div id="egP2gTitle">ACTIVE LYRICS</div><button data-g="full">▦ FULL</button>`;
+ta.parentNode.insertBefore(dock,ta);
+
+function put(label){
+ const p=ta.selectionStart??ta.value.length;
+ const prefix=ta.value.slice(0,p),suffix=ta.value.slice(p);
+ const x=(prefix&&!prefix.endsWith('\n')?'\n':'')+'\n['+label+']\n';
+ ta.value=prefix+x+suffix;const n=prefix.length+x.length;
+ ta.focus();ta.setSelectionRange(n,n);ta.dispatchEvent(new Event('input',{bubbles:true}))
+}
+function title(){
+ const pos=ta.selectionStart||0,h=[...ta.value.matchAll(/^\s*\[([^\]]+)\]/gm)];
+ let sec='ACTIVE LYRICS';for(const x of h)if(pos>=x.index)sec=x[1].trim().toUpperCase();
+ $('egP2gTitle').textContent=sec;
+}
+dock.onclick=e=>{
+ const b=e.target.closest('button[data-g]');if(!b)return;
+ if(b.dataset.g==='menu')$('egP2gMenu').classList.toggle('open');
+ if(b.dataset.g==='undo')document.execCommand?.('undo');
+ if(b.dataset.g==='save')$('egSaveEditedLyrics')?.click();
+ if(b.dataset.g==='versions')window.eg36Open?.();
+ if(b.dataset.g==='full'){$('egP2gMenu').classList.remove('open');document.body.classList.remove('egWritingDesk');$('egDeskMode').textContent='✎ WRITING DESK'}
+};
+$('egP2gMenu').onclick=e=>{
+ const b=e.target.closest('button[data-m]');if(!b)return;
+ const a=b.dataset.m;
+ if(['verse','chorus','pre','bridge','intro','outro'].includes(a))put({verse:'Verse',chorus:'Chorus',pre:'Pre-Chorus',bridge:'Bridge',intro:'Intro',outro:'Outro'}[a]);
+ if(a==='find'){$('egP2gMenu').classList.remove('open');document.body.classList.remove('egWritingDesk');setTimeout(()=>$('egP2dFind')?.focus(),50)}
+ if(a==='versions')window.eg36Open?.();
+ if(a==='rhythm')window.eg34Open?.();if(a==='melody')window.eg35Open?.();if(a==='vocals')window.eg38Open?.();if(a==='arrange')window.eg39Open?.();
+ if(a!=='find')$('egP2gMenu').classList.remove('open');
+};
+['click','keyup','select','input'].forEach(ev=>ta.addEventListener(ev,title));
+title();
+})();
+</script>
+
+
+<!-- ECHO GODS // FOUR-PART CLEANUP // PART 2 // EDIT COMPARISON -->
+<style>
+#egCompare{
+ display:none;position:fixed;z-index:28000;inset:6px 6px 58px;
+ background:#06080c;border:1px solid rgba(125,225,255,.24);border-radius:12px;
+ box-shadow:0 25px 90px #000;overflow:auto
+}
+#egCompare.open{display:block}
+.egCmpWrap{max-width:1100px;margin:auto;padding:7px}
+.egCmpHead{display:flex;gap:5px;align-items:center;position:sticky;top:0;z-index:4;
+ background:rgba(6,8,12,.97);padding:5px;border:1px solid rgba(125,225,255,.14);border-radius:8px}
+.egCmpHead b{color:var(--accent);font:9px ui-monospace,monospace;letter-spacing:1px}
+.egCmpHead small{margin-left:auto;color:var(--muted);font:7px ui-monospace,monospace}
+.egCmpGrid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:5px}
+.egCmpPane{min-width:0;background:#080b11;border:1px solid rgba(125,225,255,.12);border-radius:8px;overflow:hidden}
+.egCmpPane h4{margin:0;padding:6px 8px;font:8px ui-monospace,monospace;color:var(--accent);border-bottom:1px solid rgba(125,225,255,.1)}
+.egCmpText{padding:6px;max-height:66vh;overflow:auto;font:10px/1.25 ui-monospace,monospace;white-space:pre-wrap}
+.egCmpLine{display:block;min-height:1.25em;padding:1px 4px;border-radius:3px}
+.egCmpSame{opacity:.7}.egCmpAdd{background:rgba(90,255,170,.10);border-left:2px solid #5dffb0}
+.egCmpDel{background:rgba(255,90,120,.10);border-left:2px solid #ff5a78}
+.egCmpChange{background:rgba(255,210,90,.10);border-left:2px solid #ffd25a}
+#egCmpActions{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:5px}
+#egCmpActions button{min-height:34px;font-size:7px;white-space:normal}
+#egCmpSummary{margin-top:5px;color:var(--muted);font:7px ui-monospace,monospace;text-align:center}
+@media(max-width:680px){
+ .egCmpGrid{grid-template-columns:1fr}
+ .egCmpText{max-height:31vh}
+ #egCmpActions{grid-template-columns:1fr 1fr}
+}
+</style>
+
+<section id="egCompare"><div class="egCmpWrap">
+ <div class="egCmpHead">
+   <b>EDIT COMPARISON</b>
+   <small id="egCmpNames">PREVIOUS ↔ CURRENT</small>
+   <button id="egCmpClose">× CLOSE</button>
+ </div>
+ <div class="egCmpGrid">
+   <div class="egCmpPane"><h4>PREVIOUS VERSION</h4><div id="egCmpOld" class="egCmpText"></div></div>
+   <div class="egCmpPane"><h4>CURRENT EDIT</h4><div id="egCmpNew" class="egCmpText"></div></div>
+ </div>
+ <div id="egCmpActions">
+   <button id="egCmpKeepNew">✓ KEEP CURRENT</button>
+   <button id="egCmpRestore">↶ RESTORE PREVIOUS</button>
+   <button id="egCmpBoth">⧉ KEEP BOTH</button>
+   <button id="egCmpSave">✓ SAVE CURRENT</button>
+ </div>
+ <div id="egCmpSummary">No comparison loaded.</div>
+</div></section>
+
+<script>
+(()=>{
+const $=x=>document.getElementById(x), ta=$('lyrics'), modal=$('egCompare');
+if(!ta||!modal)return;
+
+const KEY='echoGods.compare.v1';
+let oldText='', newText='', snapshot='';
+function esc(x){return (x??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function lines(t){return String(t||'').replace(/\r/g,'').split('\n')}
+
+/* Compact LCS line comparison. Songs are small enough for this, but cap the matrix for safety. */
+function diff(aText,bText){
+ let A=lines(aText),B=lines(bText);
+ if(A.length*B.length>160000){
+   const n=Math.max(A.length,B.length), out=[];
+   for(let i=0;i<n;i++){
+     if(A[i]===B[i]) out.push({t:'same',a:A[i]??'',b:B[i]??''});
+     else out.push({t:'change',a:A[i]??'',b:B[i]??''});
+   }
+   return out;
+ }
+ const m=A.length,n=B.length,D=Array.from({length:m+1},()=>new Uint16Array(n+1));
+ for(let i=m-1;i>=0;i--)for(let j=n-1;j>=0;j--)D[i][j]=A[i]===B[j]?D[i+1][j+1]+1:Math.max(D[i+1][j],D[i][j+1]);
+ let i=0,j=0,out=[];
+ while(i<m||j<n){
+   if(i<m&&j<n&&A[i]===B[j]){out.push({t:'same',a:A[i],b:B[j]});i++;j++;continue}
+   if(i<m&&j<n&&D[i+1][j]===D[i][j+1]){
+     out.push({t:'change',a:A[i],b:B[j]});i++;j++;continue
+   }
+   if(j<n&&(i===m||D[i][j+1]>=D[i+1][j])){out.push({t:'add',a:'',b:B[j++]});continue}
+   if(i<m){out.push({t:'del',a:A[i++],b:''})}
+ }
+ return out;
+}
+function render(){
+ newText=ta.value||'';
+ const d=diff(oldText,newText), old=$('egCmpOld'), neo=$('egCmpNew');
+ old.innerHTML='';neo.innerHTML='';
+ let add=0,del=0,chg=0;
+ d.forEach(x=>{
+   const l=document.createElement('span'),r=document.createElement('span');
+   l.className='egCmpLine ';r.className='egCmpLine ';
+   if(x.t==='same'){l.className+='egCmpSame';r.className+='egCmpSame'}
+   if(x.t==='add'){r.className+='egCmpAdd';add++}
+   if(x.t==='del'){l.className+='egCmpDel';del++}
+   if(x.t==='change'){l.className+='egCmpChange';r.className+='egCmpChange';chg++}
+   l.innerHTML=esc(x.a)||'&nbsp;';r.innerHTML=esc(x.b)||'&nbsp;';
+   old.append(l);neo.append(r);
+ });
+ $('egCmpSummary').textContent=add+' ADDED · '+del+' REMOVED · '+chg+' CHANGED';
+}
+function rememberCurrent(){
+ try{localStorage.setItem(KEY,JSON.stringify({text:ta.value||'',time:Date.now()}))}catch(e){}
+}
+function getPrevious(){
+ try{
+   const x=JSON.parse(localStorage.getItem(KEY)||'null');
+   if(x&&typeof x.text==='string'&&x.text!==(ta.value||''))return x.text;
+ }catch(e){}
+ /* Fall back to the app's existing saved-song history if available. */
+ try{
+   if(Array.isArray(window.saved)&&window.saved.length){
+     for(let i=window.saved.length-1;i>=0;i--)if(window.saved[i]?.lyrics&&window.saved[i].lyrics!==(ta.value||''))return window.saved[i].lyrics;
+   }
+ }catch(e){}
+ return '';
+}
+window.egCompareOpen=()=>{
+ oldText=getPrevious();
+ if(!oldText){
+   oldText=snapshot||ta.value||'';
+   $('egCmpSummary').textContent='No earlier snapshot yet. Make an edit, then compare again.';
+ }
+ newText=ta.value||'';modal.classList.add('open');render();
+};
+$('egCmpClose').onclick=()=>modal.classList.remove('open');
+$('egCmpKeepNew').onclick=()=>{rememberCurrent();snapshot=ta.value||'';modal.classList.remove('open');if($('status'))$('status').textContent='Current edit kept as the comparison baseline.'};
+$('egCmpRestore').onclick=()=>{
+ if(!oldText||!confirm('Restore the previous lyric version?'))return;
+ const current=ta.value||'';ta.value=oldText;oldText=current;
+ ta.dispatchEvent(new Event('input',{bubbles:true}));render();
+ if($('status'))$('status').textContent='Previous lyrics restored. The replaced edit remains in this comparison until you close it.';
+};
+$('egCmpBoth').onclick=()=>{
+ const current=ta.value||'';
+ ta.value=(oldText||'').replace(/\s+$/,'')+'\n\n[ALTERNATE EDIT]\n'+current.replace(/^\s+/,'');
+ ta.dispatchEvent(new Event('input',{bubbles:true}));
+ newText=ta.value;render();
+ if($('status'))$('status').textContent='Previous and current versions were combined into the editor.';
+};
+$('egCmpSave').onclick=()=>{
+ rememberCurrent();snapshot=ta.value||'';
+ $('egSaveEditedLyrics')?.click();
+ $('saveSong')?.click();
+ if($('status'))$('status').textContent='Current lyrics saved and set as the new comparison baseline.';
+ modal.classList.remove('open');
+};
+
+/* Capture a baseline before edits begin. */
+snapshot=ta.value||'';
+ta.addEventListener('focus',()=>{if(!snapshot)snapshot=ta.value||''},{once:true});
+
+/* Add COMPARE to the compact Writing Desk dock. */
+const dock=$('egP2gDock');
+if(dock&&!$('egCmpBtn')){
+ const b=document.createElement('button');b.id='egCmpBtn';b.textContent='⇄ COMPARE';
+ b.onclick=()=>window.egCompareOpen();
+ const title=$('egP2gTitle');dock.insertBefore(b,title);
+}
+/* Also expose it in the hidden menu, without another full panel. */
+const menu=$('egP2gMenu');
+if(menu&&!$('egCmpMenuBtn')){
+ const b=document.createElement('button');b.id='egCmpMenuBtn';b.textContent='⇄ COMPARE EDITS';
+ b.onclick=()=>{menu.classList.remove('open');window.egCompareOpen()};menu.append(b);
+}
+})();
+</script>
+
+
+
+<!-- ECHO GODS // PART 2B // COMPARISON POLISH -->
+<style>
+/* Make comparison itself compact: show changed material first, unchanged lines can be toggled. */
+#egCmpFilter{display:flex;gap:3px;overflow-x:auto;margin:4px 0}
+#egCmpFilter button{flex:0 0 auto;min-height:27px;padding:3px 7px;font-size:7px}
+#egCmpFilter button.on{border-color:var(--accent);color:var(--accent)}
+#egCompare.egChangesOnly .egCmpSame{display:none!important}
+#egCmpJump{display:flex;gap:3px;margin-left:auto}
+#egCmpJump button{min-height:27px;padding:3px 7px;font-size:7px}
+.egCmpLine.egCmpFlash{outline:1px solid var(--accent);box-shadow:0 0 12px rgba(125,225,255,.18)}
+</style>
+<script>
+(()=>{
+const $=x=>document.getElementById(x), modal=$('egCompare');
+if(!modal||$('egCmpFilter'))return;
+
+const grid=modal.querySelector('.egCmpGrid');
+const filter=document.createElement('div');filter.id='egCmpFilter';
+filter.innerHTML=`<button id="egCmpChanged" class="on">CHANGES ONLY</button>
+<button id="egCmpAll">ALL LINES</button>
+<span style="flex:1"></span>
+<div id="egCmpJump"><button id="egCmpPrevChange">← CHANGE</button><button id="egCmpNextChange">CHANGE →</button></div>`;
+grid.parentNode.insertBefore(filter,grid);
+modal.classList.add('egChangesOnly');
+
+$('egCmpChanged').onclick=()=>{
+ modal.classList.add('egChangesOnly');
+ $('egCmpChanged').classList.add('on');$('egCmpAll').classList.remove('on')
+};
+$('egCmpAll').onclick=()=>{
+ modal.classList.remove('egChangesOnly');
+ $('egCmpAll').classList.add('on');$('egCmpChanged').classList.remove('on')
+};
+
+let changeIndex=-1;
+function changes(){
+ return [...$('egCmpNew').querySelectorAll('.egCmpAdd,.egCmpChange')]
+   .filter(x=>getComputedStyle(x).display!=='none');
+}
+function jump(dir){
+ const a=changes();if(!a.length)return;
+ changeIndex=(changeIndex+dir+a.length)%a.length;
+ a.forEach(x=>x.classList.remove('egCmpFlash'));
+ const x=a[changeIndex];x.classList.add('egCmpFlash');
+ x.scrollIntoView({behavior:'smooth',block:'center'});
+ setTimeout(()=>x.classList.remove('egCmpFlash'),900)
+}
+$('egCmpPrevChange').onclick=()=>jump(-1);
+$('egCmpNextChange').onclick=()=>jump(1);
+
+/* Keyboard-friendly editing without adding visible controls. */
+modal.addEventListener('keydown',e=>{
+ if(e.key==='Escape')$('egCmpClose')?.click();
+ if(e.altKey&&e.key==='ArrowRight'){e.preventDefault();jump(1)}
+ if(e.altKey&&e.key==='ArrowLeft'){e.preventDefault();jump(-1)}
+});
+
+/* Reset to the compact changed-lines view every time comparison opens. */
+const oldOpen=window.egCompareOpen;
+if(typeof oldOpen==='function'){
+ window.egCompareOpen=()=>{
+   oldOpen();
+   modal.classList.add('egChangesOnly');
+   $('egCmpChanged')?.classList.add('on');$('egCmpAll')?.classList.remove('on');
+   changeIndex=-1;
+ };
+}
+})();
+</script>
+
+
+<!-- ECHO GODS // FOUR-PART CLEANUP // PART 3 // SONG MAP RAIL -->
+<style>
+#egSongMap{
+ display:none;position:sticky;top:34px;z-index:1450;margin:2px 0;padding:3px;
+ background:rgba(5,7,11,.97);border:1px solid rgba(125,225,255,.17);border-radius:7px;
+ gap:2px;align-items:center;overflow-x:auto;backdrop-filter:blur(10px)
+}
+body.egWritingDesk #egSongMap{display:flex}
+.egMapBlock{
+ flex:0 0 auto;min-width:54px;max-width:100px;min-height:27px!important;
+ padding:2px 6px!important;font-size:6.5px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.egMapBlock.active{border-color:var(--accent)!important;color:var(--accent)!important}
+.egMapBlock.dragging{opacity:.4}
+#egMapLabel{flex:0 0 auto;color:var(--muted);font:6px ui-monospace,monospace;padding:0 4px}
+#egMapCompact{flex:0 0 auto;min-height:27px!important;padding:2px 6px!important;font-size:6.5px!important}
+body.egMapMini .egMapBlock{min-width:30px!important;max-width:42px!important;padding:2px 4px!important}
+body.egMapMini .egMapBlock span{display:none}
+body.egMapMini .egMapBlock b{font-size:6px}
+</style>
+
+<script>
+(()=>{
+const $=x=>document.getElementById(x),ta=$('lyrics'),dock=$('egP2gDock');
+if(!ta||!dock||$('egSongMap'))return;
+
+const map=document.createElement('div');map.id='egSongMap';
+dock.insertAdjacentElement('afterend',map);
+
+function sections(){
+ const t=ta.value||'', h=[...t.matchAll(/^\s*\[([^\]]+)\][ \t]*\n?/gm)];
+ return h.map((m,i)=>({
+   name:m[1].trim(),start:m.index,end:i+1<h.length?h[i+1].index:t.length,
+   raw:t.slice(m.index,i+1<h.length?h[i+1].index:t.length).trim()
+ }));
+}
+function short(n){
+ const x=n.toLowerCase();
+ if(x.includes('intro'))return'IN';
+ if(x.includes('outro'))return'OUT';
+ if(x.includes('pre'))return'PRE';
+ if(x.includes('chorus'))return'C';
+ if(x.includes('verse'))return'V';
+ if(x.includes('bridge'))return'BR';
+ if(x.includes('break'))return'BK';
+ return n.slice(0,3).toUpperCase();
+}
+function current(a){
+ const p=ta.selectionStart||0;let i=-1;
+ a.forEach((x,j)=>{if(p>=x.start&&p<=x.end)i=j});return i;
+}
+function rebuild(chunks){
+ const a=sections();if(!a.length)return;
+ const prefix=ta.value.slice(0,a[0].start).trimEnd();
+ ta.value=(prefix?prefix+'\n\n':'')+chunks.join('\n\n').replace(/\s+$/,'')+'\n';
+ ta.dispatchEvent(new Event('input',{bubbles:true}))
+}
+function render(){
+ const a=sections(),active=current(a);map.replaceChildren();
+ const lab=document.createElement('span');lab.id='egMapLabel';lab.textContent='MAP';map.append(lab);
+ a.forEach((x,i)=>{
+   const b=document.createElement('button');b.className='egMapBlock'+(i===active?' active':'');
+   b.draggable=true;b.dataset.i=i;b.title=x.name+' — tap to jump; drag to rearrange';
+   b.innerHTML='<b>'+short(x.name)+(x.name.match(/\d+/)?.[0]||'')+'</b><span> '+x.name+'</span>';
+   b.onclick=()=>{ta.focus();ta.setSelectionRange(x.start,x.start);ta.scrollIntoView({behavior:'smooth',block:'center'});render()};
+   b.ondragstart=e=>{b.classList.add('dragging');e.dataTransfer.setData('text/plain',String(i));e.dataTransfer.effectAllowed='move'};
+   b.ondragend=()=>b.classList.remove('dragging');
+   b.ondragover=e=>{e.preventDefault();e.dataTransfer.dropEffect='move'};
+   b.ondrop=e=>{
+     e.preventDefault();const from=+e.dataTransfer.getData('text/plain'),to=i;if(from===to||Number.isNaN(from))return;
+     const now=sections(),chunks=now.map(q=>q.raw),moved=chunks.splice(from,1)[0];chunks.splice(to,0,moved);
+     rebuild(chunks);setTimeout(()=>{const n=sections()[to];if(n){ta.focus();ta.setSelectionRange(n.start,n.start)}render()},20)
+   };
+   map.append(b);
+ });
+ if(!a.length){
+   const z=document.createElement('span');z.style.cssText='font:6.5px ui-monospace;color:var(--muted);padding:4px';z.textContent='Add [Verse], [Chorus], etc. to build the map.';map.append(z)
+ }
+ const compact=document.createElement('button');compact.id='egMapCompact';compact.textContent=document.body.classList.contains('egMapMini')?'EXPAND':'MINI';
+ compact.onclick=()=>{document.body.classList.toggle('egMapMini');render()};map.append(compact)
+}
+['input','click','keyup','select'].forEach(ev=>ta.addEventListener(ev,()=>setTimeout(render,15)));
+document.addEventListener('click',e=>{if(e.target.closest('#egDeskMode,#egP2gDock'))setTimeout(render,40)},true);
+render();
+})();
+</script>
+
+
+
+<!-- ECHO GODS // PART 4 // BUILDER VISIBILITY REPAIR -->
+<style>
+/* Repair: the lyrics textarea must remain visible and usable in every editor mode. */
+#lyrics{
+ display:block!important;
+ visibility:visible!important;
+ opacity:1!important;
+ position:relative!important;
+ z-index:20!important;
+ width:100%!important;
+ box-sizing:border-box!important;
+ color:#f4f7fb!important;
+ background:#07090e!important;
+ -webkit-text-fill-color:#f4f7fb!important;
+ caret-color:var(--accent)!important;
+ overflow:auto!important;
+}
+
+/* Do not let condensed modes collapse the actual builder. */
+body.egWritingDesk #lyrics{
+ display:block!important;
+ visibility:visible!important;
+ opacity:1!important;
+ min-height:68vh!important;
+ max-height:76vh!important;
+ height:auto!important;
+}
+
+/* Keep map and dock compact instead of allowing them to cover the lyrics. */
+body.egWritingDesk #egP2gDock{
+ position:relative!important;
+ top:auto!important;
+ z-index:60!important;
+}
+body.egWritingDesk #egSongMap{
+ position:relative!important;
+ top:auto!important;
+ z-index:55!important;
+ max-height:38px!important;
+ overflow-x:auto!important;
+ overflow-y:hidden!important;
+}
+body.egWritingDesk #egP2eStatus{z-index:50!important}
+
+/* Emergency builder frame makes it obvious where the active lyrics live. */
+#egBuilderRepairFrame{
+ margin:3px 0;padding:3px;background:#05070b;
+ border:1px solid rgba(125,225,255,.18);border-radius:8px
+}
+#egBuilderRepairHead{
+ display:flex;gap:4px;align-items:center;padding:3px 4px 5px;
+ font:7px ui-monospace,monospace;color:var(--muted)
+}
+#egBuilderRepairHead b{color:var(--accent);font-size:8px}
+#egBuilderRepairHead span{margin-left:auto}
+#egBuilderRepairHead button{min-height:25px;padding:2px 6px;font-size:6.5px}
+</style>
+
+<script>
+(()=>{
+const $=x=>document.getElementById(x), ta=$('lyrics');
+if(!ta || $('egBuilderRepairFrame')) return;
+
+/* Wrap the existing textarea rather than cloning it, preserving all listeners/state. */
+const frame=document.createElement('div'); frame.id='egBuilderRepairFrame';
+const head=document.createElement('div'); head.id='egBuilderRepairHead';
+head.innerHTML='<b>LYRIC BUILDER</b><button id="egBuilderShow">SHOW LYRICS</button><button id="egBuilderFocus">FOCUS</button><span id="egBuilderCount"></span>';
+ta.parentNode.insertBefore(frame,ta);
+frame.append(head,ta);
+
+function forceVisible(){
+ ta.style.setProperty('display','block','important');
+ ta.style.setProperty('visibility','visible','important');
+ ta.style.setProperty('opacity','1','important');
+ ta.style.setProperty('height','auto','important');
+ if(document.body.classList.contains('egWritingDesk')){
+   ta.style.setProperty('min-height','68vh','important');
+   ta.style.setProperty('max-height','76vh','important');
+ }else{
+   ta.style.setProperty('min-height','44vh','important');
+   ta.style.setProperty('max-height','62vh','important');
+ }
+ update();
+}
+function update(){
+ const t=ta.value||'',words=t.trim()?t.trim().split(/\s+/).length:0;
+ const lines=t.split('\n').filter(x=>x.trim()).length;
+ $('egBuilderCount').textContent=words+' WORDS · '+lines+' LINES';
+}
+$('egBuilderShow').onclick=()=>{
+ forceVisible();
+ ta.scrollIntoView({behavior:'smooth',block:'center'});
+ setTimeout(()=>ta.focus(),250);
+};
+$('egBuilderFocus').onclick=()=>{
+ document.body.classList.add('egWritingDesk');
+ document.body.classList.remove('egUltraCondensed');
+ forceVisible();
+ ta.scrollIntoView({behavior:'smooth',block:'center'});
+ setTimeout(()=>ta.focus(),200);
+};
+
+/* Some earlier condensed patches changed visibility from multiple controls.
+   Reassert the builder after those UI actions, without touching lyric content. */
+document.addEventListener('click',e=>{
+ if(e.target.closest('#egDeskMode,#egP2gDock,#egSongMap,#egCondenseBar,#egMainDeck')){
+   setTimeout(forceVisible,40);
+ }
+},true);
+ta.addEventListener('input',update);
+window.addEventListener('resize',()=>setTimeout(forceVisible,30));
+
+/* Repair accidental literal newline markers if they reached the textarea. */
+if(ta.value.includes('\\n')) ta.value=ta.value.replace(/\\n/g,'\n');
+
+forceVisible();
+})();
+</script>
+
+<!-- ECHO GODS // OPEN STAGE // TEN EXPANSIONS -->
+<style id="egOpenStageCss">
+body.egOpenStage{
+  overflow:auto!important;
+  height:auto!important;
+  min-height:100dvh!important;
+}
+body.egOpenStage header{height:auto!important;min-height:58px;padding:10px 18px!important}
+body.egOpenStage .tabs{height:auto!important;min-height:52px;padding:10px 16px!important;gap:10px!important}
+body.egOpenStage .tabs button{padding:10px 16px!important;font-size:13px!important}
+body.egOpenStage main#songStudio{
+  display:grid!important;
+  grid-template-columns:minmax(320px,420px) minmax(0,1fr)!important;
+  gap:18px!important;
+  padding:16px 16px 28px!important;
+  height:auto!important;
+  min-height:calc(100dvh - 120px)!important;
+  overflow:visible!important;
+}
+body.egOpenStage .panel{
+  overflow:visible!important;
+  padding:16px 18px!important;
+  border-radius:16px!important;
+}
+body.egOpenStage #lyrics{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  min-height:62vh!important;
+  max-height:none!important;
+  height:62vh!important;
+  font-size:16px!important;
+  line-height:1.55!important;
+  padding:18px 18px 18px 20px!important;
+  margin:10px 0!important;
+  letter-spacing:.1px;
+}
+body.egOpenStage #egMainDeck,
+body.egOpenStage #egMainPhase2,
+body.egOpenStage #egP2b,
+body.egOpenStage #egCondenseBar,
+body.egOpenStage #egDeskNav,
+body.egOpenStage #egP2dRail,
+body.egOpenStage #egP2fRail,
+body.egOpenStage #egEditedLyricsBar{
+  margin:8px 0!important;
+  padding:8px!important;
+}
+body.egOpenStage #egMainDeck h3,
+body.egOpenStage .egMainStat small,
+body.egOpenStage .egMainQuick button,
+body.egOpenStage #egP2Tools button,
+body.egOpenStage #egP2bBtns button,
+body.egOpenStage #egCondenseBar button,
+body.egOpenStage #egEditedLyricsBar button{
+  font-size:11px!important;
+}
+body.egOpenStage .egMainQuick button,
+body.egOpenStage #egP2Tools button,
+body.egOpenStage #egP2bBtns button,
+body.egOpenStage #egEditedLyricsBar button,
+body.egOpenStage #egCondenseBar button{
+  min-height:36px!important;
+  padding:6px 8px!important;
+}
+body.egOpenStage #egP2gDock,
+body.egOpenStage #egSongMap{
+  position:relative!important;
+  top:auto!important;
+}
+body.egOpenStage #egP2eStatus,
+body.egOpenStage #egDeskInfo,
+body.egOpenStage #egDeskLine{display:none!important}
+body.egOpenStage #stylePrompt{max-height:none!important;font-size:12px!important;padding:12px!important}
+body.egOpenStage h1{font-size:22px!important}
+body.egOpenStage #songTitle{font-size:26px!important}
+
+#egTenRibbon{
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+  margin:0 0 10px;padding:8px;
+  background:linear-gradient(90deg,rgba(92,225,255,.08),rgba(255,61,154,.06));
+  border:1px solid rgba(92,225,255,.28);
+  border-radius:12px;
+}
+#egTenRibbon b{letter-spacing:2px;font-size:11px;color:#5ce1ff}
+#egTenRibbon button{font-size:11px;padding:7px 10px}
+#egTenRibbon .on{border-color:#5ce1ff;color:#5ce1ff;box-shadow:0 0 16px rgba(92,225,255,.25)}
+
+#egTen{
+  display:none;position:fixed;z-index:32000;inset:12px 12px 12px 8vw;
+  background:linear-gradient(165deg,#070b14,#05070e 60%);
+  border:1px solid rgba(92,225,255,.35);
+  border-radius:18px;
+  box-shadow:0 30px 90px #000, 0 0 60px rgba(92,225,255,.08);
+  overflow:hidden;
+}
+#egTen.open{display:grid;grid-template-columns:210px 1fr}
+#egTen nav{border-right:1px solid rgba(92,225,255,.15);padding:12px;overflow:auto;background:rgba(0,0,0,.25)}
+#egTen nav button{display:block;width:100%;text-align:left;margin:0 0 6px;padding:9px 10px;font-size:12px}
+#egTen nav button.on{border-color:#5ce1ff;color:#5ce1ff}
+#egTenHead{display:flex;gap:8px;align-items:center;padding:12px 14px;border-bottom:1px solid rgba(92,225,255,.15)}
+#egTenHead b{letter-spacing:1.5px;color:#5ce1ff}
+#egTenHead small{color:#9ec0d4;margin-left:8px}
+#egTenHead button{margin-left:auto}
+#egTenBody{overflow:auto;padding:14px 16px 24px}
+.egTenGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.egTenCard{
+  text-align:left;padding:12px;border-radius:12px;min-height:92px;
+  background:linear-gradient(160deg,rgba(14,22,36,.95),rgba(8,12,22,.95));
+  border:1px solid rgba(92,225,255,.2);
+}
+.egTenCard b{display:block;margin-bottom:4px;color:#e8f4ff}
+.egTenCard small{color:#9ec0d4;white-space:normal;font-size:11px;line-height:1.35}
+#egTenOut{
+  margin-top:12px;white-space:pre-wrap;font:13px/1.5 ui-monospace,monospace;
+  background:#060910;border:1px solid rgba(92,225,255,.18);border-radius:12px;padding:12px;min-height:120px
+}
+.egTenRow{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.egArc{display:flex;gap:6px;align-items:flex-end;height:120px;margin:10px 0}
+.egArc button{flex:1;min-width:42px;padding:4px;font-size:10px;height:var(--h,40%)}
+.egLane{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.egLane textarea{min-height:180px;font-size:13px;line-height:1.45}
+@media(max-width:800px){
+  body.egOpenStage main#songStudio{grid-template-columns:1fr!important}
+  #egTen{inset:0;border-radius:0}
+  #egTen.open{grid-template-columns:1fr}
+  #egTen nav{display:flex;gap:6px;overflow:auto;border-right:0;border-bottom:1px solid rgba(92,225,255,.15)}
+  #egTen nav button{width:auto;white-space:nowrap}
+  .egLane{grid-template-columns:1fr}
+}
+</style>
+
+<div id="egTen" role="dialog" aria-modal="true">
+  <nav id="egTenNav"></nav>
+  <div>
+    <div id="egTenHead"><b id="egTenTitle">OPEN STAGE</b><small id="egTenSub">Ten expansions</small><button id="egTenClose" type="button">Close</button></div>
+    <div id="egTenBody"></div>
+  </div>
+</div>
+
+<script id="egOpenStageScript">
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const lyrics=$('lyrics');
+if(!lyrics||$('egTenRibbon')) return;
+
+document.body.classList.add('egOpenStage');
+document.body.classList.remove('egWritingDesk','egUltraCondensed');
+
+const ribbon=document.createElement('div');
+ribbon.id='egTenRibbon';
+ribbon.innerHTML=`<b>OPEN STAGE</b>
+<button type="button" id="egStageToggle" class="on">Layout open</button>
+<button type="button" id="egTenLaunch">Explore the 10</button>
+<button type="button" data-lab="atlas">Atlas</button>
+<button type="button" data-lab="worlds">Worlds</button>
+<button type="button" data-lab="oracle">Titles</button>
+<button type="button" data-lab="chorus">Chorus lab</button>
+<button type="button" data-lab="camera">Scenes</button>
+<button type="button" data-lab="duet">Duet</button>
+<button type="button" data-lab="arc">Energy</button>
+<button type="button" data-lab="cues">Cues</button>
+<button type="button" data-lab="sparks">Sparks</button>
+<button type="button" data-lab="release">Release card</button>`;
+const anchor=$('songStudio')?.querySelector('.panel')||lyrics.parentNode;
+if($('songStudio')) $('songStudio').before(ribbon);
+else anchor.parentNode.insertBefore(ribbon, anchor);
+
+$('egStageToggle').onclick=()=>{
+  document.body.classList.toggle('egOpenStage');
+  const on=document.body.classList.contains('egOpenStage');
+  $('egStageToggle').classList.toggle('on', on);
+  $('egStageToggle').textContent=on?'Layout open':'Layout tight';
+};
+
+const labs=[
+  ['atlas','1 · Idea Atlas','Click a star. It becomes the song idea.'],
+  ['worlds','2 · World Packs','Drop the whole studio into a place.'],
+  ['oracle','3 · Title Oracle','Twelve titles from the idea you already wrote.'],
+  ['chorus','4 · Chorus Lab','Hooks, chants, and syllable pressure.'],
+  ['camera','5 · Scene Camera','A shot list that can enter the verse.'],
+  ['duet','6 · Duet Lanes','Two voices, then weave them.'],
+  ['arc','7 · Energy Arc','Paint how loud each section should feel.'],
+  ['cues','8 · Cue Sheet','Performance notes beside the lyric.'],
+  ['sparks','9 · Spark Notebook','Lines that are not ready for the song.'],
+  ['release','10 · Release Card','One page: title, hook, world, next move.']
+];
+
+const stars=[
+  ['Doorway light','A love that feels like coming home after the power comes back'],
+  ['Empty cup','The cup by the sink that still remembers a name'],
+  ['Mile marker','Starting over on a road that does not know your old name'],
+  ['Static hymn','A signal in an empty stairwell that only answers at midnight'],
+  ['Kitchen radio','Ordinary joy loud enough to pull the neighbors in'],
+  ['Seed vault','A starship carrying a garden and one unfinished letter'],
+  ['Name reclaim','Taking the name back from the noise that wore it'],
+  ['Silver chair','Growing old in the same chair and still stealing a sleeve'],
+  ['Rain sign','A corner store changes its sign and the heart does not'],
+  ['Lattice bell','A promise meant to outlast the person who made it'],
+  ['Neon chapel','Dancing where the exit signs are the only saints'],
+  ['Wolf hour','The hour before dawn when the fear gets honest']
+];
+
+const worlds={
+  'Montana night road':{idea:'Headlights on a two-lane, a thermos, and a promise kept in the dark',theme:'survival',mood:'Hopeful',genre:'Alternative rock',hook:'Keep the headlights kind',lines:'The gravel answers back in low white stones\nA thermos knocks against the console bone\nThe county line does not applaud or blame\nIt only lets the dark remember your name'},
+  'Neon chapel':{idea:'A night club that behaves like a church for people who survived the week',theme:'celebration',mood:'Joyful',genre:'Dark synthwave',hook:'Saint of the exit light',lines:'The exit light performs a quiet mass\nThe kick drum keeps the sinners on their feet\nNo stained glass, just a mirror cut from bass\nAnd every chorus asking us to stay'},
+  'Starship garden':{idea:'A small crew carrying soil, songs, and a kitchen across the dark',theme:'space',mood:'Dreamlike',genre:'Cinematic anthem',hook:'Plant a light and call it home',lines:'We ration sugar, never ration song\nThe cabin glass remembers one blue coast\nA seed remembers rain it has not met\nAnd calls the dark a hallway, not a ghost'},
+  'Lattice bell':{idea:'A vow designed to ring long after the hands that made it',theme:'love',mood:'Haunting',genre:'Orchestral rock',hook:'Ring past the hands that made you',lines:'We set a bell where ordinary years collect\nNot marble, not a throne, a kitchen note\nIf time arrives and asks us to forget\nThe bell still knows the sentence that we wrote'},
+  'Velvet machine':{idea:'A city of gears that learns your face and offers it back wrong',theme:'dark',mood:'Dark',genre:'Industrial rock',hook:'I walk out wearing my name',lines:'The elevator counts me like a debt\nEach floor repeats a face I did not lend\nI leave the paper crown beside the gate\nAnd take the rusted key that still says friend'},
+  'Kitchen after midnight':{idea:'Two people, burnt toast, and the decision to stay',theme:'love',mood:'Tender',genre:'Acoustic ballad',hook:'Stay until the kettle cools',lines:'The toast is dark, the story is not done\nYou steal the warmer side without a speech\nThe clock agrees to lose a little time\nIf we agree to give the quiet reach'}
+};
+
+const nav=$('egTenNav');
+labs.forEach(([id,label])=>{
+  const b=document.createElement('button');
+  b.type='button'; b.dataset.lab=id; b.textContent=label;
+  b.onclick=()=>openLab(id);
+  nav.append(b);
+});
+
+function status(t){ if($('status')) $('status').textContent=t; }
+function setIdea(text){ if($('idea')) $('idea').value=text; }
+function setHook(text){ if($('hook')) $('hook').value=text; }
+function insertBlock(label, text){
+  const block='\n\n['+label+']\n'+text.trim()+'\n';
+  lyrics.value=(lyrics.value||'').replace(/\s*$/,'')+block;
+  lyrics.dispatchEvent(new Event('input',{bubbles:true}));
+}
+function syllables(line){
+  const w=line.toLowerCase().replace(/[^a-z\s']/g,'').trim().split(/\s+/).filter(Boolean);
+  return w.reduce((n,word)=>{
+    const m=word.replace(/e$/,'') .match(/[aeiouy]+/g);
+    return n+Math.max(1, m?m.length:1);
+  },0);
+}
+function titlesFrom(idea){
+  const seed=(idea||'the unnamed hour').replace(/[.?!]+$/,'').trim();
+  const bits=seed.split(/\s+/).filter(w=>w.length>3).slice(0,4);
+  const core=bits.slice(0,2).join(' ')||seed;
+  return [
+    core.replace(/\b\w/g,c=>c.toUpperCase()),
+    'Still '+core,
+    core+' After Dark',
+    'The '+ (bits[0]||'Light') +' We Kept',
+    'No Map for '+ (bits.at(-1)||'Home'),
+    'Call It '+ (bits[0]||'Morning'),
+    (bits[1]||'Morning')+' Knows the Way',
+    'Where the '+ (bits[0]||'Door') +' Stayed Open',
+    'A Smaller '+ (bits.at(-1)||'Promise'),
+    'We Did Not Rename the '+ (bits[0]||'Night'),
+    (bits[0]||'Light')+' in Ordinary Clothes',
+    'Until the '+ (bits.at(-1)||'Kettle') +' Cools'
+  ];
+}
+function sceneShots(idea){
+  const ideaLine=idea||'the life in front of us';
+  return [
+    ['Wide','The room before anyone speaks. '+ideaLine+'.'],
+    ['Close','Hands, not faces. A cup, a key, a coat.'],
+    ['Turn','The moment the story refuses the easy ending.'],
+    ['Button','The last image that should survive the fade.']
+  ];
+}
+
+let duetL='', duetR='';
+const SPARK='echoGods.sparks.v1';
+function sparks(){ try{const a=JSON.parse(localStorage.getItem(SPARK)||'[]'); return Array.isArray(a)?a:[]}catch(e){return []} }
+function saveSparks(a){ try{localStorage.setItem(SPARK, JSON.stringify(a.slice(-40)))}catch(e){} }
+
+function openLab(id){
+  $('egTen').classList.add('open');
+  [...nav.children].forEach(b=>b.classList.toggle('on', b.dataset.lab===id));
+  const lab=labs.find(x=>x[0]===id);
+  $('egTenTitle').textContent=lab[1];
+  $('egTenSub').textContent=lab[2];
+  const body=$('egTenBody');
+  body.innerHTML='';
+  const idea=($('idea')?.value||'').trim();
+  if(id==='atlas'){
+    const grid=document.createElement('div'); grid.className='egTenGrid';
+    stars.forEach(([name,text])=>{
+      const b=document.createElement('button'); b.type='button'; b.className='egTenCard';
+      b.innerHTML='<b>'+name+'</b><small>'+text+'</small>';
+      b.onclick=()=>{ setIdea(text); if($('theme')&&$('theme').value==='auto'){} status('Atlas star loaded into the idea field.'); openLab('atlas'); };
+      grid.append(b);
+    });
+    body.append(grid);
+    const note=document.createElement('p'); note.className='small'; note.textContent='A star only sets the idea. Your hook, story fields, and locked lines stay put.';
+    body.append(note);
+  }
+  if(id==='worlds'){
+    const grid=document.createElement('div'); grid.className='egTenGrid';
+    Object.entries(worlds).forEach(([name,w])=>{
+      const b=document.createElement('button'); b.type='button'; b.className='egTenCard';
+      b.innerHTML='<b>'+name+'</b><small>'+w.idea+'</small>';
+      b.onclick=()=>{
+        setIdea(w.idea); setHook(w.hook);
+        if($('theme')) $('theme').value=w.theme;
+        if($('mood')) $('mood').value=w.mood;
+        if($('genre')) $('genre').value=w.genre;
+        if($('scenePalette')) $('scenePalette').value = name.includes('Starship')?'Futuristic': name.includes('Velvet')?'Gothic':'Cinematic';
+        status(name+' loaded. Write the song, or drop the seed stanza from this card.');
+        openLab('worlds');
+        body.querySelector('#egTenOut').textContent=w.lines;
+        body.dataset.world=name;
+      };
+      grid.append(b);
+    });
+    body.append(grid);
+    const row=document.createElement('div'); row.className='egTenRow';
+    const drop=document.createElement('button'); drop.type='button'; drop.textContent='Drop seed stanza into lyrics';
+    drop.onclick=()=>{
+      const name=body.dataset.world; const w=worlds[name];
+      if(!w){ status('Choose a world first.'); return; }
+      insertBlock('Verse — '+name, w.lines);
+      status('Seed stanza added under your current lyrics.');
+    };
+    row.append(drop); body.append(row);
+    const out=document.createElement('div'); out.id='egTenOut'; out.textContent='Choose a world. Theme, mood, style, and hook update together.';
+    body.append(out);
+  }
+  if(id==='oracle'){
+    const list=titlesFrom(idea);
+    const grid=document.createElement('div'); grid.className='egTenGrid';
+    list.forEach(t=>{
+      const b=document.createElement('button'); b.type='button'; b.className='egTenCard';
+      b.innerHTML='<b>'+t+'</b><small>Use as title and hook</small>';
+      b.onclick=()=>{
+        setHook(t);
+        if($('songTitle')) $('songTitle').textContent=t;
+        status('Title oracle set the hook and the studio title.');
+      };
+      grid.append(b);
+    });
+    body.append(grid);
+  }
+  if(id==='chorus'){
+    const hook=($('hook')?.value||idea||'stay until the morning').trim();
+    const variants=[
+      hook,
+      hook+'\n'+hook,
+      'If the night forgets the plan\n'+hook,
+      hook+'\nSay it once, then say it plain',
+      '[Lead] '+hook+'\n[Response] '+hook,
+      hook.toUpperCase()
+    ];
+    const grid=document.createElement('div'); grid.className='egTenGrid';
+    variants.forEach((v,i)=>{
+      const b=document.createElement('button'); b.type='button'; b.className='egTenCard';
+      const syl=v.split('\n').map(syllables).join(' / ');
+      b.innerHTML='<b>Hook '+(i+1)+'</b><small>'+v.replace(/\n/g,' · ')+'<br>'+syl+' syllables</small>';
+      b.onclick=()=>{ insertBlock('Chorus', v); setHook(v.split('\n')[0]); status('Chorus lab wrote a chorus under the lyric.'); };
+      grid.append(b);
+    });
+    body.append(grid);
+    const note=document.createElement('p'); note.className='small'; note.textContent='Syllable counts are a singing estimate, not a metronome. Short lines leave room for the drum.';
+    body.append(note);
+  }
+  if(id==='camera'){
+    const shots=sceneShots(idea);
+    const grid=document.createElement('div'); grid.className='egTenGrid';
+    shots.forEach(([shot,text])=>{
+      const b=document.createElement('button'); b.type='button'; b.className='egTenCard';
+      b.innerHTML='<b>'+shot+'</b><small>'+text+'</small>';
+      b.onclick=()=>{ insertBlock(shot+' shot', text); status(shot+' shot dropped into the lyric.'); };
+      grid.append(b);
+    });
+    body.append(grid);
+    const all=document.createElement('button'); all.type='button'; all.textContent='Drop the full shot list';
+    all.onclick=()=>{ insertBlock('Scene camera', shots.map(s=>s[0].toUpperCase()+': '+s[1]).join('\n')); status('Shot list added.'); };
+    const row=document.createElement('div'); row.className='egTenRow'; row.append(all); body.append(row);
+  }
+  if(id==='duet'){
+    const wrap=document.createElement('div'); wrap.className='egLane';
+    wrap.innerHTML=`<label>Voice A<textarea id="egDuetA" placeholder="The one who stays"></textarea></label>
+      <label>Voice B<textarea id="egDuetB" placeholder="The one who almost leaves"></textarea></label>`;
+    body.append(wrap);
+    $('egDuetA').value=duetL; $('egDuetB').value=duetR;
+    const row=document.createElement('div'); row.className='egTenRow';
+    const weave=document.createElement('button'); weave.type='button'; weave.textContent='Weave into lyrics';
+    weave.onclick=()=>{
+      duetL=$('egDuetA').value; duetR=$('egDuetB').value;
+      const A=duetL.split('\n').map(s=>s.trim()).filter(Boolean);
+      const B=duetR.split('\n').map(s=>s.trim()).filter(Boolean);
+      const n=Math.max(A.length,B.length);
+      const lines=[];
+      for(let i=0;i<n;i++){
+        if(A[i]) lines.push('[A] '+A[i]);
+        if(B[i]) lines.push('[B] '+B[i]);
+      }
+      if(!lines.length){ status('Write at least one line in a lane.'); return; }
+      insertBlock('Duet', lines.join('\n'));
+      if($('voice')) $('voice').value='Duet';
+      status('Duet woven into the lyric. Voice set to Duet.');
+    };
+    row.append(weave); body.append(row);
+  }
+  if(id==='arc'){
+    const raw=lyrics.value||'';
+    const hits=[...raw.matchAll(/^\s*\[([^\]]+)\]/gm)].map(m=>m[1].trim());
+    const names=hits.length?hits:['Intro','Verse','Chorus','Bridge','Final Chorus'];
+    const arc=document.createElement('div'); arc.className='egArc';
+    const levels=[30,45,70,50,90,40];
+    names.forEach((name,i)=>{
+      const b=document.createElement('button'); b.type='button';
+      let h=levels[i%levels.length];
+      b.style.setProperty('--h', h+'%');
+      b.textContent=name;
+      b.onclick=()=>{ h=h>=95?25:h+15; b.style.setProperty('--h', h+'%'); b.dataset.level=h; };
+      b.dataset.level=h;
+      arc.append(b);
+    });
+    body.append(arc);
+    const apply=document.createElement('button'); apply.type='button'; apply.textContent='Write energy notes into song notes';
+    apply.onclick=()=>{
+      const txt=[...arc.children].map(b=>b.textContent+' · energy '+b.dataset.level).join('\n');
+      if($('songNotes')) $('songNotes').value=(($('songNotes').value||'')+'\n\nENERGY ARC\n'+txt).trim();
+      status('Energy arc stored in song notes.');
+    };
+    const row=document.createElement('div'); row.className='egTenRow'; row.append(apply); body.append(row);
+    const note=document.createElement('p'); note.className='small'; note.textContent='Tap a section to raise its energy. This is a performance map, not a volume mixer.';
+    body.append(note);
+  }
+  if(id==='cues'){
+    const raw=lyrics.value||'';
+    const hits=[...raw.matchAll(/^\s*\[([^\]]+)\]/gm)].map(m=>m[1].trim());
+    const names=hits.length?hits:['Verse','Chorus','Bridge'];
+    const cues={verse:'Almost spoken. Leave air after the image.',chorus:'Open the vowel on the hook. Let the room join.',bridge:'Drop the drums in your mind. One voice, closer.',intro:'No lyric yet. A sound that belongs to the place.',outro:'Repeat the hook once, then stop before it begs.'};
+    const grid=document.createElement('div'); grid.className='egTenGrid';
+    names.forEach(name=>{
+      const key=name.toLowerCase();
+      const cue=Object.entries(cues).find(([k])=>key.includes(k))?.[1] || 'Sing the meaning, not the cleverness.';
+      const b=document.createElement('button'); b.type='button'; b.className='egTenCard';
+      b.innerHTML='<b>'+name+'</b><small>'+cue+'</small>';
+      b.onclick=()=>{
+        if($('songNotes')) $('songNotes').value=(($('songNotes').value||'')+'\n\nCUE // '+name+'\n'+cue).trim();
+        status('Cue saved for '+name+'.');
+      };
+      grid.append(b);
+    });
+    body.append(grid);
+  }
+  if(id==='sparks'){
+    const box=document.createElement('textarea'); box.id='egSparkBox'; box.rows=4; box.placeholder='A line, a title, a place. It stays out of the song until you send it.';
+    body.append(box);
+    const row=document.createElement('div'); row.className='egTenRow';
+    const keep=document.createElement('button'); keep.type='button'; keep.textContent='Keep spark';
+    const send=document.createElement('button'); send.type='button'; send.textContent='Send selected spark to lyrics';
+    row.append(keep, send); body.append(row);
+    const list=document.createElement('div'); list.id='egTenOut'; body.append(list);
+    function paint(){
+      const a=sparks();
+      list.textContent=a.length? a.slice().reverse().map((s,i)=>(i+1)+'. '+s).join('\n\n') : 'No sparks yet.';
+    }
+    keep.onclick=()=>{
+      const t=box.value.trim(); if(!t) return;
+      const a=sparks(); a.push(t); saveSparks(a); box.value=''; paint(); status('Spark kept off to the side.');
+    };
+    send.onclick=()=>{
+      const t=box.value.trim() || sparks().at(-1);
+      if(!t){ status('Nothing to send.'); return; }
+      insertBlock('Spark', t); status('Spark copied into the lyric. The notebook copy remains.');
+    };
+    paint();
+  }
+  if(id==='release'){
+    const title=($('songTitle')?.textContent||'Untitled').trim();
+    const hook=($('hook')?.value||'—').trim();
+    const style=($('stylePrompt')?.textContent||'—').trim();
+    const words=(lyrics.value||'').trim()? lyrics.value.trim().split(/\s+/).length : 0;
+    const card=[
+      'ECHO GODS · RELEASE CARD',
+      '',
+      title,
+      'Hook: '+hook,
+      'Words: '+words,
+      '',
+      'Style',
+      style,
+      '',
+      'Next',
+      '1. Lock the hook if it still feels true spoken aloud.',
+      '2. Cut one image that explains itself.',
+      '3. Save the edit, then make one meaner or kinder version — not both.'
+    ].join('\n');
+    const out=document.createElement('div'); out.id='egTenOut'; out.textContent=card; body.append(out);
+    const row=document.createElement('div'); row.className='egTenRow';
+    const copy=document.createElement('button'); copy.type='button'; copy.textContent='Copy release card';
+    copy.onclick=async()=>{ try{ await navigator.clipboard.writeText(card); status('Release card copied.'); }catch(e){ status('Clipboard blocked. The card is on screen.'); } };
+    const note=document.createElement('button'); note.type='button'; note.textContent='File card in song notes';
+    note.onclick=()=>{ if($('songNotes')) $('songNotes').value=(($('songNotes').value||'')+'\n\n'+card).trim(); status('Release card filed in song notes.'); };
+    row.append(copy, note); body.append(row);
+  }
+}
+$('egTenClose').onclick=()=>$('egTen').classList.remove('open');
+$('egTenLaunch').onclick=()=>openLab('atlas');
+ribbon.addEventListener('click', e=>{
+  const b=e.target.closest('button[data-lab]');
+  if(b) openLab(b.dataset.lab);
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape') $('egTen').classList.remove('open');
+});
+if($('status')) $('status').textContent='Open Stage is on. The studio has room to breathe. Explore the 10 when you want a new door.';
+})();
+</script>
+<!-- ECHO GODS // MAIN SCREEN // TWENTY TOOLS -->
+<style id="egTwentyCss">
+#egTwenty{
+  margin:0 0 12px;
+  padding:12px;
+  border:1px solid rgba(92,225,255,.28);
+  border-radius:14px;
+  background:linear-gradient(165deg,rgba(12,18,30,.96),rgba(6,10,18,.96));
+  box-shadow:0 0 28px rgba(92,225,255,.06);
+}
+#egTwentyHead{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;margin-bottom:8px}
+#egTwentyHead b{letter-spacing:2px;font-size:11px;color:#5ce1ff}
+#egTwentyHead small{color:#9ec0d4;font-size:11px}
+#egTwentyGrid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:6px;
+}
+#egTwentyGrid button{
+  min-height:42px;
+  white-space:normal;
+  text-align:left;
+  padding:7px 8px;
+  font-size:11px;
+  line-height:1.25;
+  border-radius:10px;
+}
+#egTwentyGrid button span{display:block;color:#7a9bb0;font-size:9px;letter-spacing:.3px;margin-top:2px}
+#egTwentyNote{margin:8px 0 0;color:#9ec0d4;font-size:11px;min-height:16px}
+@media(max-width:900px){#egTwentyGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+<script id="egTwentyScript">
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const ta=$('lyrics');
+if(!ta||$('egTwenty')) return;
+
+const dock=document.createElement('section');
+dock.id='egTwenty';
+dock.innerHTML=`<div id="egTwentyHead"><b>MAIN DECK · 20 TOOLS</b><small>On the song page. Each one edits this draft or its notes.</small></div>
+<div id="egTwentyGrid"></div><p id="egTwentyNote"></p>`;
+
+const studio=$('songStudio');
+const lyricPanel=ta.closest('.panel')||ta.parentNode;
+lyricPanel.insertBefore(dock, lyricPanel.firstChild);
+
+function note(t){
+  $('egTwentyNote').textContent=t;
+  if($('status')) $('status').textContent=t;
+}
+function touch(){ ta.dispatchEvent(new Event('input',{bubbles:true})); }
+function sections(){
+  const t=ta.value||'';
+  const h=[...t.matchAll(/^\s*\[([^\]]+)\]/gm)];
+  return h.map((m,i)=>({name:m[1].trim(),start:m.index,end:i+1<h.length?h[i+1].index:t.length,raw:t.slice(m.index,i+1<h.length?h[i+1].index:t.length).trim()}));
+}
+function appendBlock(label, text){
+  ta.value=(ta.value||'').replace(/\s*$/,'')+'\n\n['+label+']\n'+text.trim()+'\n';
+  touch();
+}
+function addNotes(block){
+  if(!$('songNotes')) return;
+  $('songNotes').value=(($('songNotes').value||'')+'\n\n'+block).trim();
+}
+function lyricLines(block){
+  return block.split('\n').filter(l=>l.trim()&&!/^\s*\[/.test(l));
+}
+
+const tools=[
+  ['Clean air','Drop extra blank lines',()=>{
+    const before=ta.value;
+    ta.value=before.replace(/[ \t]+$/gm,'').replace(/\n{3,}/g,'\n\n');
+    if(ta.value!==before) touch();
+    note('Extra blank lines removed. Section breaks kept.');
+  }],
+  ['Number parts','Verse 1, Verse 2…',()=>{
+    const counts={};
+    ta.value=ta.value.replace(/^\s*\[([^\]]+)\]/gm,(full,name)=>{
+      const base=name.replace(/\s+\d+$/,'').trim();
+      counts[base]=(counts[base]||0)+1;
+      if(/chorus|bridge|intro|outro|break/i.test(base)&&counts[base]===1) return '['+base+']';
+      return '['+base+' '+counts[base]+']';
+    });
+    touch(); note('Sections numbered. First chorus, bridge, intro, and outro stay unnumbered.');
+  }],
+  ['Clone chorus','Repeat the last chorus',()=>{
+    const a=sections();
+    const c=[...a].reverse().find(s=>/chorus/i.test(s.name));
+    if(!c){ note('No chorus section yet.'); return; }
+    ta.value=ta.value.replace(/\s*$/,'')+'\n\n'+c.raw+'\n';
+    touch(); note('Last chorus cloned at the end.');
+  }],
+  ['Soften land','Gentle last line',()=>{
+    const lines=ta.value.split('\n');
+    for(let i=lines.length-1;i>=0;i--){
+      if(lines[i].trim()&&!/^\s*\[/.test(lines[i])){
+        lines[i]=lines[i].replace(/[.!]+$/,'')+' — and leave the light on';
+        ta.value=lines.join('\n'); touch(); note('Last lyric line softened.'); return;
+      }
+    }
+    note('No lyric line to soften.');
+  }],
+  ['Punch land','Harder last line',()=>{
+    const lines=ta.value.split('\n');
+    for(let i=lines.length-1;i>=0;i--){
+      if(lines[i].trim()&&!/^\s*\[/.test(lines[i])){
+        lines[i]=lines[i].replace(/[.!]+$/,'')+'. That is the whole song.';
+        ta.value=lines.join('\n'); touch(); note('Last lyric line punched.'); return;
+      }
+    }
+    note('No lyric line to punch.');
+  }],
+  ['I voice','First person pass',()=>{
+    ta.value=ta.value.replace(/\b[Ww]e\b/g,'I').replace(/\b[Oo]ur\b/g,'my').replace(/\b[Uu]s\b/g,'me');
+    touch();
+    if($('perspective')) $('perspective').value='First person';
+    note('We/our/us shifted toward I/my/me. Read it once — pronouns can get clumsy.');
+  }],
+  ['We voice','Together pass',()=>{
+    ta.value=ta.value.replace(/\bI\b/g,'we').replace(/\b[Mm]y\b/g,'our').replace(/\b[Mm]e\b/g,'us');
+    touch();
+    if($('perspective')) $('perspective').value='We / together';
+    note('I/my/me shifted toward we/our/us.');
+  }],
+  ['Night wash','After-dark images',()=>{
+    appendBlock('Night wash','The street keeps one lamp for the late ones\nA window learns the shape of staying up\nSay the quiet part where the dark can hold it');
+    if($('mood')) $('mood').value='Haunting';
+    note('Night wash stanza added. Mood set to Haunting.');
+  }],
+  ['Dawn wash','Morning images',()=>{
+    appendBlock('Dawn wash','The kettle starts before the argument does\nLight finds the coat still waiting by the door\nWe keep the small repair and call it morning');
+    if($('mood')) $('mood').value='Hopeful';
+    note('Dawn wash stanza added. Mood set to Hopeful.');
+  }],
+  ['Cut twins','Remove duplicate lines',()=>{
+    const seen=new Set(); let cut=0;
+    const out=ta.value.split('\n').filter(line=>{
+      const key=line.trim().toLowerCase();
+      if(!key||/^\s*\[/.test(line)) return true;
+      if(seen.has(key)){ cut++; return false; }
+      seen.add(key); return true;
+    });
+    ta.value=out.join('\n'); touch();
+    note(cut? cut+' duplicate lyric line'+(cut===1?'':'s')+' removed.' : 'No exact duplicate lines.');
+  }],
+  ['Syllables','Count the singable lines',()=>{
+    const rows=ta.value.split('\n').filter(l=>l.trim()&&!/^\s*\[/.test(l));
+    const counts=rows.map(line=>{
+      const words=line.toLowerCase().replace(/[^a-z\s']/g,'').trim().split(/\s+/).filter(Boolean);
+      return words.reduce((n,w)=>n+Math.max(1,(w.replace(/e$/,'').match(/[aeiouy]+/g)||[]).length),0);
+    });
+    const long=counts.filter(n=>n>14).length;
+    note(rows.length+' lyric lines. Median feel '+(counts.sort((a,b)=>a-b)[Math.floor(counts.length/2)]||0)+' syllables. '+long+' lines run past 14.');
+  }],
+  ['Stamp hook','Put the hook on the chorus',()=>{
+    const hook=($('hook')?.value||'').trim();
+    if(!hook){ note('Type a hook first.'); $('hook')?.focus(); return; }
+    if(!/\[Chorus\]/i.test(ta.value)) appendBlock('Chorus', hook+'\n'+hook);
+    else ta.value=ta.value.replace(/(\[Chorus\][ \t]*\n)/i,'$1'+hook+'\n');
+    touch(); note('Hook stamped onto the chorus.');
+  }],
+  ['Bracket it','Label the selection',()=>{
+    const a=ta.selectionStart, b=ta.selectionEnd;
+    if(a===b){ note('Select lines in the lyric box, then Bracket it.'); return; }
+    const name=prompt('Section name:','Verse')||'Verse';
+    const chunk=ta.value.slice(a,b).replace(/^\s+|\s+$/g,'');
+    ta.setRangeText('['+name+']\n'+chunk+'\n', a, b, 'end');
+    touch(); note('Selection labeled ['+name+'].');
+  }],
+  ['Quiet verse','Lowercase the verses',()=>{
+    ta.value=ta.value.replace(/(\[(?:Verse)[^\]]*\]\n)([\s\S]*?)(?=\n\[|$)/gi,(m,head,body)=>head+body.toLowerCase());
+    touch(); note('Verse bodies lowercased. Choruses left alone.');
+  }],
+  ['Shout hook','Uppercase choruses',()=>{
+    ta.value=ta.value.replace(/(\[(?:Chorus|Final Chorus)[^\]]*\]\n)([\s\S]*?)(?=\n\[|$)/gi,(m,head,body)=>head+body.toUpperCase());
+    touch(); note('Chorus bodies set in capitals.');
+  }],
+  ['Add outro','A short landing',()=>{
+    const hook=($('hook')?.value||'leave the light on').trim();
+    appendBlock('Outro', hook+'\n'+hook+'\n(hold, then stop)');
+    note('Outro added from the hook.');
+  }],
+  ['Add bridge','A turn in the middle',()=>{
+    appendBlock('Bridge','This is the room the chorus would not enter\nOne true thing, said smaller than the hook\nThen give the song its title back');
+    note('Bridge stub added. Replace the middle line with the turn.');
+  }],
+  ['Margin','Note where you are',()=>{
+    const pos=ta.selectionStart||0;
+    const line=(ta.value.slice(0,pos).match(/\n/g)||[]).length+1;
+    const words=(ta.value.trim()?ta.value.trim().split(/\s+/).length:0);
+    addNotes('MARGIN // line '+line+' · '+words+' words · '+new Date().toLocaleString());
+    note('Margin note filed at line '+line+'.');
+  }],
+  ['Swap image','Trade a worn noun',()=>{
+    const swaps=[['door','window'],['light','signal'],['rain','dust'],['heart','hands'],['night','mile'],['home','room'],['star','seed'],['shadow','static']];
+    const pair=swaps[Math.floor(Math.random()*swaps.length)];
+    const re=new RegExp('\\b'+pair[0]+'\\b','i');
+    if(!re.test(ta.value)){ note('No '+pair[0]+' in the lyric to swap.'); return; }
+    ta.value=ta.value.replace(re, pair[1]);
+    touch(); note('Swapped one '+pair[0]+' for '+pair[1]+'.');
+  }],
+  ['Snapshot','Save this exact draft',()=>{
+    if($('egSaveEditedLyrics')){ $('egSaveEditedLyrics').click(); note('Edited-lyrics snapshot fired.'); return; }
+    try{
+      const key='echoGods.editedLyrics.v1';
+      const a=JSON.parse(localStorage.getItem(key)||'[]');
+      a.push({version:a.length+1,time:Date.now(),title:($('songTitle')?.textContent||'Untitled').trim(),lyrics:ta.value});
+      localStorage.setItem(key, JSON.stringify(a.slice(-30)));
+      note('Draft snapshot stored in this browser.');
+    }catch(e){ note('Snapshot could not be stored.'); }
+  }]
+];
+
+const grid=$('egTwentyGrid');
+tools.forEach(([name,sub,fn])=>{
+  const b=document.createElement('button');
+  b.type='button';
+  b.innerHTML=name+'<span>'+sub+'</span>';
+  b.onclick=fn;
+  grid.append(b);
+});
+note('Twenty tools are on the lyric page. Select text before Bracket it.');
+})();
+</script>
+<!-- ECHO GODS // ADVANCED LYRIC DESK -->
+<style id="egAdvCss">
+#egAdv{
+  margin:0 0 12px;padding:12px;border-radius:14px;
+  border:1px solid rgba(255,61,154,.35);
+  background:linear-gradient(160deg,rgba(24,10,20,.55),rgba(8,12,22,.96));
+}
+#egAdvHead{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;margin-bottom:8px}
+#egAdvHead b{letter-spacing:2px;font-size:11px;color:#ff3d9a}
+#egAdvHead small{color:#9ec0d4;font-size:11px}
+#egAdvGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+#egAdvGrid button{min-height:46px;white-space:normal;text-align:left;padding:7px 8px;font-size:11px;line-height:1.25}
+#egAdvGrid button span{display:block;color:#7a9bb0;font-size:9px;margin-top:2px}
+#egAdvReport{
+  margin-top:8px;white-space:pre-wrap;font:12px/1.45 ui-monospace,Menlo,Consolas,monospace;
+  background:#060910;border:1px solid rgba(255,61,154,.22);border-radius:10px;padding:10px;max-height:180px;overflow:auto
+}
+@media(max-width:900px){#egAdvGrid{grid-template-columns:1fr 1fr}}
+</style>
+<script id="egAdvScript">
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const ta=$('lyrics');
+if(!ta||$('egAdv')) return;
+const host=document.getElementById('egTwenty')||ta;
+const box=document.createElement('section');
+box.id='egAdv';
+box.innerHTML=`<div id="egAdvHead"><b>ADVANCED LYRIC DESK</b><small>Edits of craft. Reports stay on the page. The draft changes only when a tool says it writes.</small></div>
+<div id="egAdvGrid"></div><div id="egAdvReport">Pick a technique. A report lands here. Writing tools also change the lyric box.</div>`;
+host.insertAdjacentElement('afterend', box);
+
+function report(t){ $('egAdvReport').textContent=t; if($('status')) $('status').textContent=t.split('\n')[0]; }
+function touch(){ ta.dispatchEvent(new Event('input',{bubbles:true})); }
+function lines(){ return ta.value.split('\n'); }
+function isLabel(s){ return /^\s*\[/.test(s); }
+function lyricIdx(){ return lines().map((s,i)=>!isLabel(s)&&s.trim()?i:-1).filter(i=>i>=0); }
+function words(s){ return (s.toLowerCase().match(/[a-z']+/g)||[]); }
+function endWord(s){ const w=words(s); return w.length?w[w.length-1].replace(/'/g,''):''; }
+function key(w){
+  w=w.replace(/(ing|ed|es|s)$/,'').slice(-3);
+  return w;
+}
+const tell=/^(i |we )?(feel|felt|know|knew|love|loved|hate|hated|miss|missed|am |was |were |are )/i;
+const vague=/\b(thing|stuff|something|everything|nothing|very|really|just|beautiful|amazing|special|feelings?)\b/ig;
+const emotion=/\b(love|hate|sad|happy|heart|soul|pain|lonely|forever|destiny)\b/ig;
+
+const tools=[
+  ['Prosody scan','Stress vs syllable load',()=>{
+    const rows=lyricIdx().map(i=>lines()[i]);
+    const heavy=rows.map((s,n)=>{
+      const syl=words(s).reduce((c,w)=>c+Math.max(1,(w.replace(/e$/,'').match(/[aeiouy]+/g)||[]).length),0);
+      const clusters=(s.match(/[bcdfghjklmnpqrstvwxz]{3,}/ig)||[]).length;
+      return {n:n+1,s,syl,clusters};
+    }).filter(x=>x.syl>12||x.clusters>1);
+    report(heavy.length? heavy.slice(0,8).map(x=>'L'+x.n+' · '+x.syl+' syl · hard clusters '+x.clusters+'\n'+x.s).join('\n\n') : 'No line is overloaded. Prosody is the match of spoken stress to the beat, not the rhyme.');
+  }],
+  ['End-rhyme map','Family the line endings',()=>{
+    const rows=lyricIdx().map(i=>lines()[i]);
+    const fam={};
+    rows.forEach((s,n)=>{ const e=endWord(s); if(!e) return; const k=key(e); (fam[k]=fam[k]||[]).push((n+1)+':'+e); });
+    const hits=Object.entries(fam).filter(([,v])=>v.length>1);
+    report(hits.length? hits.map(([k,v])=>k+' · '+v.join(', ')).join('\n') : 'No repeated end families yet. A family is a shared tail, not a perfect rhyme.');
+  }],
+  ['Internal echo','Repeated sounds inside lines',()=>{
+    const rows=lyricIdx().map(i=>lines()[i]);
+    const found=[];
+    rows.forEach((s,n)=>{
+      const ws=words(s);
+      const tails={};
+      ws.forEach(w=>{ const k=w.slice(-3); if(k.length<3) return; (tails[k]=tails[k]||[]).push(w); });
+      Object.entries(tails).filter(([,v])=>v.length>1).forEach(([k,v])=>found.push('L'+(n+1)+' · '+v.join(' / ')));
+    });
+    report(found.length? found.slice(0,12).join('\n') : 'No internal echo yet. Put one shared tail inside the line, not only at the end.');
+  }],
+  ['Show, don\'t tell','Flag explanation lines',()=>{
+    const L=lines();
+    const hits=lyricIdx().filter(i=>tell.test(L[i].trim())||/\b(because|which means|i realize)\b/i.test(L[i]));
+    report(hits.length? hits.map(i=>'L'+(i+1)+' explains: '+L[i]).join('\n') : 'No obvious telling lines. If a line names the feeling, the line before it should already show it.');
+  }],
+  ['Kill the gloss','Cut one explaining line',()=>{
+    const L=lines();
+    const i=lyricIdx().find(n=>tell.test(L[n].trim())||/\b(because|which means)\b/i.test(L[n]));
+    if(i==null){ report('Nothing obvious to cut. The gloss is the line that explains the image above it.'); return; }
+    const cut=L[i]; L.splice(i,1); ta.value=L.join('\n'); touch();
+    report('Cut:\n'+cut+'\n\nIf the image still works, the explanation was extra.');
+  }],
+  ['Specificity','Replace one vague word',()=>{
+    const bank={thing:'kettle',stuff:'gravel',something:'the coat',everything:'the room',nothing:'the cup',very:'',really:'',just:'',beautiful:'chipped',amazing:'late',special:'yours',feeling:'weather',feelings:'weather'};
+    const L=lines();
+    for(const i of lyricIdx()){
+      if(!vague.test(L[i])) continue;
+      vague.lastIndex=0;
+      const m=L[i].match(vague);
+      if(!m) continue;
+      const w=m[0].toLowerCase();
+      const rep=bank[w]??'';
+      L[i]=L[i].replace(m[0], rep).replace(/[ ]{2,}/g,' ').trim();
+      ta.value=L.join('\n'); touch();
+      report('L'+(i+1)+': '+m[0]+' → '+(rep||'(cut)')+'\n'+L[i]);
+      return;
+    }
+    report('No vague filler found. Specificity is a noun you could pick up.');
+  }],
+  ['Strip adjectives','One decoration off',()=>{
+    const L=lines();
+    const adj=/\b(little|quiet|empty|dark|cold|old|soft|lonely|broken|beautiful)\s+/i;
+    for(const i of lyricIdx()){
+      if(!adj.test(L[i])) continue;
+      const m=L[i].match(adj)[0];
+      L[i]=L[i].replace(adj,'');
+      ta.value=L.join('\n'); touch();
+      report('Removed '+m.trim()+' from L'+(i+1)+'\n'+L[i]+'\n\nPut the adjective back only if the noun cannot do the job.');
+      return;
+    }
+    report('No stock adjective in front of a noun. Good. Add one only for contrast.');
+  }],
+  ['Enjamb','Break a long line in two',()=>{
+    const L=lines();
+    const i=lyricIdx().find(n=>words(L[n]).length>10);
+    if(i==null){ report('No line over 10 words. Enjambment is a break before the sentence is finished.'); return; }
+    const w=L[i].trim().split(/\s+/);
+    const mid=Math.ceil(w.length/2);
+    L.splice(i,1,w.slice(0,mid).join(' '), w.slice(mid).join(' '));
+    ta.value=L.join('\n'); touch();
+    report('Split L'+(i+1)+' so the thought falls forward.\n'+w.slice(0,mid).join(' ')+'\n'+w.slice(mid).join(' '));
+  }],
+  ['Join pair','Fuse the selection or last two',()=>{
+    const a=ta.selectionStart,b=ta.selectionEnd;
+    if(a!==b){
+      const chunk=ta.value.slice(a,b).trim().split(/\n+/).filter(Boolean).join(' / ');
+      ta.setRangeText(chunk,a,b,'end'); touch();
+      report('Selection joined with a slash. Sing the slash as a breath, not a word.');
+      return;
+    }
+    const L=lines(); const idx=lyricIdx();
+    if(idx.length<2){ report('Need two lyric lines.'); return; }
+    const i=idx[idx.length-2], j=idx[idx.length-1];
+    L[i]=L[i].replace(/\s+$/,'')+' / '+L[j].trim();
+    L.splice(j,1); ta.value=L.join('\n'); touch();
+    report('Last two lyric lines fused. Undo from the browser if the breath was doing work.');
+  }],
+  ['Volta','Mark the turn',()=>{
+    const mark='\n\n[Bridge — volta]\nHere the song changes its mind\nThe earlier image returns and means the opposite\n';
+    if(/volta/i.test(ta.value)){ report('A volta is already marked.'); return; }
+    ta.value=ta.value.replace(/\s*$/,'')+mark; touch();
+    report('Volta stub inserted. A volta is the turn, not a second chorus. Make the old image disagree with itself.');
+  }],
+  ['Callback','Plant the hook once, late',()=>{
+    const hook=($('hook')?.value||'').trim();
+    if(!hook){ report('Set the hook field first. A callback is the hook returning as a changed fact.'); return; }
+    ta.value=ta.value.replace(/\s*$/,'')+'\n\n[Callback]\n'+hook+'\n— said by someone who knows the cost now\n';
+    touch(); report('Callback planted. Do not explain it. Let the earlier verse do that.');
+  }],
+  ['Object only','Strip one emotion word',()=>{
+    const L=lines();
+    for(const i of lyricIdx()){
+      emotion.lastIndex=0;
+      const m=L[i].match(emotion);
+      if(!m) continue;
+      L[i]=L[i].replace(m[0],'glass');
+      ta.value=L.join('\n'); touch();
+      report('L'+(i+1)+': '+m[0]+' → glass\n'+L[i]+'\n\nObject pass: if the feeling is real, an object can hold it.');
+      return;
+    }
+    report('No stock emotion word found. The object pass is for lines that name the feeling instead of placing it.');
+  }]
+];
+
+const grid=$('egAdvGrid');
+tools.forEach(([name,sub,fn])=>{
+  const b=document.createElement('button');
+  b.type='button';
+  b.innerHTML=name+'<span>'+sub+'</span>';
+  b.onclick=fn;
+  grid.append(b);
+});
+})();
+</script>
