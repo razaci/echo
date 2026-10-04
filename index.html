@@ -285,6 +285,7 @@ pre, .mono{white-space:pre-wrap;font:11px/1.45 ui-monospace,monospace;margin:0}
   <pre id="forgeCheck" class="card" style="margin-top:8px"></pre>
 </section>
 
+
 <section class="studio" id="studio-story"><div class="studioHead"><b>STORY DETAILS</b><button data-close>Close</button></div>
   <p class="small">Short phrases. They get woven into verse 1 and the bridge when you write the song.</p>
   <label>Who or what connects the song?</label><input id="storyRelationship" maxlength="100" placeholder="two people growing old together">
@@ -319,41 +320,67 @@ try{const x=JSON.parse(localStorage.getItem('echo.songwriter.v3')); if(Array.isA
 function detect(t){t=(t||'').toLowerCase(); if(/heartbreak|goodbye|breakup|left me|missing/.test(t)) return 'heartbreak'; if(/surviv|starting over|still here|fight|dirt/.test(t)) return 'survival'; if(/dark|shadow|static|machine/.test(t)) return 'dark'; if(/space|star|moon|galaxy/.test(t)) return 'space'; if(/party|joy|dance|sunshine|celebrat/.test(t)) return 'celebration'; return 'love'}
 function settings(){return {idea:$('idea').value.trim(),theme:$('theme').value,genre:$('genre').value,mood:$('mood').value,voice:$('voice').value,hook:$('hook').value.trim(),dedication:$('dedication').value.trim(),length:$('length').value,form:$('form').value,density:$('lyricDensity').value,hookForce:$('hookForce').value,ending:$('endingMode').value,energy:$('energy').value}}
 function themeOf(s){let t=s.theme==='auto'?detect(s.idea):s.theme; if(!banks[t]) t=themeMap[t]||'love'; return t}
+let usedLines=[];
+function storyBits(){
+  return ['storyPlace','storyMemory','storyKeepsake','storyStruggle','storyRelationship','storyPromise','storyEnding']
+    .map(id=>$(id)?.value.trim()).filter(Boolean);
+}
+function ideaWords(s){
+  const stop=new Set('a an the and or to of in on for with my your our that this it is was be'.split(' '));
+  return (s.idea||'').toLowerCase().replace(/[^a-z0-9\s']/g,'').split(/\s+/).filter(w=>w.length>3 && !stop.has(w)).slice(0,4);
+}
+function takeLines(pool,n){
+  const fresh=pool.filter(l=>!usedLines.includes(l));
+  const bag=(fresh.length>=n?fresh:pool).slice().sort(()=>Math.random()-.5);
+  const out=[];
+  for(const line of bag){
+    if(out.length>=n) break;
+    if(!out.includes(line)) out.push(line);
+  }
+  usedLines.push(...out);
+  return out;
+}
+function weave(line,s,i){
+  const bits=storyBits(), words=ideaWords(s);
+  if(i===0 && s.dedication) return s.dedication+', '+line.charAt(0).toLowerCase()+line.slice(1);
+  if(bits.length && i===1) return bits[0].replace(/\.$/,'');
+  if(bits.length>1 && i===2) return bits[1].replace(/\.$/,'');
+  if(words.length && i===3 && !line.toLowerCase().includes(words[0])) return line.replace(/\b(the|a|my|your)\b/i, words[0]);
+  return line;
+}
 function sectionText(name,s,theme,title){
   const b=banks[theme];
+  const n=s.density==='Lean / punchy'?3:s.density==='Dense / detailed'?6:4;
   let lines;
-  if(name.startsWith('Verse')) lines=pick(b.verses).slice();
-  else if(name==='Bridge') lines=(b.bridges?pick(b.bridges):pick(b.verses)).slice();
-  else { lines=pick(b.chorus).slice(); lines.unshift(title); if(s.hookForce==='Huge / repetitive') lines.push(title,title); else lines.push(title) }
-  if(name==='Verse 1'){
-    const bits=[];
-    if(s.dedication) lines[0]=s.dedication+', '+lines[0][0].toLowerCase()+lines[0].slice(1);
-    if($('storyPlace')?.value) bits.push($('storyPlace').value.trim());
-    if($('storyMemory')?.value) bits.push($('storyMemory').value.trim());
-    if($('storyKeepsake')?.value) bits.push($('storyKeepsake').value.trim());
-    if(bits.length) lines[1]=bits[0].replace(/\.$/,'');
-    if(bits[1]) lines[2]=bits[1].replace(/\.$/,'');
+  if(name.startsWith('Verse')) lines=takeLines(b.verses.flat(), n).map((l,i)=>weave(l,s,i));
+  else if(name==='Bridge'){
+    lines=takeLines((b.bridges||b.verses).flat(), Math.min(4,n));
+    if($('storyPromise')?.value) lines[0]=$('storyPromise').value.trim();
+    if($('storyEnding')?.value && name!=='Bridge') lines[lines.length-1]=$('storyEnding').value.trim();
+  } else {
+    lines=takeLines(b.chorus.flat(), 3);
+    lines.unshift(title);
+    if(s.hookForce==='Huge / repetitive') lines.push(title);
+    if(s.hookForce!=='Subtle') lines.push(title);
   }
-  if(name==='Bridge' && $('storyPromise')?.value) lines[0]=$('storyPromise').value.trim();
-  if(s.density==='Lean / punchy') lines=lines.slice(0,3);
-  if(s.density==='Dense / detailed' && b.verses[1]) lines=lines.concat(pick(b.verses).slice(0,2));
-  if(s.form==='Call & response' && name==='Chorus') lines=lines.map((l,i)=>(i%2?'[Response] ':'[Lead] ')+l);
-  if(s.form==='Rhythmic chant' && name==='Chorus') lines=[title,title,...lines.slice(1,3),title];
-  if(s.genre==='Hip-hop' && name.startsWith('Verse')) lines=lines.concat(pick(b.verses).slice(0,2));
+  if(s.form==='Call & response' && /Chorus/.test(name)) lines=lines.map((l,i)=>(i%2?'[Response] ':'[Lead] ')+l);
+  if(s.form==='Rhythmic chant' && /Chorus/.test(name)) lines=[title,title,...lines.slice(1,3),title];
   return lines.join('\n');
 }
 function compose(s){
+  usedLines=[];
   const theme=themeOf(s);
   const title=s.hook||pick(banks[theme].titles);
   const chorus=sectionText('Chorus',s,theme,title);
   const sections=['[Verse 1]\n'+sectionText('Verse 1',s,theme,title)];
-  if(s.form==='Verse / pre-chorus / chorus') sections.push('[Pre-Chorus]\n'+pick(banks[theme].verses).slice(0,2).join('\n'));
+  if(s.form==='Verse / pre-chorus / chorus') sections.push('[Pre-Chorus]\n'+takeLines(banks[theme].verses.flat(),2).join('\n'));
   sections.push('[Chorus]\n'+chorus);
   if(s.length!=='Short song'){
     sections.push('[Verse 2]\n'+sectionText('Verse 2',s,theme,title),'[Chorus]\n'+chorus,'[Bridge]\n'+sectionText('Bridge',s,theme,title));
     let final=chorus;
-    if(s.ending==='Final punch line') final=chorus+'\n'+( $('storyEnding')?.value.trim() || title );
+    if(s.ending==='Final punch line') final=chorus+'\n'+($('storyEnding')?.value.trim()||title);
     if(s.ending==='Open ending') final=chorus.split('\n').slice(0,-1).join('\n');
+    if(s.length==='Extended song') sections.push('[Verse 3]\n'+sectionText('Verse 3',s,theme,title),'[Chorus]\n'+chorus);
     sections.push('[Final Chorus]\n'+final,'[Outro]\n'+title);
   } else sections.push('[Outro]\n'+title);
   const style=(genres[s.genre]||'')+'. '+s.mood+' mood. '+s.voice+'. Theme: '+theme+'. '+(s.idea?'Concept: '+s.idea+'. ':'')+'Energy: '+s.energy+'.';
@@ -470,5 +497,6 @@ let draft=null; try{draft=JSON.parse(localStorage.getItem('echo.songwriter.draft
 if(draft&&draft.lyrics){show(draft); status('Last draft restored. Lyrics are on this page. Studios are on the top bar.')}
 else show(compose(settings()));
 </script>
+
 </body>
 </html>
